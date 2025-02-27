@@ -1,0 +1,1272 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>visualisasi data &#8212; alhamdy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="alhamdy - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="alhamdy - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">visualisasi data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tugas1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>visualisasi data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="visualisasi-data">
+<h1>visualisasi data<a class="headerlink" href="#visualisasi-data" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>1<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>mengambil data dari database MySQL dan mengembalikannya dalam bentuk list Python dan array NumPy.</p>
+<p>Mengonversi hasil query menjadi list Python.</p>
+<p>Dapat digunakan untuk analisis lebih lanjut menggunakan NumPy atau Pandas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install pymysql
+<span class="o">%</span><span class="k">pip</span> install psycopg2
+
+
+<span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="k">def</span> <span class="nf">get_mysql_data</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s2">&quot;mysql-16cb25be-hrmen55-bd28.i.aivencloud.com&quot;</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_MfLHp-bDUZ-2mkcA1a6&quot;</span><span class="p">,</span>
+        <span class="n">database</span><span class="o">=</span><span class="s2">&quot;defaultdb&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">23283</span>
+
+    <span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="c1"># cursor.execute(&quot;USE myiris&quot;)  # Use the database</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM irismysql&quot;</span><span class="p">)</span>  <span class="c1"># Select all records from the table</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>  <span class="c1"># Fetch all rows</span>
+
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1"># Convert to Python list</span>
+    <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+
+    <span class="c1"># Convert to NumPy array</span>
+    <span class="n">data_numpy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data_list</span>
+
+    <span class="c1"># print(len(data_list))</span>
+    <span class="c1"># print(data_numpy)</span>
+
+<span class="n">get_mysql_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pymysql in /usr/local/python/3.12.1/lib/python3.12/site-packages (1.1.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.0.1</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">python3 -m pip install --upgrade pip</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: psycopg2 in /usr/local/python/3.12.1/lib/python3.12/site-packages (2.9.10)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> A new release of pip is available: <span class=" -Color -Color-Red">24.3.1</span> -&gt; <span class=" -Color -Color-Green">25.0.1</span>
+<span class=" -Color -Color-Bold">[</span><span class=" -Color -Color-Blue">notice</span><span class=" -Color -Color-Bold">]</span> To update, run: <span class=" -Color -Color-Green">python3 -m pip install --upgrade pip</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1, &#39;Iris-setosa&#39;, 1.4, 0.2],
+ [2, &#39;Iris-setosa&#39;, 1.4, 0.2],
+ [3, &#39;Iris-setosa&#39;, 1.3, 0.2],
+ [4, &#39;Iris-setosa&#39;, 1.5, 0.2],
+ [5, &#39;Iris-setosa&#39;, 1.4, 0.2],
+ [6, &#39;Iris-setosa&#39;, 1.7, 0.4],
+ [7, &#39;Iris-setosa&#39;, 1.4, 0.3],
+ [8, &#39;Iris-setosa&#39;, 1.5, 0.2],
+ [9, &#39;Iris-setosa&#39;, 1.4, 0.2],
+ [10, &#39;Iris-setosa&#39;, 1.5, 0.1],
+ [11, &#39;Iris-setosa&#39;, 1.5, 0.2],
+ [12, &#39;Iris-setosa&#39;, 1.6, 0.2],
+ [13, &#39;Iris-setosa&#39;, 1.4, 0.1],
+ [14, &#39;Iris-setosa&#39;, 1.1, 0.1],
+ [15, &#39;Iris-setosa&#39;, 1.2, 0.2],
+ [16, &#39;Iris-setosa&#39;, 1.5, 0.4],
+ [17, &#39;Iris-setosa&#39;, 1.3, 0.4],
+ [18, &#39;Iris-setosa&#39;, 1.4, 0.3],
+ [19, &#39;Iris-setosa&#39;, 1.7, 0.3],
+ [20, &#39;Iris-setosa&#39;, 1.5, 0.3],
+ [21, &#39;Iris-setosa&#39;, 1.7, 0.2],
+ [22, &#39;Iris-setosa&#39;, 1.5, 0.4],
+ [23, &#39;Iris-setosa&#39;, 1.0, 0.2],
+ [24, &#39;Iris-setosa&#39;, 1.7, 0.5],
+ [25, &#39;Iris-setosa&#39;, 1.9, 0.2],
+ [26, &#39;Iris-setosa&#39;, 1.6, 0.2],
+ [27, &#39;Iris-setosa&#39;, 1.6, 0.4],
+ [28, &#39;Iris-setosa&#39;, 1.5, 0.2],
+ [29, &#39;Iris-setosa&#39;, 1.4, 0.2],
+ [30, &#39;Iris-setosa&#39;, 1.6, 0.2],
+ [31, &#39;Iris-setosa&#39;, 1.6, 0.2],
+ [32, &#39;Iris-setosa&#39;, 1.5, 0.4],
+ [33, &#39;Iris-setosa&#39;, 1.5, 0.1],
+ [34, &#39;Iris-setosa&#39;, 1.4, 0.2],
+ [35, &#39;Iris-setosa&#39;, 1.5, 0.1],
+ [36, &#39;Iris-setosa&#39;, 1.2, 0.2],
+ [37, &#39;Iris-setosa&#39;, 1.3, 0.2],
+ [38, &#39;Iris-setosa&#39;, 1.5, 0.1],
+ [39, &#39;Iris-setosa&#39;, 1.3, 0.2],
+ [40, &#39;Iris-setosa&#39;, 1.5, 0.2],
+ [41, &#39;Iris-setosa&#39;, 1.3, 0.3],
+ [42, &#39;Iris-setosa&#39;, 1.3, 0.3],
+ [43, &#39;Iris-setosa&#39;, 1.3, 0.2],
+ [44, &#39;Iris-setosa&#39;, 1.6, 0.6],
+ [45, &#39;Iris-setosa&#39;, 1.9, 0.4],
+ [46, &#39;Iris-setosa&#39;, 1.4, 0.3],
+ [47, &#39;Iris-setosa&#39;, 1.6, 0.2],
+ [48, &#39;Iris-setosa&#39;, 1.4, 0.2],
+ [49, &#39;Iris-setosa&#39;, 1.5, 0.2],
+ [50, &#39;Iris-setosa&#39;, 1.4, 0.2],
+ [51, &#39;Iris-versicolor&#39;, 4.7, 1.4],
+ [52, &#39;Iris-versicolor&#39;, 4.5, 1.5],
+ [53, &#39;Iris-versicolor&#39;, 4.9, 1.5],
+ [54, &#39;Iris-versicolor&#39;, 4.0, 1.3],
+ [55, &#39;Iris-versicolor&#39;, 4.6, 1.5],
+ [56, &#39;Iris-versicolor&#39;, 4.5, 1.3],
+ [57, &#39;Iris-versicolor&#39;, 4.7, 1.6],
+ [58, &#39;Iris-versicolor&#39;, 3.3, 1.0],
+ [59, &#39;Iris-versicolor&#39;, 4.6, 1.3],
+ [60, &#39;Iris-versicolor&#39;, 3.9, 1.4],
+ [61, &#39;Iris-versicolor&#39;, 3.5, 1.0],
+ [62, &#39;Iris-versicolor&#39;, 4.2, 1.5],
+ [63, &#39;Iris-versicolor&#39;, 4.0, 1.0],
+ [64, &#39;Iris-versicolor&#39;, 4.7, 1.4],
+ [65, &#39;Iris-versicolor&#39;, 3.6, 1.3],
+ [66, &#39;Iris-versicolor&#39;, 4.4, 1.4],
+ [67, &#39;Iris-versicolor&#39;, 4.5, 1.5],
+ [68, &#39;Iris-versicolor&#39;, 4.1, 1.0],
+ [69, &#39;Iris-versicolor&#39;, 4.5, 1.5],
+ [70, &#39;Iris-versicolor&#39;, 3.9, 1.1],
+ [71, &#39;Iris-versicolor&#39;, 4.8, 1.8],
+ [72, &#39;Iris-versicolor&#39;, 4.0, 1.3],
+ [73, &#39;Iris-versicolor&#39;, 4.9, 1.5],
+ [74, &#39;Iris-versicolor&#39;, 4.7, 1.2],
+ [75, &#39;Iris-versicolor&#39;, 4.3, 1.3],
+ [76, &#39;Iris-versicolor&#39;, 4.4, 1.4],
+ [77, &#39;Iris-versicolor&#39;, 4.8, 1.4],
+ [78, &#39;Iris-versicolor&#39;, 5.0, 1.7],
+ [79, &#39;Iris-versicolor&#39;, 4.5, 1.5],
+ [80, &#39;Iris-versicolor&#39;, 3.5, 1.0],
+ [81, &#39;Iris-versicolor&#39;, 3.8, 1.1],
+ [82, &#39;Iris-versicolor&#39;, 3.7, 1.0],
+ [83, &#39;Iris-versicolor&#39;, 3.9, 1.2],
+ [84, &#39;Iris-versicolor&#39;, 5.1, 1.6],
+ [85, &#39;Iris-versicolor&#39;, 4.5, 1.5],
+ [86, &#39;Iris-versicolor&#39;, 4.5, 1.6],
+ [87, &#39;Iris-versicolor&#39;, 4.7, 1.5],
+ [88, &#39;Iris-versicolor&#39;, 4.4, 1.3],
+ [89, &#39;Iris-versicolor&#39;, 4.1, 1.3],
+ [90, &#39;Iris-versicolor&#39;, 4.0, 1.3],
+ [91, &#39;Iris-versicolor&#39;, 4.4, 1.2],
+ [92, &#39;Iris-versicolor&#39;, 4.6, 1.4],
+ [93, &#39;Iris-versicolor&#39;, 4.0, 1.2],
+ [94, &#39;Iris-versicolor&#39;, 3.3, 1.0],
+ [95, &#39;Iris-versicolor&#39;, 4.2, 1.3],
+ [96, &#39;Iris-versicolor&#39;, 4.2, 1.2],
+ [97, &#39;Iris-versicolor&#39;, 4.2, 1.3],
+ [98, &#39;Iris-versicolor&#39;, 4.3, 1.3],
+ [99, &#39;Iris-versicolor&#39;, 3.0, 1.1],
+ [100, &#39;Iris-versicolor&#39;, 4.1, 1.3],
+ [101, &#39;Iris-virginica&#39;, 6.0, 2.5],
+ [102, &#39;Iris-virginica&#39;, 5.1, 1.9],
+ [103, &#39;Iris-virginica&#39;, 5.9, 2.1],
+ [104, &#39;Iris-virginica&#39;, 5.6, 1.8],
+ [105, &#39;Iris-virginica&#39;, 5.8, 2.2],
+ [106, &#39;Iris-virginica&#39;, 6.6, 2.1],
+ [107, &#39;Iris-virginica&#39;, 4.5, 1.7],
+ [108, &#39;Iris-virginica&#39;, 6.3, 1.8],
+ [109, &#39;Iris-virginica&#39;, 5.8, 1.8],
+ [110, &#39;Iris-virginica&#39;, 6.1, 2.5],
+ [111, &#39;Iris-virginica&#39;, 5.1, 2.0],
+ [112, &#39;Iris-virginica&#39;, 5.3, 1.9],
+ [113, &#39;Iris-virginica&#39;, 5.5, 2.1],
+ [114, &#39;Iris-virginica&#39;, 5.0, 2.0],
+ [115, &#39;Iris-virginica&#39;, 5.1, 2.4],
+ [116, &#39;Iris-virginica&#39;, 5.3, 2.3],
+ [117, &#39;Iris-virginica&#39;, 5.5, 1.8],
+ [118, &#39;Iris-virginica&#39;, 6.7, 2.2],
+ [119, &#39;Iris-virginica&#39;, 6.9, 2.3],
+ [120, &#39;Iris-virginica&#39;, 5.0, 1.5],
+ [121, &#39;Iris-virginica&#39;, 5.7, 2.3],
+ [122, &#39;Iris-virginica&#39;, 4.9, 2.0],
+ [123, &#39;Iris-virginica&#39;, 6.7, 2.0],
+ [124, &#39;Iris-virginica&#39;, 4.9, 1.8],
+ [125, &#39;Iris-virginica&#39;, 5.7, 2.1],
+ [126, &#39;Iris-virginica&#39;, 6.0, 1.8],
+ [127, &#39;Iris-virginica&#39;, 4.8, 1.8],
+ [128, &#39;Iris-virginica&#39;, 4.9, 1.8],
+ [129, &#39;Iris-virginica&#39;, 5.6, 2.1],
+ [130, &#39;Iris-virginica&#39;, 5.8, 1.6],
+ [131, &#39;Iris-virginica&#39;, 6.1, 1.9],
+ [132, &#39;Iris-virginica&#39;, 6.4, 2.0],
+ [133, &#39;Iris-virginica&#39;, 5.6, 2.2],
+ [134, &#39;Iris-virginica&#39;, 5.1, 1.5],
+ [135, &#39;Iris-virginica&#39;, 5.6, 1.4],
+ [136, &#39;Iris-virginica&#39;, 6.1, 2.3],
+ [137, &#39;Iris-virginica&#39;, 5.6, 2.4],
+ [138, &#39;Iris-virginica&#39;, 5.5, 1.8],
+ [139, &#39;Iris-virginica&#39;, 4.8, 1.8],
+ [140, &#39;Iris-virginica&#39;, 5.4, 2.1],
+ [141, &#39;Iris-virginica&#39;, 5.6, 2.4],
+ [142, &#39;Iris-virginica&#39;, 5.1, 2.3],
+ [143, &#39;Iris-virginica&#39;, 5.1, 1.9],
+ [144, &#39;Iris-virginica&#39;, 5.9, 2.3],
+ [145, &#39;Iris-virginica&#39;, 5.7, 2.5],
+ [146, &#39;Iris-virginica&#39;, 5.2, 2.3],
+ [147, &#39;Iris-virginica&#39;, 5.0, 1.9],
+ [148, &#39;Iris-virginica&#39;, 5.2, 2.0],
+ [149, &#39;Iris-virginica&#39;, 5.4, 2.3],
+ [150, &#39;Iris-virginica&#39;, 5.1, 1.8]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>2<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>mengambil data dari database PostgreSQL dan mengembalikannya dalam bentuk list Python serta array NumPy</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">get_pg_data</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s2">&quot;pg-3fbafb7b-hrmen55-bd28.i.aivencloud.com&quot;</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_sc56Zt79uy033vzjIS4&quot;</span><span class="p">,</span>
+        <span class="n">database</span><span class="o">=</span><span class="s2">&quot;defaultdb&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">23283</span>
+    <span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM iris_postgresql&quot;</span><span class="p">)</span>  <span class="c1"># Select all records from the table</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>  <span class="c1"># Fetch all rows</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1"># Convert to Python list</span>
+    <span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
+
+    <span class="c1"># Convert to NumPy array</span>
+    <span class="n">data_numpy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+    <span class="c1"># print(len(data_numpy))</span>
+    <span class="c1"># print(data_numpy)</span>
+    <span class="k">return</span> <span class="n">data_list</span>
+
+<span class="n">get_pg_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1, &#39;Iris-setosa&#39;, 5.1, 3.5],
+ [2, &#39;Iris-setosa&#39;, 4.9, 3.0],
+ [3, &#39;Iris-setosa&#39;, 4.7, 3.2],
+ [4, &#39;Iris-setosa&#39;, 4.6, 3.1],
+ [5, &#39;Iris-setosa&#39;, 5.0, 3.6],
+ [6, &#39;Iris-setosa&#39;, 5.4, 3.9],
+ [7, &#39;Iris-setosa&#39;, 4.6, 3.4],
+ [8, &#39;Iris-setosa&#39;, 5.0, 3.4],
+ [9, &#39;Iris-setosa&#39;, 4.4, 2.9],
+ [10, &#39;Iris-setosa&#39;, 4.9, 3.1],
+ [11, &#39;Iris-setosa&#39;, 5.4, 3.7],
+ [12, &#39;Iris-setosa&#39;, 4.8, 3.4],
+ [13, &#39;Iris-setosa&#39;, 4.8, 3.0],
+ [14, &#39;Iris-setosa&#39;, 4.3, 3.0],
+ [15, &#39;Iris-setosa&#39;, 5.8, 4.0],
+ [16, &#39;Iris-setosa&#39;, 5.7, 4.4],
+ [17, &#39;Iris-setosa&#39;, 5.4, 3.9],
+ [18, &#39;Iris-setosa&#39;, 5.1, 3.5],
+ [19, &#39;Iris-setosa&#39;, 5.7, 3.8],
+ [20, &#39;Iris-setosa&#39;, 5.1, 3.8],
+ [21, &#39;Iris-setosa&#39;, 5.4, 3.4],
+ [22, &#39;Iris-setosa&#39;, 5.1, 3.7],
+ [23, &#39;Iris-setosa&#39;, 4.6, 3.6],
+ [24, &#39;Iris-setosa&#39;, 5.1, 3.3],
+ [25, &#39;Iris-setosa&#39;, 4.8, 3.4],
+ [26, &#39;Iris-setosa&#39;, 5.0, 3.0],
+ [27, &#39;Iris-setosa&#39;, 5.0, 3.4],
+ [28, &#39;Iris-setosa&#39;, 5.2, 3.5],
+ [29, &#39;Iris-setosa&#39;, 5.2, 3.4],
+ [30, &#39;Iris-setosa&#39;, 4.7, 3.2],
+ [31, &#39;Iris-setosa&#39;, 4.8, 3.1],
+ [32, &#39;Iris-setosa&#39;, 5.4, 3.4],
+ [33, &#39;Iris-setosa&#39;, 5.2, 4.1],
+ [34, &#39;Iris-setosa&#39;, 5.5, 4.2],
+ [35, &#39;Iris-setosa&#39;, 4.9, 3.1],
+ [36, &#39;Iris-setosa&#39;, 5.0, 3.2],
+ [37, &#39;Iris-setosa&#39;, 5.5, 3.5],
+ [38, &#39;Iris-setosa&#39;, 4.9, 3.1],
+ [39, &#39;Iris-setosa&#39;, 4.4, 3.0],
+ [40, &#39;Iris-setosa&#39;, 5.1, 3.4],
+ [41, &#39;Iris-setosa&#39;, 5.0, 3.5],
+ [42, &#39;Iris-setosa&#39;, 4.5, 2.3],
+ [43, &#39;Iris-setosa&#39;, 4.4, 3.2],
+ [44, &#39;Iris-setosa&#39;, 5.0, 3.5],
+ [45, &#39;Iris-setosa&#39;, 5.1, 3.8],
+ [46, &#39;Iris-setosa&#39;, 4.8, 3.0],
+ [47, &#39;Iris-setosa&#39;, 5.1, 3.8],
+ [48, &#39;Iris-setosa&#39;, 4.6, 3.2],
+ [49, &#39;Iris-setosa&#39;, 5.3, 3.7],
+ [50, &#39;Iris-setosa&#39;, 5.0, 3.3],
+ [51, &#39;Iris-versicolor&#39;, 7.0, 3.2],
+ [52, &#39;Iris-versicolor&#39;, 6.4, 3.2],
+ [53, &#39;Iris-versicolor&#39;, 6.9, 3.1],
+ [54, &#39;Iris-versicolor&#39;, 5.5, 2.3],
+ [55, &#39;Iris-versicolor&#39;, 6.5, 2.8],
+ [56, &#39;Iris-versicolor&#39;, 5.7, 2.8],
+ [57, &#39;Iris-versicolor&#39;, 6.3, 3.3],
+ [58, &#39;Iris-versicolor&#39;, 4.9, 2.4],
+ [59, &#39;Iris-versicolor&#39;, 6.6, 2.9],
+ [60, &#39;Iris-versicolor&#39;, 5.2, 2.7],
+ [61, &#39;Iris-versicolor&#39;, 5.0, 2.0],
+ [62, &#39;Iris-versicolor&#39;, 5.9, 3.0],
+ [63, &#39;Iris-versicolor&#39;, 6.0, 2.2],
+ [64, &#39;Iris-versicolor&#39;, 6.1, 2.9],
+ [65, &#39;Iris-versicolor&#39;, 5.6, 2.9],
+ [66, &#39;Iris-versicolor&#39;, 6.7, 3.1],
+ [67, &#39;Iris-versicolor&#39;, 5.6, 3.0],
+ [68, &#39;Iris-versicolor&#39;, 5.8, 2.7],
+ [69, &#39;Iris-versicolor&#39;, 6.2, 2.2],
+ [70, &#39;Iris-versicolor&#39;, 5.6, 2.5],
+ [71, &#39;Iris-versicolor&#39;, 5.9, 3.2],
+ [72, &#39;Iris-versicolor&#39;, 6.1, 2.8],
+ [73, &#39;Iris-versicolor&#39;, 6.3, 2.5],
+ [74, &#39;Iris-versicolor&#39;, 6.1, 2.8],
+ [75, &#39;Iris-versicolor&#39;, 6.4, 2.9],
+ [76, &#39;Iris-versicolor&#39;, 6.6, 3.0],
+ [77, &#39;Iris-versicolor&#39;, 6.8, 2.8],
+ [78, &#39;Iris-versicolor&#39;, 6.7, 3.0],
+ [79, &#39;Iris-versicolor&#39;, 6.0, 2.9],
+ [80, &#39;Iris-versicolor&#39;, 5.7, 2.6],
+ [81, &#39;Iris-versicolor&#39;, 5.5, 2.4],
+ [82, &#39;Iris-versicolor&#39;, 5.5, 2.4],
+ [83, &#39;Iris-versicolor&#39;, 5.8, 2.7],
+ [84, &#39;Iris-versicolor&#39;, 6.0, 2.7],
+ [85, &#39;Iris-versicolor&#39;, 5.4, 3.0],
+ [86, &#39;Iris-versicolor&#39;, 6.0, 3.4],
+ [87, &#39;Iris-versicolor&#39;, 6.7, 3.1],
+ [88, &#39;Iris-versicolor&#39;, 6.3, 2.3],
+ [89, &#39;Iris-versicolor&#39;, 5.6, 3.0],
+ [90, &#39;Iris-versicolor&#39;, 5.5, 2.5],
+ [91, &#39;Iris-versicolor&#39;, 5.5, 2.6],
+ [92, &#39;Iris-versicolor&#39;, 6.1, 3.0],
+ [93, &#39;Iris-versicolor&#39;, 5.8, 2.6],
+ [94, &#39;Iris-versicolor&#39;, 5.0, 2.3],
+ [95, &#39;Iris-versicolor&#39;, 5.6, 2.7],
+ [96, &#39;Iris-versicolor&#39;, 5.7, 3.0],
+ [97, &#39;Iris-versicolor&#39;, 5.7, 2.9],
+ [98, &#39;Iris-versicolor&#39;, 6.2, 2.9],
+ [99, &#39;Iris-versicolor&#39;, 5.1, 2.5],
+ [100, &#39;Iris-versicolor&#39;, 5.7, 2.8],
+ [101, &#39;Iris-virginica&#39;, 6.3, 3.3],
+ [102, &#39;Iris-virginica&#39;, 5.8, 2.7],
+ [103, &#39;Iris-virginica&#39;, 7.1, 3.0],
+ [104, &#39;Iris-virginica&#39;, 6.3, 2.9],
+ [105, &#39;Iris-virginica&#39;, 6.5, 3.0],
+ [106, &#39;Iris-virginica&#39;, 7.6, 3.0],
+ [107, &#39;Iris-virginica&#39;, 4.9, 2.5],
+ [108, &#39;Iris-virginica&#39;, 7.3, 2.9],
+ [109, &#39;Iris-virginica&#39;, 6.7, 2.5],
+ [110, &#39;Iris-virginica&#39;, 7.2, 3.6],
+ [111, &#39;Iris-virginica&#39;, 6.5, 3.2],
+ [112, &#39;Iris-virginica&#39;, 6.4, 2.7],
+ [113, &#39;Iris-virginica&#39;, 6.8, 3.0],
+ [114, &#39;Iris-virginica&#39;, 5.7, 2.5],
+ [115, &#39;Iris-virginica&#39;, 5.8, 2.8],
+ [116, &#39;Iris-virginica&#39;, 6.4, 3.2],
+ [117, &#39;Iris-virginica&#39;, 6.5, 3.0],
+ [118, &#39;Iris-virginica&#39;, 7.7, 3.8],
+ [119, &#39;Iris-virginica&#39;, 7.7, 2.6],
+ [120, &#39;Iris-virginica&#39;, 6.0, 2.2],
+ [121, &#39;Iris-virginica&#39;, 6.9, 3.2],
+ [122, &#39;Iris-virginica&#39;, 5.6, 2.8],
+ [123, &#39;Iris-virginica&#39;, 7.7, 2.8],
+ [124, &#39;Iris-virginica&#39;, 6.3, 2.7],
+ [125, &#39;Iris-virginica&#39;, 6.7, 3.3],
+ [126, &#39;Iris-virginica&#39;, 7.2, 3.2],
+ [127, &#39;Iris-virginica&#39;, 6.2, 2.8],
+ [128, &#39;Iris-virginica&#39;, 6.1, 3.0],
+ [129, &#39;Iris-virginica&#39;, 6.4, 2.8],
+ [130, &#39;Iris-virginica&#39;, 7.2, 3.0],
+ [131, &#39;Iris-virginica&#39;, 7.4, 2.8],
+ [132, &#39;Iris-virginica&#39;, 7.9, 3.8],
+ [133, &#39;Iris-virginica&#39;, 6.4, 2.8],
+ [134, &#39;Iris-virginica&#39;, 6.3, 2.8],
+ [135, &#39;Iris-virginica&#39;, 6.1, 2.6],
+ [136, &#39;Iris-virginica&#39;, 7.7, 3.0],
+ [137, &#39;Iris-virginica&#39;, 6.3, 3.4],
+ [138, &#39;Iris-virginica&#39;, 6.4, 3.1],
+ [139, &#39;Iris-virginica&#39;, 6.0, 3.0],
+ [140, &#39;Iris-virginica&#39;, 6.9, 3.1],
+ [141, &#39;Iris-virginica&#39;, 6.7, 3.1],
+ [142, &#39;Iris-virginica&#39;, 6.9, 3.1],
+ [143, &#39;Iris-virginica&#39;, 5.8, 2.7],
+ [144, &#39;Iris-virginica&#39;, 6.8, 3.2],
+ [145, &#39;Iris-virginica&#39;, 6.7, 3.3],
+ [146, &#39;Iris-virginica&#39;, 6.7, 3.0],
+ [147, &#39;Iris-virginica&#39;, 6.3, 2.5],
+ [148, &#39;Iris-virginica&#39;, 6.5, 3.0],
+ [149, &#39;Iris-virginica&#39;, 6.2, 3.4],
+ [150, &#39;Iris-virginica&#39;, 5.9, 3.0]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>3<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Menggabungkan Data dari dua database berbeda</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  After fetching all the data needed from both databases, i merge the dataset in one dataframe now i need to get iris_setosa with thecolumnsepal_length sepal_width petal_length petal_width</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1"># buat datafrrame</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">]</span>
+<span class="n">data_mysql</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">get_mysql_data</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">]</span>
+<span class="n">data_pg</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">get_pg_data</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="c1"># print(data_mysql)</span>
+
+<span class="c1"># Gabungkan berdasarkan kolom &#39;id&#39; dan &#39;Class&#39;</span>
+<span class="n">df_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">data_mysql</span><span class="p">,</span> <span class="n">data_pg</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;Class&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_merged</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      id           Class  sepal_length  sepal_width  petal_length  petal_width
+0      1     Iris-setosa           1.4          0.2           5.1          3.5
+1      2     Iris-setosa           1.4          0.2           4.9          3.0
+2      3     Iris-setosa           1.3          0.2           4.7          3.2
+3      4     Iris-setosa           1.5          0.2           4.6          3.1
+4      5     Iris-setosa           1.4          0.2           5.0          3.6
+..   ...             ...           ...          ...           ...          ...
+145  146  Iris-virginica           5.2          2.3           6.7          3.0
+146  147  Iris-virginica           5.0          1.9           6.3          2.5
+147  148  Iris-virginica           5.2          2.0           6.5          3.0
+148  149  Iris-virginica           5.4          2.3           6.2          3.4
+149  150  Iris-virginica           5.1          1.8           5.9          3.0
+
+[150 rows x 6 columns]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h2>4<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>memvisualisasikan data dari dua database yang berbeda, yaitu MySQL dan PostgreSQL.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">get_pg_data</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s2">&quot;pg-3fbafb7b-hrmen55-bd28.i.aivencloud.com&quot;</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_sc56Zt79uy033vzjIS4&quot;</span><span class="p">,</span>
+        <span class="n">database</span><span class="o">=</span><span class="s2">&quot;defaultdb&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">23283</span>
+    <span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM iris_postgresql&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>  <span class="c1"># Ambil nama kolom</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_mysql_data</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s2">&quot;mysql-16cb25be-hrmen55-bd28.i.aivencloud.com&quot;</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_MfLHp-bDUZ-2mkcA1a6&quot;</span><span class="p">,</span>
+        <span class="n">database</span><span class="o">=</span><span class="s2">&quot;defaultdb&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">23283</span>
+    <span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM irismysql&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>  <span class="c1"># Ambil nama kolom</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="c1"># Ambil data dari kedua database</span>
+<span class="n">df_postgresql</span> <span class="o">=</span> <span class="n">get_pg_data</span><span class="p">()</span>
+<span class="n">df_mysql</span> <span class="o">=</span> <span class="n">get_mysql_data</span><span class="p">()</span>
+
+<span class="c1"># Gabungkan berdasarkan kolom &#39;id&#39; dan &#39;Class&#39;</span>
+<span class="n">df_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_mysql</span><span class="p">,</span> <span class="n">df_postgresql</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+
+<span class="c1"># Cetak semua data hasil gabungan tanpa indeks</span>
+
+<span class="c1"># Visualisasi data</span>
+<span class="c1"># Scatter plot antar variabel</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df_merged</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/fc37378b28680ddf2b2e3b99814f1ab975c634f372709992f8a29010953a6aa1.png" src="_images/fc37378b28680ddf2b2e3b99814f1ab975c634f372709992f8a29010953a6aa1.png" />
+</div>
+</div>
+</section>
+<section id="id5">
+<h2>5<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>mengambil, menggabungkan, menampilkan, dan memvisualisasikan data dari dua database berbeda (MySQL dan PostgreSQL)</p>
+<p>Menggabungkan data berdasarkan “id” &amp; “class”.</p>
+<p>Menampilkan hasil gabungan di terminal.</p>
+<p>Membuat scatter plot antar variabel untuk analisis pola distribusi.</p>
+<p>Membuat boxplot untuk melihat distribusi statistik setiap fitur per kelas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">get_pg_data</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s2">&quot;pg-3fbafb7b-hrmen55-bd28.i.aivencloud.com&quot;</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_sc56Zt79uy033vzjIS4&quot;</span><span class="p">,</span>
+        <span class="n">database</span><span class="o">=</span><span class="s2">&quot;defaultdb&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">23283</span>
+    <span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM iris_postgresql&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>  <span class="c1"># Ambil nama kolom</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_mysql_data</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s2">&quot;mysql-16cb25be-hrmen55-bd28.i.aivencloud.com&quot;</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_MfLHp-bDUZ-2mkcA1a6&quot;</span><span class="p">,</span>
+        <span class="n">database</span><span class="o">=</span><span class="s2">&quot;defaultdb&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">23283</span>
+    <span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM irismysql&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>  <span class="c1"># Ambil nama kolom</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="c1"># Ambil data dari kedua database</span>
+<span class="n">df_postgresql</span> <span class="o">=</span> <span class="n">get_pg_data</span><span class="p">()</span>
+<span class="n">df_mysql</span> <span class="o">=</span> <span class="n">get_mysql_data</span><span class="p">()</span>
+
+<span class="c1"># Gabungkan berdasarkan kolom &#39;id&#39; dan &#39;Class&#39;</span>
+<span class="n">df_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_mysql</span><span class="p">,</span> <span class="n">df_postgresql</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+
+<span class="c1"># Cetak semua data hasil gabungan tanpa indeks</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_merged</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="c1"># Visualisasi data</span>
+<span class="c1"># Scatter plot antar variabel</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df_merged</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Visualisasi data dengan boxplot per class</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">df_merged</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="n">df_merged</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Boxplot Petal Length per Class&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">df_merged</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="n">df_merged</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Boxplot Sepal Length per Class&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">df_merged</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="n">df_merged</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Boxplot Petal Width per Class&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">df_merged</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="n">df_merged</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Boxplot Sepal Width per Class&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> id           class  petal_length  petal_width  sepal_length  sepal_width
+  1     Iris-setosa           1.4          0.2           5.1          3.5
+  2     Iris-setosa           1.4          0.2           4.9          3.0
+  3     Iris-setosa           1.3          0.2           4.7          3.2
+  4     Iris-setosa           1.5          0.2           4.6          3.1
+  5     Iris-setosa           1.4          0.2           5.0          3.6
+  6     Iris-setosa           1.7          0.4           5.4          3.9
+  7     Iris-setosa           1.4          0.3           4.6          3.4
+  8     Iris-setosa           1.5          0.2           5.0          3.4
+  9     Iris-setosa           1.4          0.2           4.4          2.9
+ 10     Iris-setosa           1.5          0.1           4.9          3.1
+ 11     Iris-setosa           1.5          0.2           5.4          3.7
+ 12     Iris-setosa           1.6          0.2           4.8          3.4
+ 13     Iris-setosa           1.4          0.1           4.8          3.0
+ 14     Iris-setosa           1.1          0.1           4.3          3.0
+ 15     Iris-setosa           1.2          0.2           5.8          4.0
+ 16     Iris-setosa           1.5          0.4           5.7          4.4
+ 17     Iris-setosa           1.3          0.4           5.4          3.9
+ 18     Iris-setosa           1.4          0.3           5.1          3.5
+ 19     Iris-setosa           1.7          0.3           5.7          3.8
+ 20     Iris-setosa           1.5          0.3           5.1          3.8
+ 21     Iris-setosa           1.7          0.2           5.4          3.4
+ 22     Iris-setosa           1.5          0.4           5.1          3.7
+ 23     Iris-setosa           1.0          0.2           4.6          3.6
+ 24     Iris-setosa           1.7          0.5           5.1          3.3
+ 25     Iris-setosa           1.9          0.2           4.8          3.4
+ 26     Iris-setosa           1.6          0.2           5.0          3.0
+ 27     Iris-setosa           1.6          0.4           5.0          3.4
+ 28     Iris-setosa           1.5          0.2           5.2          3.5
+ 29     Iris-setosa           1.4          0.2           5.2          3.4
+ 30     Iris-setosa           1.6          0.2           4.7          3.2
+ 31     Iris-setosa           1.6          0.2           4.8          3.1
+ 32     Iris-setosa           1.5          0.4           5.4          3.4
+ 33     Iris-setosa           1.5          0.1           5.2          4.1
+ 34     Iris-setosa           1.4          0.2           5.5          4.2
+ 35     Iris-setosa           1.5          0.1           4.9          3.1
+ 36     Iris-setosa           1.2          0.2           5.0          3.2
+ 37     Iris-setosa           1.3          0.2           5.5          3.5
+ 38     Iris-setosa           1.5          0.1           4.9          3.1
+ 39     Iris-setosa           1.3          0.2           4.4          3.0
+ 40     Iris-setosa           1.5          0.2           5.1          3.4
+ 41     Iris-setosa           1.3          0.3           5.0          3.5
+ 42     Iris-setosa           1.3          0.3           4.5          2.3
+ 43     Iris-setosa           1.3          0.2           4.4          3.2
+ 44     Iris-setosa           1.6          0.6           5.0          3.5
+ 45     Iris-setosa           1.9          0.4           5.1          3.8
+ 46     Iris-setosa           1.4          0.3           4.8          3.0
+ 47     Iris-setosa           1.6          0.2           5.1          3.8
+ 48     Iris-setosa           1.4          0.2           4.6          3.2
+ 49     Iris-setosa           1.5          0.2           5.3          3.7
+ 50     Iris-setosa           1.4          0.2           5.0          3.3
+ 51 Iris-versicolor           4.7          1.4           7.0          3.2
+ 52 Iris-versicolor           4.5          1.5           6.4          3.2
+ 53 Iris-versicolor           4.9          1.5           6.9          3.1
+ 54 Iris-versicolor           4.0          1.3           5.5          2.3
+ 55 Iris-versicolor           4.6          1.5           6.5          2.8
+ 56 Iris-versicolor           4.5          1.3           5.7          2.8
+ 57 Iris-versicolor           4.7          1.6           6.3          3.3
+ 58 Iris-versicolor           3.3          1.0           4.9          2.4
+ 59 Iris-versicolor           4.6          1.3           6.6          2.9
+ 60 Iris-versicolor           3.9          1.4           5.2          2.7
+ 61 Iris-versicolor           3.5          1.0           5.0          2.0
+ 62 Iris-versicolor           4.2          1.5           5.9          3.0
+ 63 Iris-versicolor           4.0          1.0           6.0          2.2
+ 64 Iris-versicolor           4.7          1.4           6.1          2.9
+ 65 Iris-versicolor           3.6          1.3           5.6          2.9
+ 66 Iris-versicolor           4.4          1.4           6.7          3.1
+ 67 Iris-versicolor           4.5          1.5           5.6          3.0
+ 68 Iris-versicolor           4.1          1.0           5.8          2.7
+ 69 Iris-versicolor           4.5          1.5           6.2          2.2
+ 70 Iris-versicolor           3.9          1.1           5.6          2.5
+ 71 Iris-versicolor           4.8          1.8           5.9          3.2
+ 72 Iris-versicolor           4.0          1.3           6.1          2.8
+ 73 Iris-versicolor           4.9          1.5           6.3          2.5
+ 74 Iris-versicolor           4.7          1.2           6.1          2.8
+ 75 Iris-versicolor           4.3          1.3           6.4          2.9
+ 76 Iris-versicolor           4.4          1.4           6.6          3.0
+ 77 Iris-versicolor           4.8          1.4           6.8          2.8
+ 78 Iris-versicolor           5.0          1.7           6.7          3.0
+ 79 Iris-versicolor           4.5          1.5           6.0          2.9
+ 80 Iris-versicolor           3.5          1.0           5.7          2.6
+ 81 Iris-versicolor           3.8          1.1           5.5          2.4
+ 82 Iris-versicolor           3.7          1.0           5.5          2.4
+ 83 Iris-versicolor           3.9          1.2           5.8          2.7
+ 84 Iris-versicolor           5.1          1.6           6.0          2.7
+ 85 Iris-versicolor           4.5          1.5           5.4          3.0
+ 86 Iris-versicolor           4.5          1.6           6.0          3.4
+ 87 Iris-versicolor           4.7          1.5           6.7          3.1
+ 88 Iris-versicolor           4.4          1.3           6.3          2.3
+ 89 Iris-versicolor           4.1          1.3           5.6          3.0
+ 90 Iris-versicolor           4.0          1.3           5.5          2.5
+ 91 Iris-versicolor           4.4          1.2           5.5          2.6
+ 92 Iris-versicolor           4.6          1.4           6.1          3.0
+ 93 Iris-versicolor           4.0          1.2           5.8          2.6
+ 94 Iris-versicolor           3.3          1.0           5.0          2.3
+ 95 Iris-versicolor           4.2          1.3           5.6          2.7
+ 96 Iris-versicolor           4.2          1.2           5.7          3.0
+ 97 Iris-versicolor           4.2          1.3           5.7          2.9
+ 98 Iris-versicolor           4.3          1.3           6.2          2.9
+ 99 Iris-versicolor           3.0          1.1           5.1          2.5
+100 Iris-versicolor           4.1          1.3           5.7          2.8
+101  Iris-virginica           6.0          2.5           6.3          3.3
+102  Iris-virginica           5.1          1.9           5.8          2.7
+103  Iris-virginica           5.9          2.1           7.1          3.0
+104  Iris-virginica           5.6          1.8           6.3          2.9
+105  Iris-virginica           5.8          2.2           6.5          3.0
+106  Iris-virginica           6.6          2.1           7.6          3.0
+107  Iris-virginica           4.5          1.7           4.9          2.5
+108  Iris-virginica           6.3          1.8           7.3          2.9
+109  Iris-virginica           5.8          1.8           6.7          2.5
+110  Iris-virginica           6.1          2.5           7.2          3.6
+111  Iris-virginica           5.1          2.0           6.5          3.2
+112  Iris-virginica           5.3          1.9           6.4          2.7
+113  Iris-virginica           5.5          2.1           6.8          3.0
+114  Iris-virginica           5.0          2.0           5.7          2.5
+115  Iris-virginica           5.1          2.4           5.8          2.8
+116  Iris-virginica           5.3          2.3           6.4          3.2
+117  Iris-virginica           5.5          1.8           6.5          3.0
+118  Iris-virginica           6.7          2.2           7.7          3.8
+119  Iris-virginica           6.9          2.3           7.7          2.6
+120  Iris-virginica           5.0          1.5           6.0          2.2
+121  Iris-virginica           5.7          2.3           6.9          3.2
+122  Iris-virginica           4.9          2.0           5.6          2.8
+123  Iris-virginica           6.7          2.0           7.7          2.8
+124  Iris-virginica           4.9          1.8           6.3          2.7
+125  Iris-virginica           5.7          2.1           6.7          3.3
+126  Iris-virginica           6.0          1.8           7.2          3.2
+127  Iris-virginica           4.8          1.8           6.2          2.8
+128  Iris-virginica           4.9          1.8           6.1          3.0
+129  Iris-virginica           5.6          2.1           6.4          2.8
+130  Iris-virginica           5.8          1.6           7.2          3.0
+131  Iris-virginica           6.1          1.9           7.4          2.8
+132  Iris-virginica           6.4          2.0           7.9          3.8
+133  Iris-virginica           5.6          2.2           6.4          2.8
+134  Iris-virginica           5.1          1.5           6.3          2.8
+135  Iris-virginica           5.6          1.4           6.1          2.6
+136  Iris-virginica           6.1          2.3           7.7          3.0
+137  Iris-virginica           5.6          2.4           6.3          3.4
+138  Iris-virginica           5.5          1.8           6.4          3.1
+139  Iris-virginica           4.8          1.8           6.0          3.0
+140  Iris-virginica           5.4          2.1           6.9          3.1
+141  Iris-virginica           5.6          2.4           6.7          3.1
+142  Iris-virginica           5.1          2.3           6.9          3.1
+143  Iris-virginica           5.1          1.9           5.8          2.7
+144  Iris-virginica           5.9          2.3           6.8          3.2
+145  Iris-virginica           5.7          2.5           6.7          3.3
+146  Iris-virginica           5.2          2.3           6.7          3.0
+147  Iris-virginica           5.0          1.9           6.3          2.5
+148  Iris-virginica           5.2          2.0           6.5          3.0
+149  Iris-virginica           5.4          2.3           6.2          3.4
+150  Iris-virginica           5.1          1.8           5.9          3.0
+</pre></div>
+</div>
+<img alt="_images/fc37378b28680ddf2b2e3b99814f1ab975c634f372709992f8a29010953a6aa1.png" src="_images/fc37378b28680ddf2b2e3b99814f1ab975c634f372709992f8a29010953a6aa1.png" />
+<img alt="_images/63c55f615b88a4bbc26b3e0045d668844fe3495407a57a1d3d226e0f0e790814.png" src="_images/63c55f615b88a4bbc26b3e0045d668844fe3495407a57a1d3d226e0f0e790814.png" />
+<img alt="_images/c228bb3c9f64709d367b64eabfbb051b00debee83162c28e485a68622daf6e38.png" src="_images/c228bb3c9f64709d367b64eabfbb051b00debee83162c28e485a68622daf6e38.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By alhamdy wahyu alfiansyah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
