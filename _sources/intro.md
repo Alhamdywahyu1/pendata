@@ -1,3 +1,5 @@
+# intro
+
 selamat datang 
 
 ini adalah web statis yang berisi materi dan tugas perkuliahan penambangan data 
