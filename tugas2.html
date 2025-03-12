@@ -372,9 +372,12 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-ini-bertujuan-untuk-mendeteksi-outlier-dalam-dataset-iris-menggunakan-jarak-euclidean-antara-titik-data-dan-titik-referensi-terakhir">Code ini bertujuan untuk mendeteksi outlier dalam dataset Iris menggunakan jarak Euclidean antara titik data dan titik referensi terakhir</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-code-ini-menghitung-jumlah-total-outlier-dalam-dataset-setelah-dilakukan-deteksi-outlier-menggunakan-jarak-euclidean">Fungsi code ini menghitung jumlah total outlier dalam dataset setelah dilakukan deteksi outlier menggunakan jarak Euclidean</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-ini-berfungsi-untuk-mengurutkan-data-berdasarkan-jarak-euclidean-dari-yang-terkecil-hingga-terbesar-dan-menampilkannya-dalam-bentuk-tabel">Kode ini berfungsi untuk mengurutkan data berdasarkan jarak Euclidean dari yang terkecil hingga terbesar dan menampilkannya dalam bentuk tabel.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-untuk-mendeteksi-outlier">implementasi kode untuk mendeteksi outlier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-ini-bertujuan-untuk-mendeteksi-outlier-dalam-dataset-iris-menggunakan-jarak-euclidean-antara-titik-data-dan-titik-referensi-terakhir">Code ini bertujuan untuk mendeteksi outlier dalam dataset Iris menggunakan jarak Euclidean antara titik data dan titik referensi terakhir</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-code-ini-menghitung-jumlah-total-outlier-dalam-dataset-setelah-dilakukan-deteksi-outlier-menggunakan-jarak-euclidean">Fungsi code ini menghitung jumlah total outlier dalam dataset setelah dilakukan deteksi outlier menggunakan jarak Euclidean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-ini-berfungsi-untuk-mengurutkan-data-berdasarkan-jarak-euclidean-dari-yang-terkecil-hingga-terbesar-dan-menampilkannya-dalam-bentuk-tabel">Kode ini berfungsi untuk mengurutkan data berdasarkan jarak Euclidean dari yang terkecil hingga terbesar dan menampilkannya dalam bentuk tabel.</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lof">apa itu LOF?</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-tahapannya-lof">Bagaimana tahapannya LOF?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-cara-menghitung-manual-lof">Bagaimana cara menghitung manual LOF</a></li>
@@ -466,8 +469,10 @@ Jika jumlah tetangga dalam radius tertentu sangat sedikit, maka besar kemungkina
 </div>
 </section>
 </section>
+<section id="implementasi-kode-untuk-mendeteksi-outlier">
+<h2>implementasi kode untuk mendeteksi outlier<a class="headerlink" href="#implementasi-kode-untuk-mendeteksi-outlier" title="Link to this heading">#</a></h2>
 <section id="code-ini-bertujuan-untuk-mendeteksi-outlier-dalam-dataset-iris-menggunakan-jarak-euclidean-antara-titik-data-dan-titik-referensi-terakhir">
-<h2>Code ini bertujuan untuk mendeteksi outlier dalam dataset Iris menggunakan jarak Euclidean antara titik data dan titik referensi terakhir<a class="headerlink" href="#code-ini-bertujuan-untuk-mendeteksi-outlier-dalam-dataset-iris-menggunakan-jarak-euclidean-antara-titik-data-dan-titik-referensi-terakhir" title="Link to this heading">#</a></h2>
+<h3>Code ini bertujuan untuk mendeteksi outlier dalam dataset Iris menggunakan jarak Euclidean antara titik data dan titik referensi terakhir<a class="headerlink" href="#code-ini-bertujuan-untuk-mendeteksi-outlier-dalam-dataset-iris-menggunakan-jarak-euclidean-antara-titik-data-dan-titik-referensi-terakhir" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
@@ -717,7 +722,7 @@ Jika jumlah tetangga dalam radius tertentu sangat sedikit, maka besar kemungkina
 </div>
 </section>
 <section id="fungsi-code-ini-menghitung-jumlah-total-outlier-dalam-dataset-setelah-dilakukan-deteksi-outlier-menggunakan-jarak-euclidean">
-<h2>Fungsi code ini menghitung jumlah total outlier dalam dataset setelah dilakukan deteksi outlier menggunakan jarak Euclidean<a class="headerlink" href="#fungsi-code-ini-menghitung-jumlah-total-outlier-dalam-dataset-setelah-dilakukan-deteksi-outlier-menggunakan-jarak-euclidean" title="Link to this heading">#</a></h2>
+<h3>Fungsi code ini menghitung jumlah total outlier dalam dataset setelah dilakukan deteksi outlier menggunakan jarak Euclidean<a class="headerlink" href="#fungsi-code-ini-menghitung-jumlah-total-outlier-dalam-dataset-setelah-dilakukan-deteksi-outlier-menggunakan-jarak-euclidean" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hitung total outlier</span>
@@ -734,7 +739,7 @@ Jika jumlah tetangga dalam radius tertentu sangat sedikit, maka besar kemungkina
 </div>
 </section>
 <section id="kode-ini-berfungsi-untuk-mengurutkan-data-berdasarkan-jarak-euclidean-dari-yang-terkecil-hingga-terbesar-dan-menampilkannya-dalam-bentuk-tabel">
-<h2>Kode ini berfungsi untuk mengurutkan data berdasarkan jarak Euclidean dari yang terkecil hingga terbesar dan menampilkannya dalam bentuk tabel.<a class="headerlink" href="#kode-ini-berfungsi-untuk-mengurutkan-data-berdasarkan-jarak-euclidean-dari-yang-terkecil-hingga-terbesar-dan-menampilkannya-dalam-bentuk-tabel" title="Link to this heading">#</a></h2>
+<h3>Kode ini berfungsi untuk mengurutkan data berdasarkan jarak Euclidean dari yang terkecil hingga terbesar dan menampilkannya dalam bentuk tabel.<a class="headerlink" href="#kode-ini-berfungsi-untuk-mengurutkan-data-berdasarkan-jarak-euclidean-dari-yang-terkecil-hingga-terbesar-dan-menampilkannya-dalam-bentuk-tabel" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Urutkan data berdasarkan jarak dari terkecil ke terbesar</span>
@@ -902,6 +907,7 @@ Jika jumlah tetangga dalam radius tertentu sangat sedikit, maka besar kemungkina
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="apa-itu-lof">
 <h2>apa itu LOF?<a class="headerlink" href="#apa-itu-lof" title="Link to this heading">#</a></h2>
@@ -1453,9 +1459,12 @@ Data Outlier:
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-ini-bertujuan-untuk-mendeteksi-outlier-dalam-dataset-iris-menggunakan-jarak-euclidean-antara-titik-data-dan-titik-referensi-terakhir">Code ini bertujuan untuk mendeteksi outlier dalam dataset Iris menggunakan jarak Euclidean antara titik data dan titik referensi terakhir</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-code-ini-menghitung-jumlah-total-outlier-dalam-dataset-setelah-dilakukan-deteksi-outlier-menggunakan-jarak-euclidean">Fungsi code ini menghitung jumlah total outlier dalam dataset setelah dilakukan deteksi outlier menggunakan jarak Euclidean</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-ini-berfungsi-untuk-mengurutkan-data-berdasarkan-jarak-euclidean-dari-yang-terkecil-hingga-terbesar-dan-menampilkannya-dalam-bentuk-tabel">Kode ini berfungsi untuk mengurutkan data berdasarkan jarak Euclidean dari yang terkecil hingga terbesar dan menampilkannya dalam bentuk tabel.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-untuk-mendeteksi-outlier">implementasi kode untuk mendeteksi outlier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-ini-bertujuan-untuk-mendeteksi-outlier-dalam-dataset-iris-menggunakan-jarak-euclidean-antara-titik-data-dan-titik-referensi-terakhir">Code ini bertujuan untuk mendeteksi outlier dalam dataset Iris menggunakan jarak Euclidean antara titik data dan titik referensi terakhir</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-code-ini-menghitung-jumlah-total-outlier-dalam-dataset-setelah-dilakukan-deteksi-outlier-menggunakan-jarak-euclidean">Fungsi code ini menghitung jumlah total outlier dalam dataset setelah dilakukan deteksi outlier menggunakan jarak Euclidean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-ini-berfungsi-untuk-mengurutkan-data-berdasarkan-jarak-euclidean-dari-yang-terkecil-hingga-terbesar-dan-menampilkannya-dalam-bentuk-tabel">Kode ini berfungsi untuk mengurutkan data berdasarkan jarak Euclidean dari yang terkecil hingga terbesar dan menampilkannya dalam bentuk tabel.</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lof">apa itu LOF?</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-tahapannya-lof">Bagaimana tahapannya LOF?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-cara-menghitung-manual-lof">Bagaimana cara menghitung manual LOF</a></li>
