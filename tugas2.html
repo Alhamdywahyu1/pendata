@@ -60,6 +60,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tugas2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -163,7 +165,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    <no title>
+                    intro
                 </a>
             </li>
         </ul>
@@ -362,19 +364,25 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-k-nearest-neighbors-knn-dalam-analisis-data"><strong>Menggunakan K-Nearest Neighbors (KNN) dalam Analisis Data</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-deteksi-outlier">1. Apa Itu Deteksi Outlier?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kenapa-knn-cocok-untuk-deteksi-outlier">2. Kenapa KNN Cocok untuk Deteksi Outlier?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-deteksi-outlier-dengan-knn">3. Proses Deteksi Outlier dengan KNN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-dan-kekurangan-knn-dalam-deteksi-outlier">4. Kelebihan dan Kekurangan KNN dalam Deteksi Outlier</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan">Kelebihan:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kekurangan">Kekurangan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-k-nearest-neighbors-knn-dalam-analisis-data"><strong>Menggunakan K-Nearest Neighbors (KNN) dalam Analisis Data</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-deteksi-outlier">1. Apa Itu Deteksi Outlier?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kenapa-knn-cocok-untuk-deteksi-outlier">2. Kenapa KNN Cocok untuk Deteksi Outlier?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-deteksi-outlier-dengan-knn">3. Proses Deteksi Outlier dengan KNN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-dan-kekurangan-knn-dalam-deteksi-outlier">4. Kelebihan dan Kekurangan KNN dalam Deteksi Outlier</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-ini-bertujuan-untuk-mendeteksi-outlier-dalam-dataset-iris-menggunakan-jarak-euclidean-antara-titik-data-dan-titik-referensi-terakhir">Code ini bertujuan untuk mendeteksi outlier dalam dataset Iris menggunakan jarak Euclidean antara titik data dan titik referensi terakhir</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-code-ini-menghitung-jumlah-total-outlier-dalam-dataset-setelah-dilakukan-deteksi-outlier-menggunakan-jarak-euclidean">Fungsi code ini menghitung jumlah total outlier dalam dataset setelah dilakukan deteksi outlier menggunakan jarak Euclidean</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-ini-berfungsi-untuk-mengurutkan-data-berdasarkan-jarak-euclidean-dari-yang-terkecil-hingga-terbesar-dan-menampilkannya-dalam-bentuk-tabel">Kode ini berfungsi untuk mengurutkan data berdasarkan jarak Euclidean dari yang terkecil hingga terbesar dan menampilkannya dalam bentuk tabel.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lof">apa itu LOF?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-tahapannya-lof">Bagaimana tahapannya LOF?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-cara-menghitung-manual-lof">Bagaimana cara menghitung manual LOF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-10-baris-2-kolom">contoh 10 baris 2 kolom</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-menghitung-manual-lof">CONTOH MENGHITUNG MANUAL LOF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impelementasi-pakek-sklearn-untuk-contoh-data-saya">impelementasi pakek sklearn untuk contoh data saya</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -390,19 +398,18 @@
 <h1><strong>Penjelasan Deteksi Outlier</strong><a class="headerlink" href="#penjelasan-deteksi-outlier" title="Link to this heading">#</a></h1>
 <section id="menggunakan-k-nearest-neighbors-knn-dalam-analisis-data">
 <h2><strong>Menggunakan K-Nearest Neighbors (KNN) dalam Analisis Data</strong><a class="headerlink" href="#menggunakan-k-nearest-neighbors-knn-dalam-analisis-data" title="Link to this heading">#</a></h2>
-</section>
 <section id="apa-itu-deteksi-outlier">
-<h2>1. Apa Itu Deteksi Outlier?<a class="headerlink" href="#apa-itu-deteksi-outlier" title="Link to this heading">#</a></h2>
+<h3>1. Apa Itu Deteksi Outlier?<a class="headerlink" href="#apa-itu-deteksi-outlier" title="Link to this heading">#</a></h3>
 <p>Outlier adalah titik data yang secara signifikan berbeda dari sebagian besar data dalam dataset. Penyebab utama outlier bisa berasal dari kesalahan pengukuran, kesalahan input data, atau karakteristik unik dari data itu sendiri. Kehadiran outlier dapat menyebabkan distorsi dalam analisis data dan menurunkan performa model machine learning. Oleh karena itu, deteksi outlier menjadi langkah penting untuk mengidentifikasi dan menangani data yang menyimpang dari pola utama.</p>
 </section>
 <section id="kenapa-knn-cocok-untuk-deteksi-outlier">
-<h2>2. Kenapa KNN Cocok untuk Deteksi Outlier?<a class="headerlink" href="#kenapa-knn-cocok-untuk-deteksi-outlier" title="Link to this heading">#</a></h2>
+<h3>2. Kenapa KNN Cocok untuk Deteksi Outlier?<a class="headerlink" href="#kenapa-knn-cocok-untuk-deteksi-outlier" title="Link to this heading">#</a></h3>
 <p>K-Nearest Neighbors (KNN) merupakan metode berbasis jarak yang dapat digunakan untuk mengenali pola dalam data, termasuk mendeteksi outlier. Prinsip utama dalam deteksi outlier dengan KNN adalah sebagai berikut:</p>
 <p>Jika suatu titik data memiliki jumlah tetangga yang sangat sedikit dalam radius tertentu, maka titik tersebut kemungkinan besar merupakan outlier.
 Jika jarak rata-rata ke K tetangga terdekat cukup besar dibandingkan dengan titik lainnya, maka titik tersebut dapat dianggap sebagai outlier.</p>
 </section>
 <section id="proses-deteksi-outlier-dengan-knn">
-<h2>3. Proses Deteksi Outlier dengan KNN<a class="headerlink" href="#proses-deteksi-outlier-dengan-knn" title="Link to this heading">#</a></h2>
+<h3>3. Proses Deteksi Outlier dengan KNN<a class="headerlink" href="#proses-deteksi-outlier-dengan-knn" title="Link to this heading">#</a></h3>
 <p>a. Menghitung Jarak Antar Titik Data
 Untuk mengukur kedekatan antara satu titik dengan titik lainnya, berbagai metrik jarak dapat digunakan, seperti:
 Euclidean Distance (jarak lurus antara dua titik dalam ruang multidimensi).
@@ -422,18 +429,7 @@ Distance-Based Outlier Score
 Jika jumlah tetangga dalam radius tertentu sangat sedikit, maka besar kemungkinan titik tersebut adalah outlier.</p>
 </section>
 <section id="kelebihan-dan-kekurangan-knn-dalam-deteksi-outlier">
-<h2>4. Kelebihan dan Kekurangan KNN dalam Deteksi Outlier<a class="headerlink" href="#kelebihan-dan-kekurangan-knn-dalam-deteksi-outlier" title="Link to this heading">#</a></h2>
-<section id="kelebihan">
-<h3>Kelebihan:<a class="headerlink" href="#kelebihan" title="Link to this heading">#</a></h3>
-<p>Konsepnya sederhana dan mudah dipahami karena hanya berbasis jarak.</p>
-<p>Tidak bergantung pada asumsi distribusi data tertentu, sehingga fleksibel untuk berbagai dataset.</p>
-<p>Bisa digunakan untuk data berdimensi tinggi.</p>
-</section>
-<section id="kekurangan">
-<h3>Kekurangan:<a class="headerlink" href="#kekurangan" title="Link to this heading">#</a></h3>
-<p>Memiliki biaya komputasi tinggi, terutama untuk dataset besar, karena</p>
-<p>memerlukan perhitungan jarak terhadap banyak titik.</p>
-<p>Sensitif terhadap pemilihan nilai K, di mana pemilihan yang kurang tepat bisa menurunkan akurasi deteksi outlier.</p>
+<h3>4. Kelebihan dan Kekurangan KNN dalam Deteksi Outlier<a class="headerlink" href="#kelebihan-dan-kekurangan-knn-dalam-deteksi-outlier" title="Link to this heading">#</a></h3>
 </section>
 <section id="kesimpulan">
 <h3>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h3>
@@ -907,6 +903,490 @@ Jika jumlah tetangga dalam radius tertentu sangat sedikit, maka besar kemungkina
 </div>
 </div>
 </section>
+<section id="apa-itu-lof">
+<h2>apa itu LOF?<a class="headerlink" href="#apa-itu-lof" title="Link to this heading">#</a></h2>
+<p>Local Outlier Factor (LOF) adalah algoritma yang digunakan untuk mendeteksi outlier (pencilan), yaitu data yang memiliki perilaku atau karakteristik berbeda dari sebagian besar data lain dalam suatu dataset.</p>
+<section id="bagaimana-tahapannya-lof">
+<h3>Bagaimana tahapannya LOF?<a class="headerlink" href="#bagaimana-tahapannya-lof" title="Link to this heading">#</a></h3>
+<p>Tahapan dalam Local Outlier Factor (LOF)</p>
+<p>1.Menentukan Jumlah Tetangga (k-nearest neighbors, k-NN)</p>
+<p>-Pilih jumlah tetangga (k) yang akan digunakan untuk membandingkan kepadatan * lokal suatu titik data.</p>
+<p>-Semakin besar k, semakin banyak titik yang dibandingkan, sehingga hasilnya lebih stabil tetapi bisa mengaburkan outlier kecil.</p>
+</section>
+<section id="bagaimana-cara-menghitung-manual-lof">
+<h3>Bagaimana cara menghitung manual LOF<a class="headerlink" href="#bagaimana-cara-menghitung-manual-lof" title="Link to this heading">#</a></h3>
+<p>1.Menentukan Tetangga Terdekat (k-NN)
+Kita menentukan berapa banyak tetangga (k) yang akan digunakan untuk membandingkan titik yang sedang diperiksa. Semakin banyak tetangga yang digunakan, semakin akurat hasilnya.</p>
+<p>2.Mengukur Seberapa Jauh Titik D dari Tetangganya
+Setelah menemukan tetangga terdekat, kita mengukur jarak antara D dan masing-masing tetangganya. Jarak ini membantu menentukan apakah D jauh dari kelompoknya atau berada di daerah yang padat.</p>
+<p>3.Membandingkan Kepadatan Titik D dengan Tetangganya</p>
+<p>-Jika titik D berada di area yang kepadatannya mirip dengan tetangganya, maka D
+tidak dianggap outlier.</p>
+<p>-Jika titik D berada di daerah dengan kepadatan lebih rendah dibanding tetangganya (artinya D lebih sendirian dibanding yang lain), maka D mungkin outlier.</p>
+<p>4.Menghitung Skor LOF
+Kita membandingkan kepadatan titik D dengan kepadatan titik-titik lain. Jika kepadatan D jauh lebih kecil dibanding tetangganya, maka nilai LOF tinggi, yang berarti D lebih mencurigakan sebagai outlier.</p>
+<p>-Jika nilai LOF mendekati 1 → D bukan outlier.</p>
+<p>-Jika nilai LOF lebih besar dari 1 → D mungkin outlier.</p>
+<p>-Jika nilai LOF jauh lebih besar dari 1 (misalnya lebih dari 2 atau 3) → D sangat mungkin outlier.</p>
+</section>
+<section id="contoh-10-baris-2-kolom">
+<h3>contoh 10 baris 2 kolom<a class="headerlink" href="#contoh-10-baris-2-kolom" title="Link to this heading">#</a></h3>
+</section>
+<section id="contoh-menghitung-manual-lof">
+<h3>CONTOH MENGHITUNG MANUAL LOF<a class="headerlink" href="#contoh-menghitung-manual-lof" title="Link to this heading">#</a></h3>
+<p>Berikut adalah cara singkat menghitung <strong>Local Outlier Factor (LOF)</strong> untuk satu titik data dengan dua fitur:</p>
+<ol class="arabic simple">
+<li><p><strong>Dataset</strong>:<br />
+Misalkan data berikut:</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Feature1</p></th>
+<th class="head"><p>Feature2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>2.0</p></td>
+<td><p>3.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>3.0</p></td>
+<td><p>4.0</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>4.0</p></td>
+<td><p>5.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>5.0</p></td>
+<td><p>6.0</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>6.0</p></td>
+<td><p>7.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>7.0</p></td>
+<td><p>8.0</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>8.0</p></td>
+<td><p>9.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>9.0</p></td>
+<td><p>10.0</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>10.0</p></td>
+<td><p>11.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>40.0</p></td>
+<td><p>40.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Kita akan menghitung LOF untuk titik ke-10 (40.0, 40.0).</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Hitung Jarak Euclidean</strong>:<br />
+Jarak antara titik 10 dan titik lainnya:</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dari -&gt; ke</p></th>
+<th class="head"><p>Jarak Ecludian</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>10 -&gt; 1</p></td>
+<td><p>52.33</p></td>
+</tr>
+<tr class="row-odd"><td><p>10 -&gt; 2</p></td>
+<td><p>50.91</p></td>
+</tr>
+<tr class="row-even"><td><p>10 -&gt; 3</p></td>
+<td><p>49.50</p></td>
+</tr>
+<tr class="row-odd"><td><p>10 -&gt; 4</p></td>
+<td><p>48.08</p></td>
+</tr>
+<tr class="row-even"><td><p>10 -&gt; 5</p></td>
+<td><p>46.67</p></td>
+</tr>
+<tr class="row-odd"><td><p>10 -&gt; 6</p></td>
+<td><p>45.25</p></td>
+</tr>
+<tr class="row-even"><td><p>10 -&gt; 7</p></td>
+<td><p>43.84</p></td>
+</tr>
+<tr class="row-odd"><td><p>10 -&gt; 8</p></td>
+<td><p>42.42</p></td>
+</tr>
+<tr class="row-even"><td><p>10 -&gt; 9</p></td>
+<td><p>41.01</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Tentukan k-Tetangga Terdekat</strong> (k=2):<br />
+Dua tetangga terdekat titik 10 adalah titik 9 dan 8.</p></li>
+<li><p><strong>Hitung Reachability Distance</strong>:<br />
+Karena k = 2, kita ambil 2 tetangga terdekat, yaitu titik 8 dan 9.
+Karena titik 10 jauh dari kelompok lainnya, maka reachability distance tinggi:</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dari -&gt; ke</p></th>
+<th class="head"><p>Jarak Ecludian</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>10 -&gt; 8</p></td>
+<td><p>42.42</p></td>
+</tr>
+<tr class="row-odd"><td><p>10 -&gt; 9</p></td>
+<td><p>41.01</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="arabic" start="5">
+<li><p><strong>Hitung Local Reachability Density (LRD)</strong>:<br />
+<span class="math notranslate nohighlight">\(
+\text{LRD}(10) = \frac{1}{\frac{1}{2} \times (42.42 + 41.01)} = 0.0239
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(\text{LRD}(8) = 0.095\)</span>
+<span class="math notranslate nohighlight">\(\text{LRD}(9) = 0.09\)</span></p>
+</li>
+<li><p><strong>Hitung LOF</strong>:<br />
+<span class="math notranslate nohighlight">\(
+\text{LOF}(3) = \frac{\frac{0.09}{0.0239} + \frac{0.095}{0.0239}}{2} = 3.87
+\)</span></p></li>
+<li><p><strong>Interpretasi</strong>:<br />
+Karena LOF(10) = 3.87, titik ke-10 sangat mungkin outlier.</p></li>
+</ol>
+<p>LOF mengukur seberapa terisolasi titik dibandingkan tetangganya. Titik dengan LOF lebih besar dari 1 dianggap outlier.</p>
+</section>
+<section id="impelementasi-pakek-sklearn-untuk-contoh-data-saya">
+<h3>impelementasi pakek sklearn untuk contoh data saya<a class="headerlink" href="#impelementasi-pakek-sklearn-untuk-contoh-data-saya" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">LocalOutlierFactor</span>
+
+<span class="c1"># Dataset contoh (10 baris, 2 fitur)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Feature1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">],</span>
+    <span class="s1">&#39;Feature2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">11.0</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># Membuat DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Inisialisasi model LOF dengan k=2 (2 tetangga terdekat)</span>
+<span class="n">lof</span> <span class="o">=</span> <span class="n">LocalOutlierFactor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Fit model LOF dan prediksi label (1 untuk normal, -1 untuk outlier)</span>
+<span class="n">lof_labels</span> <span class="o">=</span> <span class="n">lof</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Menambahkan hasil prediksi ke DataFrame</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;LOF Label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lof_labels</span>
+
+<span class="c1"># Menampilkan hasil</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Menampilkan jumlah outlier</span>
+<span class="n">num_outliers</span> <span class="o">=</span> <span class="p">(</span><span class="n">lof_labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jumlah outlier: </span><span class="si">{</span><span class="n">num_outliers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Menampilkan data outlier</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;LOF Label&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data Outlier:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outliers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Feature1  Feature2  LOF Label
+0       2.0       3.0          1
+1       3.0       4.0          1
+2       4.0       5.0          1
+3       5.0       6.0          1
+4       6.0       7.0          1
+5       7.0       8.0          1
+6       8.0       9.0          1
+7       9.0      10.0          1
+8      10.0      11.0          1
+9      40.0      40.0         -1
+
+Jumlah outlier: 1
+
+Data Outlier:
+   Feature1  Feature2  LOF Label
+9      40.0      40.0         -1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">euclidean</span>
+
+<span class="k">def</span> <span class="nf">get_pg_data</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s2">&quot;pg-3fbafb7b-hrmen55-bd28.i.aivencloud.com&quot;</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_sc56Zt79uy033vzjIS4&quot;</span><span class="p">,</span>
+        <span class="n">database</span><span class="o">=</span><span class="s2">&quot;defaultdb&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">23283</span>
+    <span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM iris_postgresql&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_mysql_data</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s2">&quot;mysql-16cb25be-hrmen55-bd28.i.aivencloud.com&quot;</span><span class="p">,</span>
+        <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
+        <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_MfLHp-bDUZ-2mkcA1a6&quot;</span><span class="p">,</span>
+        <span class="n">database</span><span class="o">=</span><span class="s2">&quot;defaultdb&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">23283</span>
+    <span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM irismysql&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">desc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">desc</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="c1"># Ambil data dari kedua database</span>
+<span class="n">df_postgresql</span> <span class="o">=</span> <span class="n">get_pg_data</span><span class="p">()</span>
+<span class="n">df_mysql</span> <span class="o">=</span> <span class="n">get_mysql_data</span><span class="p">()</span>
+
+<span class="c1"># Gabungkan berdasarkan kolom &#39;id&#39; dan &#39;Class&#39;</span>
+<span class="n">df_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_mysql</span><span class="p">,</span> <span class="n">df_postgresql</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ambil data fitur numerik</span>
+<span class="n">feature_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal_width&quot;</span><span class="p">]</span>
+<span class="n">data_values</span> <span class="o">=</span> <span class="n">df_merged</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>berfungsi untuk mendeteksi outlier (data pencilan) dalam dataset dengan menggunakan algoritma Local Outlier Factor (LOF) dari scikit-learn.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">LocalOutlierFactor</span>
+
+<span class="c1"># Gabungkan berdasarkan kolom &#39;id&#39; dan &#39;class&#39;</span>
+<span class="n">df_merge</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_mysql</span><span class="p">,</span> <span class="n">df_postgresql</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ambil data fitur numerik tanpa kolom &#39;class&#39;</span>
+<span class="n">feature_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal_width&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal_width&quot;</span><span class="p">]</span>
+<span class="n">data_values</span> <span class="o">=</span> <span class="n">df_merge</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Inisialisasi model LOF</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LocalOutlierFactor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">label</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">data_values</span><span class="p">)</span>
+
+<span class="c1"># Tambahkan hasil label ke dataframe</span>
+<span class="n">df_merge</span><span class="p">[</span><span class="s2">&quot;outlier_label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label</span>
+
+<span class="c1"># Cetak hasil dengan ID dan class</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_merge</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="n">num_outliers</span> <span class="o">=</span> <span class="p">(</span><span class="n">label</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jumlah outlier: </span><span class="si">{</span><span class="n">num_outliers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">df_merge</span><span class="p">[</span><span class="n">df_merge</span><span class="p">[</span><span class="s2">&quot;outlier_label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data Outlier:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outliers</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> id           class  petal_length  petal_width  sepal_length  sepal_width  outlier_label
+  1     Iris-setosa           1.4          0.2           5.1          3.5              1
+  2     Iris-setosa          14.0          2.0          40.9         30.0             -1
+  3     Iris-setosa           1.3          0.2           4.7          3.2              1
+  4     Iris-setosa           1.5          0.2           4.6          3.1              1
+  5     Iris-setosa           1.4          0.2           5.0          3.6              1
+  6     Iris-setosa           1.7          0.4           5.4          3.9              1
+  7     Iris-setosa           1.4          0.3           4.6          3.4              1
+  8     Iris-setosa           1.5          0.2           5.0          3.4              1
+  9     Iris-setosa           1.4          0.2           4.4          2.9              1
+ 10     Iris-setosa           1.5          0.1           4.9          3.1              1
+ 11     Iris-setosa           1.5          0.2           5.4          3.7              1
+ 12     Iris-setosa           1.6          0.2           4.8          3.4              1
+ 13     Iris-setosa           1.4          0.1           4.8          3.0              1
+ 14     Iris-setosa           1.1          0.1           4.3          3.0              1
+ 15     Iris-setosa           1.2          0.2           5.8          4.0              1
+ 16     Iris-setosa           1.5          0.4           5.7          4.4              1
+ 17     Iris-setosa           1.3          0.4           5.4          3.9              1
+ 18     Iris-setosa           1.4          0.3           5.1          3.5              1
+ 19     Iris-setosa           1.7          0.3           5.7          3.8              1
+ 20     Iris-setosa           1.5          0.3           5.1          3.8              1
+ 21     Iris-setosa           1.7          0.2           5.4          3.4              1
+ 22     Iris-setosa           1.5          0.4           5.1          3.7              1
+ 23     Iris-setosa           1.0          0.2           4.6          3.6              1
+ 24     Iris-setosa           1.7          0.5           5.1          3.3              1
+ 25     Iris-setosa           1.9          0.2           4.8          3.4              1
+ 26     Iris-setosa           1.6          0.2           5.0          3.0              1
+ 27     Iris-setosa           1.6          0.4           5.0          3.4              1
+ 28     Iris-setosa           1.5          0.2           5.2          3.5              1
+ 29     Iris-setosa           1.4          0.2           5.2          3.4              1
+ 30     Iris-setosa           1.6          0.2           4.7          3.2              1
+ 31     Iris-setosa           1.6          0.2           4.8          3.1              1
+ 32     Iris-setosa           1.5          0.4           5.4          3.4              1
+ 33     Iris-setosa           1.5          0.1           5.2          4.1              1
+ 34     Iris-setosa           1.4          0.2           5.5          4.2              1
+ 35     Iris-setosa           1.5          0.1           4.9          3.1              1
+ 36     Iris-setosa           1.2          0.2           5.0          3.2              1
+ 37     Iris-setosa           1.3          0.2           5.5          3.5              1
+ 38     Iris-setosa           1.5          0.1           4.9          3.1              1
+ 39     Iris-setosa           1.3          0.2           4.4          3.0              1
+ 40     Iris-setosa           1.5          0.2           5.1          3.4              1
+ 41     Iris-setosa           1.3          0.3           5.0          3.5              1
+ 42     Iris-setosa           1.3          0.3           4.5          2.3              1
+ 43     Iris-setosa           1.3          0.2           4.4          3.2              1
+ 44     Iris-setosa           1.6          0.6           5.0          3.5              1
+ 45     Iris-setosa           1.9          0.4           5.1          3.8              1
+ 46     Iris-setosa           1.4          0.3           4.8          3.0              1
+ 47     Iris-setosa           1.6          0.2           5.1          3.8              1
+ 48     Iris-setosa           1.4          0.2           4.6          3.2              1
+ 49     Iris-setosa           1.5          0.2           5.3          3.7              1
+ 50     Iris-setosa           1.4          0.2           5.0          3.3              1
+ 51 Iris-versicolor           4.7          1.4           7.0          3.2              1
+ 52 Iris-versicolor           4.5          1.5           6.4          3.2              1
+ 53 Iris-versicolor           4.9          1.5           6.9          3.1              1
+ 54 Iris-versicolor           4.0          1.3           5.5          2.3              1
+ 55 Iris-versicolor           4.6          1.5           6.5          2.8              1
+ 56 Iris-versicolor           4.5          1.3           5.7          2.8              1
+ 57 Iris-versicolor           4.7          1.6           6.3          3.3              1
+ 58 Iris-versicolor           3.3          1.0           4.9          2.4              1
+ 59 Iris-versicolor           4.6          1.3           6.6          2.9              1
+ 60 Iris-versicolor           3.9          1.4           5.2          2.7              1
+ 61 Iris-versicolor           3.5          1.0           5.0          2.0              1
+ 62 Iris-versicolor           4.2          1.5           5.9          3.0              1
+ 63 Iris-versicolor           4.0          1.0           6.0          2.2              1
+ 64 Iris-versicolor           4.7          1.4           6.1          2.9              1
+ 65 Iris-versicolor           3.6          1.3           5.6          2.9              1
+ 66 Iris-versicolor           4.4          1.4           6.7          3.1              1
+ 67 Iris-versicolor           4.5          1.5           5.6          3.0              1
+ 68 Iris-versicolor           4.1          1.0           5.8          2.7              1
+ 69 Iris-versicolor           4.5          1.5           6.2          2.2              1
+ 70 Iris-versicolor           3.9          1.1           5.6          2.5              1
+ 71 Iris-versicolor           4.8          1.8           5.9          3.2              1
+ 72 Iris-versicolor           4.0          1.3           6.1          2.8              1
+ 73 Iris-versicolor           4.9          1.5           6.3          2.5              1
+ 74 Iris-versicolor           4.7          1.2           6.1          2.8              1
+ 75 Iris-versicolor           4.3          1.3           6.4          2.9              1
+ 76 Iris-versicolor           4.4          1.4           6.6          3.0              1
+ 77 Iris-versicolor           4.8          1.4           6.8          2.8              1
+ 78 Iris-versicolor           5.0          1.7           6.7          3.0              1
+ 79 Iris-versicolor           4.5          1.5           6.0          2.9              1
+ 80 Iris-versicolor           3.5          1.0           5.7          2.6              1
+ 81 Iris-versicolor           3.8          1.1           5.5          2.4              1
+ 82 Iris-versicolor           3.7          1.0           5.5          2.4              1
+ 83 Iris-versicolor           3.9          1.2           5.8          2.7              1
+ 84 Iris-versicolor           5.1          1.6           6.0          2.7              1
+ 85 Iris-versicolor           4.5          1.5           5.4          3.0              1
+ 86 Iris-versicolor           4.5          1.6           6.0          3.4              1
+ 87 Iris-versicolor           4.7          1.5           6.7          3.1              1
+ 88 Iris-versicolor           4.4          1.3           6.3          2.3              1
+ 89 Iris-versicolor           4.1          1.3           5.6          3.0              1
+ 90 Iris-versicolor           4.0          1.3           5.5          2.5              1
+ 91 Iris-versicolor           4.4          1.2           5.5          2.6              1
+ 92 Iris-versicolor           4.6          1.4           6.1          3.0              1
+ 93 Iris-versicolor           4.0          1.2           5.8          2.6              1
+ 94 Iris-versicolor           3.3          1.0           5.0          2.3              1
+ 95 Iris-versicolor           4.2          1.3           5.6          2.7              1
+ 96 Iris-versicolor           4.2          1.2           5.7          3.0              1
+ 97 Iris-versicolor           4.2          1.3           5.7          2.9              1
+ 98 Iris-versicolor           4.3          1.3           6.2          2.9              1
+ 99 Iris-versicolor           3.0          1.1           5.1          2.5              1
+100 Iris-versicolor           4.1          1.3           5.7          2.8              1
+101  Iris-virginica           6.0          2.5           6.3          3.3              1
+102  Iris-virginica           5.1          1.9           5.8          2.7              1
+103  Iris-virginica           5.9          2.1           7.1          3.0              1
+104  Iris-virginica           5.6          1.8           6.3          2.9              1
+105  Iris-virginica           5.8          2.2           6.5          3.0              1
+106  Iris-virginica           6.6          2.1           7.6          3.0              1
+107  Iris-virginica           4.5          1.7           4.9          2.5              1
+108  Iris-virginica           6.3          1.8           7.3          2.9              1
+109  Iris-virginica           5.8          1.8           6.7          2.5              1
+110  Iris-virginica           6.1          2.5           7.2          3.6              1
+111  Iris-virginica           5.1          2.0           6.5          3.2              1
+112  Iris-virginica           5.3          1.9           6.4          2.7              1
+113  Iris-virginica           5.5          2.1           6.8          3.0              1
+114  Iris-virginica           5.0          2.0           5.7          2.5              1
+115  Iris-virginica           5.1          2.4           5.8          2.8              1
+116  Iris-virginica           5.3          2.3           6.4          3.2              1
+117  Iris-virginica           5.5          1.8           6.5          3.0              1
+118  Iris-virginica           6.7          2.2           7.7          3.8              1
+119  Iris-virginica           6.9          2.3           7.7          2.6              1
+120  Iris-virginica           5.0          1.5           6.0          2.2              1
+121  Iris-virginica           5.7          2.3           6.9          3.2              1
+122  Iris-virginica           4.9          2.0           5.6          2.8              1
+123  Iris-virginica           6.7          2.0           7.7          2.8              1
+124  Iris-virginica           4.9          1.8           6.3          2.7              1
+125  Iris-virginica           5.7          2.1           6.7          3.3              1
+126  Iris-virginica           6.0          1.8           7.2          3.2              1
+127  Iris-virginica           4.8          1.8           6.2          2.8              1
+128  Iris-virginica           4.9          1.8           6.1          3.0              1
+129  Iris-virginica           5.6          2.1           6.4          2.8              1
+130  Iris-virginica           5.8          1.6           7.2          3.0              1
+131  Iris-virginica           6.1          1.9           7.4          2.8              1
+132  Iris-virginica           6.4          2.0           7.9          3.8              1
+133  Iris-virginica           5.6          2.2           6.4          2.8              1
+134  Iris-virginica           5.1          1.5           6.3          2.8              1
+135  Iris-virginica           5.6          1.4           6.1          2.6              1
+136  Iris-virginica           6.1          2.3           7.7          3.0              1
+137  Iris-virginica           5.6          2.4           6.3          3.4              1
+138  Iris-virginica           5.5          1.8           6.4          3.1              1
+139  Iris-virginica           4.8          1.8           6.0          3.0              1
+140  Iris-virginica           5.4          2.1           6.9          3.1              1
+141  Iris-virginica           5.6          2.4           6.7          3.1              1
+142  Iris-virginica           5.1          2.3           6.9          3.1              1
+143  Iris-virginica           5.1          1.9           5.8          2.7              1
+144  Iris-virginica           5.9          2.3           6.8          3.2              1
+145  Iris-virginica           5.7          2.5           6.7          3.3              1
+146  Iris-virginica           5.2          2.3           6.7          3.0              1
+147  Iris-virginica           5.0          1.9           6.3          2.5              1
+148  Iris-virginica           5.2          2.0           6.5          3.0              1
+149  Iris-virginica           5.4          2.3           6.2          3.4              1
+150  Iris-virginica           5.1          1.8           5.9          3.0              1
+151             ???           5.8          1.0           5.1          3.2              1
+
+Jumlah outlier: 1
+
+Data Outlier:
+ id       class  petal_length  petal_width  sepal_length  sepal_width  outlier_label
+  2 Iris-setosa          14.0          2.0          40.9         30.0             -1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -965,19 +1445,25 @@ Jika jumlah tetangga dalam radius tertentu sangat sedikit, maka besar kemungkina
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-k-nearest-neighbors-knn-dalam-analisis-data"><strong>Menggunakan K-Nearest Neighbors (KNN) dalam Analisis Data</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-deteksi-outlier">1. Apa Itu Deteksi Outlier?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kenapa-knn-cocok-untuk-deteksi-outlier">2. Kenapa KNN Cocok untuk Deteksi Outlier?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-deteksi-outlier-dengan-knn">3. Proses Deteksi Outlier dengan KNN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-dan-kekurangan-knn-dalam-deteksi-outlier">4. Kelebihan dan Kekurangan KNN dalam Deteksi Outlier</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan">Kelebihan:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kekurangan">Kekurangan:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-k-nearest-neighbors-knn-dalam-analisis-data"><strong>Menggunakan K-Nearest Neighbors (KNN) dalam Analisis Data</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-deteksi-outlier">1. Apa Itu Deteksi Outlier?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kenapa-knn-cocok-untuk-deteksi-outlier">2. Kenapa KNN Cocok untuk Deteksi Outlier?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-deteksi-outlier-dengan-knn">3. Proses Deteksi Outlier dengan KNN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-dan-kekurangan-knn-dalam-deteksi-outlier">4. Kelebihan dan Kekurangan KNN dalam Deteksi Outlier</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-ini-bertujuan-untuk-mendeteksi-outlier-dalam-dataset-iris-menggunakan-jarak-euclidean-antara-titik-data-dan-titik-referensi-terakhir">Code ini bertujuan untuk mendeteksi outlier dalam dataset Iris menggunakan jarak Euclidean antara titik data dan titik referensi terakhir</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-code-ini-menghitung-jumlah-total-outlier-dalam-dataset-setelah-dilakukan-deteksi-outlier-menggunakan-jarak-euclidean">Fungsi code ini menghitung jumlah total outlier dalam dataset setelah dilakukan deteksi outlier menggunakan jarak Euclidean</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-ini-berfungsi-untuk-mengurutkan-data-berdasarkan-jarak-euclidean-dari-yang-terkecil-hingga-terbesar-dan-menampilkannya-dalam-bentuk-tabel">Kode ini berfungsi untuk mengurutkan data berdasarkan jarak Euclidean dari yang terkecil hingga terbesar dan menampilkannya dalam bentuk tabel.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lof">apa itu LOF?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-tahapannya-lof">Bagaimana tahapannya LOF?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-cara-menghitung-manual-lof">Bagaimana cara menghitung manual LOF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-10-baris-2-kolom">contoh 10 baris 2 kolom</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-menghitung-manual-lof">CONTOH MENGHITUNG MANUAL LOF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#impelementasi-pakek-sklearn-untuk-contoh-data-saya">impelementasi pakek sklearn untuk contoh data saya</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
