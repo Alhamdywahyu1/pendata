@@ -1,0 +1,114 @@
+Traceback (most recent call last):
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/asyncio/base_events.py", line 684, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import accuracy_score, confusion_matrix
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Asumsikan df_merged sudah ada dari kode sebelumnya
+
+# Encode label kelas ke numerik
+label_encoder = LabelEncoder()
+df_merged["class_encoded"] = label_encoder.fit_transform(df_merged["class"])
+
+# Data dengan outlier
+X_all = df_merged[feature_columns]
+y_all = df_merged["class_encoded"].values  # Pastikan dalam bentuk array numpy
+
+# Data tanpa outlier
+df_cleaned = df_merged[df_merged["outlier"] == 1].drop(columns=["outlier"])
+X_clean = df_cleaned[feature_columns]
+y_clean = df_cleaned["class_encoded"].values  # Pastikan dalam bentuk array numpy
+
+# Split data dengan outlier
+X_train_all, X_test_all, y_train_all, y_test_all = train_test_split(
+    X_all, y_all, test_size=0.2, random_state=42)
+
+# Split data tanpa outlier
+X_train_clean, X_test_clean, y_train_clean, y_test_clean = train_test_split(
+    X_clean, y_clean, test_size=0.2, random_state=42)
+
+# Inisialisasi model Naive Bayes
+gnb = GaussianNB()
+
+# Latih dan uji model dengan outlier
+y_pred_all = gnb.fit(X_train_all, y_train_all).predict(X_test_all)
+mislabeled_all = (y_test_all != y_pred_all).sum()
+accuracy_all = accuracy_score(y_test_all, y_pred_all)
+print("Number of mislabeled points with outliers out of a total %d points : %d" % (X_test_all.shape[0], mislabeled_all))
+print("Accuracy with outliers: %.2f%%" % (accuracy_all * 100))
+
+# Menampilkan label yang salah pada data dengan outlier
+mislabeled_indices_all = np.where(y_test_all != y_pred_all)[0]
+print("Mislabeled points with outliers:")
+for i in mislabeled_indices_all:
+    true_label = label_encoder.inverse_transform([int(y_test_all[i])])[0]
+    predicted_label = label_encoder.inverse_transform([int(y_pred_all[i])])[0]
+    print(f"Index: {i}, True Label: {true_label}, Predicted: {predicted_label}")
+print()
+# Latih dan uji model tanpa outlier
+y_pred_clean = gnb.fit(X_train_clean, y_train_clean).predict(X_test_clean)
+mislabeled_clean = (y_test_clean != y_pred_clean).sum()
+accuracy_clean = accuracy_score(y_test_clean, y_pred_clean)
+print("Number of mislabeled points without outliers out of a total %d points : %d" % (X_test_clean.shape[0], mislabeled_clean))
+print("Accuracy without outliers: %.2f%%" % (accuracy_clean * 100))
+
+# Menampilkan label yang salah pada data tanpa outlier
+mislabeled_indices_clean = np.where(y_test_clean != y_pred_clean)[0]
+print("Mislabeled points without outliers:")
+for i in mislabeled_indices_clean:
+    true_label = label_encoder.inverse_transform([int(y_test_clean[i])])[0]
+    predicted_label = label_encoder.inverse_transform([int(y_pred_clean[i])])[0]
+    print(f"Index: {i}, True Label: {true_label}, Predicted: {predicted_label}")
+
+# Visualisasi Confusion Matrix
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+sns.heatmap(confusion_matrix(y_test_all, y_pred_all), annot=True, fmt="d", cmap="Blues", xticklabels=label_encoder.classes_, yticklabels=label_encoder.classes_, ax=axes[0])
+axes[0].set_title("Confusion Matrix with Outliers")
+axes[0].set_xlabel("Predicted Label")
+axes[0].set_ylabel("True Label")
+
+sns.heatmap(confusion_matrix(y_test_clean, y_pred_clean), annot=True, fmt="d", cmap="Blues", xticklabels=label_encoder.classes_, yticklabels=label_encoder.classes_, ax=axes[1])
+axes[1].set_title("Confusion Matrix without Outliers")
+axes[1].set_xlabel("Predicted Label")
+axes[1].set_ylabel("True Label")
+
+plt.show()
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[1], line 14[0m
+[1;32m     10[0m [38;5;66;03m# Asumsikan df_merged sudah ada dari kode sebelumnya[39;00m
+[1;32m     11[0m 
+[1;32m     12[0m [38;5;66;03m# Encode label kelas ke numerik[39;00m
+[1;32m     13[0m label_encoder [38;5;241m=[39m LabelEncoder()
+[0;32m---> 14[0m df_merged[[38;5;124m"[39m[38;5;124mclass_encoded[39m[38;5;124m"[39m] [38;5;241m=[39m label_encoder[38;5;241m.[39mfit_transform([43mdf_merged[49m[[38;5;124m"[39m[38;5;124mclass[39m[38;5;124m"[39m])
+[1;32m     16[0m [38;5;66;03m# Data dengan outlier[39;00m
+[1;32m     17[0m X_all [38;5;241m=[39m df_merged[feature_columns]
+
+[0;31mNameError[0m: name 'df_merged' is not defined
+
