@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>UTS &#8212; alhamdy</title>
+    <title>UTS Pendat &#8212; alhamdy</title>
   
   
   
@@ -171,7 +171,9 @@
 <li class="toctree-l1"><a class="reference internal" href="tugas1.html">data understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas2.html"><strong>preprosessing data</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="native_bayes.html">Implementasi Naive Bayes pada Data iris</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">UTS</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">UTS Pendat</a></li>
+
+
 </ul>
 
     </div>
@@ -341,7 +343,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -352,11 +356,22 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>UTS</h1>
+    <h1>UTS Pendat</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">UTS Pendat</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#soal">Soal</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jawaban">Jawaban:</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -366,8 +381,682 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="uts">
-<h1>UTS<a class="headerlink" href="#uts" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="uts-pendat">
+<h1>UTS Pendat<a class="headerlink" href="#uts-pendat" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="soal">
+<h1>Soal<a class="headerlink" href="#soal" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Data  data dari  <a class="reference external" href="https://archive.ics.uci.edu/dataset/878/cirrhosis+patient+survival+prediction+dataset-1">https://archive.ics.uci.edu/dataset/878/cirrhosis+patient+survival+prediction+dataset-1</a></p></li>
+<li><p>Tahapan analisa (seperti proses yang telah dilakukan pada tugas kelompok)</p></li>
+</ol>
+<p>*Pemahaman Data ( data understanding)</p>
+<p>*Pemrosesan awal data (Preprocessing ) jika diperlukan</p>
+<p>*Pemodelan (model klasifikasi)</p>
+<p>*Evaluasi</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="jawaban">
+<h1>Jawaban:<a class="headerlink" href="#jawaban" title="Link to this heading">#</a></h1>
+<ol class="arabic simple" start="2">
+<li><ul class="simple">
+<li><p>Pemahaman Data ( data understanding)</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span>
+<span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;google&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;cirrhosis.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Membaca file CSV</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;cirrhosis.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Menampilkan 5 baris pertama</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📌 5 Data Teratas:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># Struktur kolom dan tipe data</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📌 Struktur Data:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+
+<span class="c1"># Statistik ringkasan untuk kolom numerik &amp; kategorikal</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📌 Statistik Deskriptif:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">))</span>
+
+<span class="c1"># Cek jumlah nilai yang hilang di setiap kolom</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📌 Jumlah Nilai Hilang:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>📌 5 Data Teratas:
+   ID  N_Days Status             Drug    Age Sex Ascites Hepatomegaly Spiders  \
+0   1     400      D  D-penicillamine  21464   F       Y            Y       Y   
+1   2    4500      C  D-penicillamine  20617   F       N            Y       Y   
+2   3    1012      D  D-penicillamine  25594   M       N            N       N   
+3   4    1925      D  D-penicillamine  19994   F       N            Y       Y   
+4   5    1504     CL          Placebo  13918   F       N            Y       Y   
+
+  Edema  Bilirubin  Cholesterol  Albumin  Copper  Alk_Phos    SGOT  \
+0     Y       14.5        261.0     2.60   156.0    1718.0  137.95   
+1     N        1.1        302.0     4.14    54.0    7394.8  113.52   
+2     S        1.4        176.0     3.48   210.0     516.0   96.10   
+3     S        1.8        244.0     2.54    64.0    6121.8   60.63   
+4     N        3.4        279.0     3.53   143.0     671.0  113.15   
+
+   Tryglicerides  Platelets  Prothrombin  Stage  
+0          172.0      190.0         12.2    4.0  
+1           88.0      221.0         10.6    3.0  
+2           55.0      151.0         12.0    4.0  
+3           92.0      183.0         10.3    4.0  
+4           72.0      136.0         10.9    3.0  
+
+📌 Struktur Data:
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 418 entries, 0 to 417
+Data columns (total 20 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   ID             418 non-null    int64  
+ 1   N_Days         418 non-null    int64  
+ 2   Status         418 non-null    object 
+ 3   Drug           312 non-null    object 
+ 4   Age            418 non-null    int64  
+ 5   Sex            418 non-null    object 
+ 6   Ascites        312 non-null    object 
+ 7   Hepatomegaly   312 non-null    object 
+ 8   Spiders        312 non-null    object 
+ 9   Edema          418 non-null    object 
+ 10  Bilirubin      418 non-null    float64
+ 11  Cholesterol    284 non-null    float64
+ 12  Albumin        418 non-null    float64
+ 13  Copper         310 non-null    float64
+ 14  Alk_Phos       312 non-null    float64
+ 15  SGOT           312 non-null    float64
+ 16  Tryglicerides  282 non-null    float64
+ 17  Platelets      407 non-null    float64
+ 18  Prothrombin    416 non-null    float64
+ 19  Stage          412 non-null    float64
+dtypes: float64(10), int64(3), object(7)
+memory usage: 65.4+ KB
+None
+
+📌 Statistik Deskriptif:
+                ID       N_Days Status             Drug           Age  Sex  \
+count   418.000000   418.000000    418              312    418.000000  418   
+unique         NaN          NaN      3                2           NaN    2   
+top            NaN          NaN      C  D-penicillamine           NaN    F   
+freq           NaN          NaN    232              158           NaN  374   
+mean    209.500000  1917.782297    NaN              NaN  18533.351675  NaN   
+std     120.810458  1104.672992    NaN              NaN   3815.845055  NaN   
+min       1.000000    41.000000    NaN              NaN   9598.000000  NaN   
+25%     105.250000  1092.750000    NaN              NaN  15644.500000  NaN   
+50%     209.500000  1730.000000    NaN              NaN  18628.000000  NaN   
+75%     313.750000  2613.500000    NaN              NaN  21272.500000  NaN   
+max     418.000000  4795.000000    NaN              NaN  28650.000000  NaN   
+
+       Ascites Hepatomegaly Spiders Edema   Bilirubin  Cholesterol  \
+count      312          312     312   418  418.000000   284.000000   
+unique       2            2       2     3         NaN          NaN   
+top          N            Y       N     N         NaN          NaN   
+freq       288          160     222   354         NaN          NaN   
+mean       NaN          NaN     NaN   NaN    3.220813   369.510563   
+std        NaN          NaN     NaN   NaN    4.407506   231.944545   
+min        NaN          NaN     NaN   NaN    0.300000   120.000000   
+25%        NaN          NaN     NaN   NaN    0.800000   249.500000   
+50%        NaN          NaN     NaN   NaN    1.400000   309.500000   
+75%        NaN          NaN     NaN   NaN    3.400000   400.000000   
+max        NaN          NaN     NaN   NaN   28.000000  1775.000000   
+
+           Albumin      Copper      Alk_Phos        SGOT  Tryglicerides  \
+count   418.000000  310.000000    312.000000  312.000000     282.000000   
+unique         NaN         NaN           NaN         NaN            NaN   
+top            NaN         NaN           NaN         NaN            NaN   
+freq           NaN         NaN           NaN         NaN            NaN   
+mean      3.497440   97.648387   1982.655769  122.556346     124.702128   
+std       0.424972   85.613920   2140.388824   56.699525      65.148639   
+min       1.960000    4.000000    289.000000   26.350000      33.000000   
+25%       3.242500   41.250000    871.500000   80.600000      84.250000   
+50%       3.530000   73.000000   1259.000000  114.700000     108.000000   
+75%       3.770000  123.000000   1980.000000  151.900000     151.000000   
+max       4.640000  588.000000  13862.400000  457.250000     598.000000   
+
+         Platelets  Prothrombin       Stage  
+count   407.000000   416.000000  412.000000  
+unique         NaN          NaN         NaN  
+top            NaN          NaN         NaN  
+freq           NaN          NaN         NaN  
+mean    257.024570    10.731731    3.024272  
+std      98.325585     1.022000    0.882042  
+min      62.000000     9.000000    1.000000  
+25%     188.500000    10.000000    2.000000  
+50%     251.000000    10.600000    3.000000  
+75%     318.000000    11.100000    4.000000  
+max     721.000000    18.000000    4.000000  
+
+📌 Jumlah Nilai Hilang:
+ID                 0
+N_Days             0
+Status             0
+Drug             106
+Age                0
+Sex                0
+Ascites          106
+Hepatomegaly     106
+Spiders          106
+Edema              0
+Bilirubin          0
+Cholesterol      134
+Albumin            0
+Copper           108
+Alk_Phos         106
+SGOT             106
+Tryglicerides    136
+Platelets         11
+Prothrombin        2
+Stage              6
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><ul class="simple">
+<li><p>Pemrosesan awal data (Preprocessing )</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="c1"># Load data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;cirrhosis.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># 1. Hapus kolom yang tidak relevan (ID)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ID&quot;</span><span class="p">])</span>
+
+<span class="c1"># 2. Identifikasi kolom numerik dan kategorikal</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;int64&quot;</span><span class="p">,</span> <span class="s2">&quot;float64&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">cat_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="c1"># 3. Imputasi (mengisi) nilai hilang</span>
+
+<span class="c1"># Untuk kolom numerik → isi dengan median</span>
+<span class="n">num_imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">num_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">num_cols</span><span class="p">])</span>
+
+<span class="c1"># Untuk kolom kategorikal → isi dengan modus (nilai terbanyak)</span>
+<span class="n">cat_imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">cat_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">])</span>
+
+<span class="c1"># 4. Encoding data kategorikal (ubah ke angka)</span>
+<span class="n">label_encoders</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">:</span>
+    <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+    <span class="n">label_encoders</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span>
+
+<span class="c1"># 5. Tampilkan data hasil preprocessing</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Data setelah preprocessing:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Data setelah preprocessing:
+   N_Days  Status  Drug      Age  Sex  Ascites  Hepatomegaly  Spiders  Edema  \
+0   400.0       2     0  21464.0    0        1             1        1      2   
+1  4500.0       0     0  20617.0    0        0             1        1      0   
+2  1012.0       2     0  25594.0    1        0             0        0      1   
+3  1925.0       2     0  19994.0    0        0             1        1      1   
+4  1504.0       1     1  13918.0    0        0             1        1      0   
+
+   Bilirubin  Cholesterol  Albumin  Copper  Alk_Phos    SGOT  Tryglicerides  \
+0       14.5        261.0     2.60   156.0    1718.0  137.95          172.0   
+1        1.1        302.0     4.14    54.0    7394.8  113.52           88.0   
+2        1.4        176.0     3.48   210.0     516.0   96.10           55.0   
+3        1.8        244.0     2.54    64.0    6121.8   60.63           92.0   
+4        3.4        279.0     3.53   143.0     671.0  113.15           72.0   
+
+   Platelets  Prothrombin  Stage  
+0      190.0         12.2    4.0  
+1      221.0         10.6    3.0  
+2      151.0         12.0    4.0  
+3      183.0         10.3    4.0  
+4      136.0         10.9    3.0  
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><ul class="simple">
+<li><p>Pemodelan (model klasifikasi)</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># Pisahkan fitur (X) dan target (y)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Status&quot;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Status&quot;</span><span class="p">]</span>
+
+<span class="c1"># Split data jadi data latih dan uji (80%:20%)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Inisialisasi model-model</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Random Forest&quot;</span><span class="p">:</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+    <span class="s2">&quot;Decision Tree&quot;</span><span class="p">:</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+    <span class="s2">&quot;Logistic Regression&quot;</span><span class="p">:</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span>
+    <span class="s2">&quot;K-Nearest Neighbors&quot;</span><span class="p">:</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1"># Latih dan evaluasi tiap model</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🧠 Model: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>               <span class="c1"># Training</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>            <span class="c1"># Prediksi</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>      <span class="c1"># Akurasi</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi: </span><span class="si">{</span><span class="n">acc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>🧠 Model: Random Forest
+Akurasi: 0.7738
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.76      0.86      0.81        44
+           1       0.00      0.00      0.00         4
+           2       0.79      0.75      0.77        36
+
+    accuracy                           0.77        84
+   macro avg       0.52      0.54      0.53        84
+weighted avg       0.74      0.77      0.75        84
+
+
+🧠 Model: Decision Tree
+Akurasi: 0.6429
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.71      0.73      0.72        44
+           1       0.00      0.00      0.00         4
+           2       0.59      0.61      0.60        36
+
+    accuracy                           0.64        84
+   macro avg       0.44      0.45      0.44        84
+weighted avg       0.63      0.64      0.63        84
+
+
+🧠 Model: Logistic Regression
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi: 0.8095
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.81      0.86      0.84        44
+           1       0.00      0.00      0.00         4
+           2       0.81      0.83      0.82        36
+
+    accuracy                           0.81        84
+   macro avg       0.54      0.57      0.55        84
+weighted avg       0.77      0.81      0.79        84
+
+
+🧠 Model: K-Nearest Neighbors
+Akurasi: 0.6905
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.67      0.80      0.73        44
+           1       0.00      0.00      0.00         4
+           2       0.72      0.64      0.68        36
+
+    accuracy                           0.69        84
+   macro avg       0.46      0.48      0.47        84
+weighted avg       0.66      0.69      0.67        84
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/dist-packages/sklearn/linear_model/_logistic.py:465: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><ul class="simple">
+<li><p>Evaluasi</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. IMPORT LIBRARY</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">accuracy_score</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># 2. LOAD DATA</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;cirrhosis.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3. DATA UNDERSTANDING</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="c1"># 4. PREPROCESSING</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ID&quot;</span><span class="p">])</span>  <span class="c1"># Hapus kolom ID</span>
+
+<span class="c1"># Imputasi nilai hilang</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;float64&quot;</span><span class="p">,</span> <span class="s2">&quot;int64&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">cat_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="c1"># Numerik: median</span>
+<span class="n">num_imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">num_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">num_cols</span><span class="p">])</span>
+
+<span class="c1"># Kategorikal: modus</span>
+<span class="n">cat_imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">cat_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">])</span>
+
+<span class="c1"># Encoding data kategorikal</span>
+<span class="n">label_encoders</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">:</span>
+    <span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+    <span class="n">label_encoders</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">le</span>
+
+<span class="c1"># 5. PEMODELAN</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Status&quot;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Status&quot;</span><span class="p">]</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Model yang digunakan</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Random Forest&quot;</span><span class="p">:</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+    <span class="s2">&quot;Decision Tree&quot;</span><span class="p">:</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+    <span class="s2">&quot;Logistic Regression&quot;</span><span class="p">:</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span>
+    <span class="s2">&quot;K-Nearest Neighbors&quot;</span><span class="p">:</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1"># Train dan evaluasi model</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> Accuracy: </span><span class="si">{</span><span class="n">acc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">acc</span>
+
+<span class="c1"># 6. VISUALISASI AKURASI</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">results</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Perbandingan Akurasi Model&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Akurasi&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 418 entries, 0 to 417
+Data columns (total 20 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   ID             418 non-null    int64  
+ 1   N_Days         418 non-null    int64  
+ 2   Status         418 non-null    object 
+ 3   Drug           312 non-null    object 
+ 4   Age            418 non-null    int64  
+ 5   Sex            418 non-null    object 
+ 6   Ascites        312 non-null    object 
+ 7   Hepatomegaly   312 non-null    object 
+ 8   Spiders        312 non-null    object 
+ 9   Edema          418 non-null    object 
+ 10  Bilirubin      418 non-null    float64
+ 11  Cholesterol    284 non-null    float64
+ 12  Albumin        418 non-null    float64
+ 13  Copper         310 non-null    float64
+ 14  Alk_Phos       312 non-null    float64
+ 15  SGOT           312 non-null    float64
+ 16  Tryglicerides  282 non-null    float64
+ 17  Platelets      407 non-null    float64
+ 18  Prothrombin    416 non-null    float64
+ 19  Stage          412 non-null    float64
+dtypes: float64(10), int64(3), object(7)
+memory usage: 65.4+ KB
+None
+                ID       N_Days Status             Drug           Age  Sex  \
+count   418.000000   418.000000    418              312    418.000000  418   
+unique         NaN          NaN      3                2           NaN    2   
+top            NaN          NaN      C  D-penicillamine           NaN    F   
+freq           NaN          NaN    232              158           NaN  374   
+mean    209.500000  1917.782297    NaN              NaN  18533.351675  NaN   
+std     120.810458  1104.672992    NaN              NaN   3815.845055  NaN   
+min       1.000000    41.000000    NaN              NaN   9598.000000  NaN   
+25%     105.250000  1092.750000    NaN              NaN  15644.500000  NaN   
+50%     209.500000  1730.000000    NaN              NaN  18628.000000  NaN   
+75%     313.750000  2613.500000    NaN              NaN  21272.500000  NaN   
+max     418.000000  4795.000000    NaN              NaN  28650.000000  NaN   
+
+       Ascites Hepatomegaly Spiders Edema   Bilirubin  Cholesterol  \
+count      312          312     312   418  418.000000   284.000000   
+unique       2            2       2     3         NaN          NaN   
+top          N            Y       N     N         NaN          NaN   
+freq       288          160     222   354         NaN          NaN   
+mean       NaN          NaN     NaN   NaN    3.220813   369.510563   
+std        NaN          NaN     NaN   NaN    4.407506   231.944545   
+min        NaN          NaN     NaN   NaN    0.300000   120.000000   
+25%        NaN          NaN     NaN   NaN    0.800000   249.500000   
+50%        NaN          NaN     NaN   NaN    1.400000   309.500000   
+75%        NaN          NaN     NaN   NaN    3.400000   400.000000   
+max        NaN          NaN     NaN   NaN   28.000000  1775.000000   
+
+           Albumin      Copper      Alk_Phos        SGOT  Tryglicerides  \
+count   418.000000  310.000000    312.000000  312.000000     282.000000   
+unique         NaN         NaN           NaN         NaN            NaN   
+top            NaN         NaN           NaN         NaN            NaN   
+freq           NaN         NaN           NaN         NaN            NaN   
+mean      3.497440   97.648387   1982.655769  122.556346     124.702128   
+std       0.424972   85.613920   2140.388824   56.699525      65.148639   
+min       1.960000    4.000000    289.000000   26.350000      33.000000   
+25%       3.242500   41.250000    871.500000   80.600000      84.250000   
+50%       3.530000   73.000000   1259.000000  114.700000     108.000000   
+75%       3.770000  123.000000   1980.000000  151.900000     151.000000   
+max       4.640000  588.000000  13862.400000  457.250000     598.000000   
+
+         Platelets  Prothrombin       Stage  
+count   407.000000   416.000000  412.000000  
+unique         NaN          NaN         NaN  
+top            NaN          NaN         NaN  
+freq           NaN          NaN         NaN  
+mean    257.024570    10.731731    3.024272  
+std      98.325585     1.022000    0.882042  
+min      62.000000     9.000000    1.000000  
+25%     188.500000    10.000000    2.000000  
+50%     251.000000    10.600000    3.000000  
+75%     318.000000    11.100000    4.000000  
+max     721.000000    18.000000    4.000000  
+ID                 0
+N_Days             0
+Status             0
+Drug             106
+Age                0
+Sex                0
+Ascites          106
+Hepatomegaly     106
+Spiders          106
+Edema              0
+Bilirubin          0
+Cholesterol      134
+Albumin            0
+Copper           108
+Alk_Phos         106
+SGOT             106
+Tryglicerides    136
+Platelets         11
+Prothrombin        2
+Stage              6
+dtype: int64
+
+Random Forest Accuracy: 0.7738
+              precision    recall  f1-score   support
+
+           0       0.76      0.86      0.81        44
+           1       0.00      0.00      0.00         4
+           2       0.79      0.75      0.77        36
+
+    accuracy                           0.77        84
+   macro avg       0.52      0.54      0.53        84
+weighted avg       0.74      0.77      0.75        84
+
+
+Decision Tree Accuracy: 0.6429
+              precision    recall  f1-score   support
+
+           0       0.71      0.73      0.72        44
+           1       0.00      0.00      0.00         4
+           2       0.59      0.61      0.60        36
+
+    accuracy                           0.64        84
+   macro avg       0.44      0.45      0.44        84
+weighted avg       0.63      0.64      0.63        84
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/linear_model/_logistic.py:465: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic Regression Accuracy: 0.8095
+              precision    recall  f1-score   support
+
+           0       0.81      0.86      0.84        44
+           1       0.00      0.00      0.00         4
+           2       0.81      0.83      0.82        36
+
+    accuracy                           0.81        84
+   macro avg       0.54      0.57      0.55        84
+weighted avg       0.77      0.81      0.79        84
+
+
+K-Nearest Neighbors Accuracy: 0.6905
+              precision    recall  f1-score   support
+
+           0       0.67      0.80      0.73        44
+           1       0.00      0.00      0.00         4
+           2       0.72      0.64      0.68        36
+
+    accuracy                           0.69        84
+   macro avg       0.46      0.48      0.47        84
+weighted avg       0.66      0.69      0.67        84
+</pre></div>
+</div>
+<img alt="_images/42297d9c4f2329d7e2f6b9c42570fd5a16a28cf39c72b22689467502c3c20e9b.png" src="_images/42297d9c4f2329d7e2f6b9c42570fd5a16a28cf39c72b22689467502c3c20e9b.png" />
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -415,6 +1104,25 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">UTS Pendat</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#soal">Soal</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jawaban">Jawaban:</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
