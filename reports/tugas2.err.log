@@ -1,0 +1,138 @@
+Traceback (most recent call last):
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/asyncio/base_events.py", line 684, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import psycopg2
+import pymysql
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from scipy.spatial.distance import euclidean
+
+def get_pg_data():
+    conn = psycopg2.connect(
+        host="pg-3fbafb7b-hrmen55-bd28.i.aivencloud.com",
+        user="avnadmin",
+        password="AVNS_sc56Zt79uy033vzjIS4",
+        database="defaultdb",
+        port=23283
+    )
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM iris_postgresql")
+    data = cursor.fetchall()
+    columns = [desc[0] for desc in cursor.description]
+    cursor.close()
+    conn.close()
+    return pd.DataFrame(data, columns=columns)
+
+def get_mysql_data():
+    conn = pymysql.connect(
+        host="mysql-16cb25be-hrmen55-bd28.i.aivencloud.com",
+        user="avnadmin",
+        password="AVNS_MfLHp-bDUZ-2mkcA1a6",
+        database="defaultdb",
+        port=23283
+    )
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM irismysql")
+    data = cursor.fetchall()
+    columns = [desc[0] for desc in cursor.description]
+    cursor.close()
+    conn.close()
+    return pd.DataFrame(data, columns=columns)
+
+# Ambil data dari kedua database
+df_postgresql = get_pg_data()
+df_mysql = get_mysql_data()
+
+# Gabungkan berdasarkan kolom 'id' dan 'Class'
+df_merged = pd.merge(df_mysql, df_postgresql, on=["id", "class"], how="inner")
+
+# Ambil data fitur numerik
+feature_columns = ["petal_length", "petal_width", "sepal_length", "sepal_width"]
+data_values = df_merged[feature_columns].values
+
+# Ambil referensi dari baris terakhir (baris ke-152 jika dihitung dari 1, atau index -1)
+reference_point = data_values[-1]
+
+def compute_distances(data, reference):
+    return np.array([euclidean(row, reference) for row in data])
+
+# Hitung jarak Euclidean dari setiap baris ke referensi
+df_merged["distance"] = compute_distances(data_values, reference_point)
+
+# Tentukan threshold outlier berdasarkan persentil ke-95 (bisa disesuaikan)
+threshold = np.percentile(df_merged["distance"], 93.5)
+df_merged["outlier"] = df_merged["distance"] > threshold
+
+# Cetak hasil data dengan outlier
+print(df_merged.to_string(index=False))
+
+# Visualisasi scatter plot dengan warna berdasarkan outlier
+plt.figure(figsize=(8, 6))
+sns.scatterplot(
+    x=df_merged["sepal_length"], y=df_merged["sepal_width"],
+    hue=df_merged["outlier"], palette={False: "blue", True: "red"}
+)
+plt.title("Outlier Detection (Sepal)")
+plt.show()
+
+plt.figure(figsize=(8, 6))
+sns.scatterplot(
+    x=df_merged["petal_length"], y=df_merged["petal_width"],
+    hue=df_merged["outlier"], palette={False: "blue", True: "red"}
+)
+plt.title("Outlier Detection (Petal)")
+plt.show()
+
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mOperationalError[0m                          Traceback (most recent call last)
+Cell [0;32mIn[2], line 42[0m
+[1;32m     39[0m     [38;5;28;01mreturn[39;00m pd[38;5;241m.[39mDataFrame(data, columns[38;5;241m=[39mcolumns)
+[1;32m     41[0m [38;5;66;03m# Ambil data dari kedua database[39;00m
+[0;32m---> 42[0m df_postgresql [38;5;241m=[39m [43mget_pg_data[49m[43m([49m[43m)[49m
+[1;32m     43[0m df_mysql [38;5;241m=[39m get_mysql_data()
+[1;32m     45[0m [38;5;66;03m# Gabungkan berdasarkan kolom 'id' dan 'Class'[39;00m
+
+Cell [0;32mIn[2], line 10[0m, in [0;36mget_pg_data[0;34m()[0m
+[1;32m      9[0m [38;5;28;01mdef[39;00m [38;5;21mget_pg_data[39m():
+[0;32m---> 10[0m     conn [38;5;241m=[39m [43mpsycopg2[49m[38;5;241;43m.[39;49m[43mconnect[49m[43m([49m
+[1;32m     11[0m [43m        [49m[43mhost[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mpg-3fbafb7b-hrmen55-bd28.i.aivencloud.com[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m     12[0m [43m        [49m[43muser[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mavnadmin[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m     13[0m [43m        [49m[43mpassword[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mAVNS_sc56Zt79uy033vzjIS4[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m     14[0m [43m        [49m[43mdatabase[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mdefaultdb[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m     15[0m [43m        [49m[43mport[49m[38;5;241;43m=[39;49m[38;5;241;43m23283[39;49m
+[1;32m     16[0m [43m    [49m[43m)[49m
+[1;32m     17[0m     cursor [38;5;241m=[39m conn[38;5;241m.[39mcursor()
+[1;32m     18[0m     cursor[38;5;241m.[39mexecute([38;5;124m"[39m[38;5;124mSELECT * FROM iris_postgresql[39m[38;5;124m"[39m)
+
+File [0;32m/usr/local/python/3.12.1/lib/python3.12/site-packages/psycopg2/__init__.py:122[0m, in [0;36mconnect[0;34m(dsn, connection_factory, cursor_factory, **kwargs)[0m
+[1;32m    119[0m     kwasync[[38;5;124m'[39m[38;5;124masync_[39m[38;5;124m'[39m] [38;5;241m=[39m kwargs[38;5;241m.[39mpop([38;5;124m'[39m[38;5;124masync_[39m[38;5;124m'[39m)
+[1;32m    121[0m dsn [38;5;241m=[39m _ext[38;5;241m.[39mmake_dsn(dsn, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[0;32m--> 122[0m conn [38;5;241m=[39m [43m_connect[49m[43m([49m[43mdsn[49m[43m,[49m[43m [49m[43mconnection_factory[49m[38;5;241;43m=[39;49m[43mconnection_factory[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwasync[49m[43m)[49m
+[1;32m    123[0m [38;5;28;01mif[39;00m cursor_factory [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m    124[0m     conn[38;5;241m.[39mcursor_factory [38;5;241m=[39m cursor_factory
+
+[0;31mOperationalError[0m: could not translate host name "pg-3fbafb7b-hrmen55-bd28.i.aivencloud.com" to address: Name or service not known
+
+
