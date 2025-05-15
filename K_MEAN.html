@@ -545,52 +545,6 @@ S(i) untuk semua objek dalam dataset</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">45</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="c1"># Ambil data dari kedua database</span>
-<span class="g g-Whitespace">     </span><span class="mi">44</span> <span class="n">df_postgresql</span> <span class="o">=</span> <span class="n">get_pg_data</span><span class="p">()</span>
-<span class="ne">---&gt; </span><span class="mi">45</span> <span class="n">df_mysql</span> <span class="o">=</span> <span class="n">get_mysql_data</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="c1"># Gabungkan berdasarkan kolom &#39;id&#39; dan &#39;Class&#39;</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="n">df_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_mysql</span><span class="p">,</span> <span class="n">df_postgresql</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
-
-<span class="nn">Cell In[2], line 26,</span> in <span class="ni">get_mysql_data</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span> <span class="k">def</span> <span class="nf">get_mysql_data</span><span class="p">():</span>
-<span class="ne">---&gt; </span><span class="mi">26</span>     <span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span>         <span class="n">host</span><span class="o">=</span><span class="s2">&quot;mysql-16cb25be-hrmen55-bd28.i.aivencloud.com&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span>         <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span>         <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_MfLHp-bDUZ-2mkcA1a6&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span>         <span class="n">database</span><span class="o">=</span><span class="s2">&quot;defaultdb&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>         <span class="n">port</span><span class="o">=</span><span class="mi">23283</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span> 
-<span class="g g-Whitespace">     </span><span class="mi">33</span>     <span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>     <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM irismysql&quot;</span><span class="p">)</span>
-
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pymysql/connections.py:361,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, user, password, host, database, unix_socket, port, charset, collation, sql_mode, read_default_file, conv, use_unicode, client_flag, cursorclass, init_command, connect_timeout, read_default_group, autocommit, local_infile, max_allowed_packet, defer_connect, auth_plugin_map, read_timeout, write_timeout, bind_address, binary_prefix, program_name, server_public_key, ssl, ssl_ca, ssl_cert, ssl_disabled, ssl_key, ssl_key_password, ssl_verify_cert, ssl_verify_identity, compress, named_pipe, passwd, db)</span>
-<span class="g g-Whitespace">    </span><span class="mi">359</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">360</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">361</span>     <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pymysql/connections.py:669,</span> in <span class="ni">Connection.connect</span><span class="nt">(self, sock)</span>
-<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_seq_id</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="g g-Whitespace">    </span><span class="mi">668</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_server_information</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">669</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_authentication</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">671</span> <span class="c1"># Send &quot;SET NAMES&quot; query on init for:</span>
-<span class="g g-Whitespace">    </span><span class="mi">672</span> <span class="c1"># - Ensure charaset (and collation) is set to the server.</span>
-<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="c1">#   - collation_id in handshake packet may be ignored.</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">682</span> <span class="c1"># - https://github.com/wagtail/wagtail/issues/9477</span>
-<span class="g g-Whitespace">    </span><span class="mi">683</span> <span class="c1"># - https://zenn.dev/methane/articles/2023-mysql-collation (Japanese)</span>
-<span class="g g-Whitespace">    </span><span class="mi">684</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_character_set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">charset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">collation</span><span class="p">)</span>
-
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pymysql/connections.py:979,</span> in <span class="ni">Connection._request_authentication</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">977</span> <span class="c1"># https://dev.mysql.com/doc/internals/en/successful-authentication.html</span>
-<span class="g g-Whitespace">    </span><span class="mi">978</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auth_plugin_name</span> <span class="o">==</span> <span class="s2">&quot;caching_sha2_password&quot;</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">979</span>     <span class="n">auth_packet</span> <span class="o">=</span> <span class="n">_auth</span><span class="o">.</span><span class="n">caching_sha2_password_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auth_packet</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">980</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auth_plugin_name</span> <span class="o">==</span> <span class="s2">&quot;sha256_password&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">981</span>     <span class="n">auth_packet</span> <span class="o">=</span> <span class="n">_auth</span><span class="o">.</span><span class="n">sha256_password_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auth_packet</span><span class="p">)</span>
 
 </pre></div>
 </div>
