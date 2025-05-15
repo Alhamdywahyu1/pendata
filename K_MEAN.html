@@ -592,26 +592,6 @@ S(i) untuk semua objek dalam dataset</p>
 <span class="g g-Whitespace">    </span><span class="mi">980</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auth_plugin_name</span> <span class="o">==</span> <span class="s2">&quot;sha256_password&quot;</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">981</span>     <span class="n">auth_packet</span> <span class="o">=</span> <span class="n">_auth</span><span class="o">.</span><span class="n">sha256_password_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auth_packet</span><span class="p">)</span>
 
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pymysql/_auth.py:267,</span> in <span class="ni">caching_sha2_password_auth</span><span class="nt">(conn, pkt)</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span>     <span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">265</span>         <span class="nb">print</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">server_public_key</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">267</span> <span class="n">data</span> <span class="o">=</span> <span class="n">sha2_rsa_encrypt</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">salt</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">server_public_key</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">268</span> <span class="n">pkt</span> <span class="o">=</span> <span class="n">_roundtrip</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-
-<span class="nn">File /usr/local/python/3.12.1/lib/python3.12/site-packages/pymysql/_auth.py:144,</span> in <span class="ni">sha2_rsa_encrypt</span><span class="nt">(password, salt, public_key)</span>
-<span class="g g-Whitespace">    </span><span class="mi">139</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Encrypt password with salt and public_key.</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span><span class="sd"> Used for sha256_password and caching_sha2_password.</span>
-<span class="g g-Whitespace">    </span><span class="mi">142</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">_have_cryptography</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">144</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">145</span>         <span class="s2">&quot;&#39;cryptography&#39; package is required for sha256_password or&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span>         <span class="o">+</span> <span class="s2">&quot; caching_sha2_password auth methods&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span> <span class="n">message</span> <span class="o">=</span> <span class="n">_xor_password</span><span class="p">(</span><span class="n">password</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\0</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">salt</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">149</span> <span class="n">rsa_key</span> <span class="o">=</span> <span class="n">serialization</span><span class="o">.</span><span class="n">load_pem_public_key</span><span class="p">(</span><span class="n">public_key</span><span class="p">,</span> <span class="n">default_backend</span><span class="p">())</span>
-
-<span class="ne">RuntimeError</span>: &#39;cryptography&#39; package is required for sha256_password or caching_sha2_password auth methods
 </pre></div>
 </div>
 </div>
