@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'REVISI';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="UTS Pendat" href="UTS.html" />
+    <link rel="next" title="FUZZY C-MEANS CLUSTERING" href="fuzzy_cmeans.html" />
     <link rel="prev" title="Implementasi Naive Bayes pada Data iris" href="native_bayes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -175,6 +175,7 @@
 <li class="toctree-l1"><a class="reference internal" href="tugas2.html"><strong>preprosessing data</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="native_bayes.html">Implementasi Naive Bayes pada Data iris</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><em><strong>K-Means</strong></em></a></li>
+<li class="toctree-l1"><a class="reference internal" href="fuzzy_cmeans.html"><strong>FUZZY C-MEANS CLUSTERING</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="UTS.html">UTS Pendat</a></li>
 
 
@@ -513,6 +514,13 @@ S = \frac{1}{n} \sum_{i=1}^{n} s(i)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_pg_data</span><span class="p">():</span>
+    <span class="c1"># conn = psycopg2.connect(</span>
+    <span class="c1">#     host=&quot;pg-10937f1d-hamdialfian1-e960.i.aivencloud.com&quot;,</span>
+    <span class="c1">#     user=&quot;avnadmin&quot;,</span>
+    <span class="c1">#     password=&quot;AVNS_HaAQgyz8pJY_jE09Ytk&quot;,</span>
+    <span class="c1">#     database=&quot;defaultdb,</span>
+    <span class="c1">#     port=10063</span>
+    <span class="c1"># )</span>
     <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
         <span class="n">host</span><span class="o">=</span><span class="s2">&quot;pg-3fbafb7b-hrmen55-bd28.i.aivencloud.com&quot;</span><span class="p">,</span>
         <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
@@ -529,6 +537,13 @@ S = \frac{1}{n} \sum_{i=1}^{n} s(i)
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get_mysql_data</span><span class="p">():</span>
+    <span class="c1"># conn = pymysql.connect(</span>
+    <span class="c1">#     host=&quot;mysql-158771e3-hamdialfian1-e960.h.aivencloud.com&quot;,</span>
+    <span class="c1">#     user=&quot;avnadmin&quot;,</span>
+    <span class="c1">#     password=&quot;AVNS_jKJZUy4bXi_rirC-EeT&quot;,</span>
+    <span class="c1">#     database=&quot;defaultdb&quot;,</span>
+    <span class="c1">#     port=10063</span>
+    <span class="c1"># )</span>
     <span class="n">conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
         <span class="n">host</span><span class="o">=</span><span class="s2">&quot;mysql-16cb25be-hrmen55-bd28.i.aivencloud.com&quot;</span><span class="p">,</span>
         <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
@@ -1319,11 +1334,11 @@ S = \frac{1}{n} \sum_{i=1}^{n} s(i)
       </div>
     </a>
     <a class="right-next"
-       href="UTS.html"
+       href="fuzzy_cmeans.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">UTS Pendat</p>
+        <p class="prev-next-title"><strong>FUZZY C-MEANS CLUSTERING</strong></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
