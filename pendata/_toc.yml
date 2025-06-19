@@ -7,5 +7,9 @@ chapters:
 - file: tugas1
 - file: tugas2
 - file: native_bayes
+- file: REVISI
+- file: fuzzy_cmeans
+- file: DecisionTree
+- file: PRA_UAS
 - file: UTS
 
