@@ -3,11 +3,23 @@ import pandas as pd
 import joblib
 import numpy as np
 
+# Cache the model loading using Streamlit's caching mechanism
+@st.cache_resource
+def load_model():
+    """Loads the pre-trained model from disk."""
+    try:
+        model = joblib.load('model.joblib')
+        return model
+    except FileNotFoundError:
+        # Return None if the file doesn't exist, to be handled gracefully.
+        return None
+
 # Load the trained model pipeline
-try:
-    model = joblib.load('model.joblib')
-except FileNotFoundError:
-    st.error("Model file ('model.joblib') not found. Please run 'train.py' first to generate it.")
+model = load_model()
+
+# Stop the app if the model is not found.
+if model is None:
+    st.error("Model file ('model.joblib') not found. Please ensure the model exists and you have run the training script.")
     st.stop()
 
 # Set page configuration
