@@ -2,4 +2,6 @@ pandas
 scikit-learn
 seaborn
 numpy
-streamlit 
+streamlit
+imbalanced-learn
+ucimlrepo 
