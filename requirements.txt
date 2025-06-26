@@ -1,4 +1,7 @@
+# File ini berisi dependensi minimal untuk menjalankan aplikasi Streamlit.
+# Streamlit Cloud akan menggunakan file ini untuk men-deploy aplikasi.
+
 pandas==2.2.2
 scikit-learn==1.2.2
 numpy==1.26.4
-streamlit 
+streamlit==1.36.0 

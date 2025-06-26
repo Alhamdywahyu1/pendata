@@ -1,0 +1,9 @@
+# File ini berisi dependensi yang dibutuhkan untuk melatih model.
+# Instal dengan: pip install -r requirements-train.txt
+
+# Termasuk dependensi aplikasi utama
+-r requirements.txt
+
+# Library khusus untuk training
+ucimlrepo==0.0.3
+imbalanced-learn==0.11.0 

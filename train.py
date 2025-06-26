@@ -1,6 +1,10 @@
+import logging
 import pandas as pd
 import numpy as np
 import joblib
+from pathlib import Path
+from typing import List, Tuple
+
 from ucimlrepo import fetch_ucirepo
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
@@ -9,69 +13,108 @@ from sklearn.naive_bayes import GaussianNB
 from imblearn.over_sampling import SMOTE
 from imblearn.pipeline import Pipeline as ImbPipeline
 
-# 1. Load Data
-print("🔄 Memuat dataset Bedah Toraks...")
-thoracic_surgery_data = fetch_ucirepo(id=277)
-X_raw = thoracic_surgery_data.data.features
-y_raw = thoracic_surgery_data.data.targets
-df = pd.concat([X_raw, y_raw], axis=1)
+# --- Konfigurasi Logging ---
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Konversi kolom boolean dari 'T'/'F' menjadi Tipe Data Boolean (True/False)
-bool_cols = ['PRE7', 'PRE8', 'PRE9', 'PRE10', 'PRE11', 'PRE17', 'PRE19', 'PRE25', 'PRE30', 'PRE32', 'Risk1Yr']
-for col in bool_cols:
-    df[col] = df[col].map({'T': True, 'F': False})
-print("✅ Dataset berhasil dimuat.")
+# --- Konstanta ---
+TARGET_COLUMN = 'Risk1Yr'
+MODEL_FILENAME = 'model.joblib'
+BOOLEAN_COLS = [
+    'PRE7', 'PRE8', 'PRE9', 'PRE10', 'PRE11', 'PRE17', 'PRE19', 'PRE25', 
+    'PRE30', 'PRE32', TARGET_COLUMN
+]
 
-# 2. Pisahkan Fitur dan Target
-X = df.drop('Risk1Yr', axis=1)
-y = df['Risk1Yr']
+def load_and_prepare_data(uci_id: int = 277) -> Tuple[pd.DataFrame, pd.Series]:
+    """
+    Mengunduh data dari UCI Repo, membersihkannya, dan memisahkannya menjadi fitur dan target.
+    """
+    logging.info(f"Mengunduh dan memuat dataset dari UCI (ID: {uci_id})...")
+    try:
+        dataset = fetch_ucirepo(id=uci_id)
+        x_raw = dataset.data.features
+        y_raw = dataset.data.targets
+        df = pd.concat([x_raw, y_raw], axis=1)
+        
+        for col in BOOLEAN_COLS:
+            if col in df.columns:
+                df[col] = df[col].map({'T': True, 'F': False})
+        
+        logging.info("Dataset berhasil dimuat dan dibersihkan.")
+        X = df.drop(TARGET_COLUMN, axis=1)
+        y = df[TARGET_COLUMN]
+        return X, y
+    except Exception as e:
+        logging.error(f"Gagal memuat atau memproses data: {e}")
+        raise
 
-# 3. Identifikasi tipe kolom untuk preprocessing
-numerical_cols = X.select_dtypes(include=np.number).columns.tolist()
-categorical_cols = X.select_dtypes(include=['object']).columns.tolist()
-# Kolom boolean akan dilewatkan tanpa perubahan oleh ColumnTransformer
-# Kita hanya perlu memastikan mereka ada di X
+def build_pipelines(X: pd.DataFrame) -> Tuple[ImbPipeline, Pipeline]:
+    """
+    Membangun pipeline untuk training (dengan SMOTE) dan prediksi (tanpa SMOTE).
+    """
+    numerical_cols = X.select_dtypes(include=np.number).columns.tolist()
+    categorical_cols = X.select_dtypes(include=['object']).columns.tolist()
+    
+    logging.info(f"Kolom Numerik: {numerical_cols}")
+    logging.info(f"Kolom Kategorikal: {categorical_cols}")
 
-print(f"Kolom Numerik: {numerical_cols}")
-print(f"Kolom Kategorikal: {categorical_cols}")
+    numeric_transformer = StandardScaler()
+    categorical_transformer = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
 
-# 4. Buat Pipeline Preprocessing
-# Pipeline untuk data numerik: scaling
-numeric_transformer = StandardScaler()
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('num', numeric_transformer, numerical_cols),
+            ('cat', categorical_transformer, categorical_cols)
+        ],
+        remainder='passthrough'
+    )
 
-# Pipeline untuk data kategorikal: one-hot encoding
-categorical_transformer = OneHotEncoder(handle_unknown='ignore')
+    training_pipeline = ImbPipeline(steps=[
+        ('preprocessor', preprocessor),
+        ('smote', SMOTE(random_state=42)),
+        ('classifier', GaussianNB())
+    ])
+    
+    prediction_pipeline = Pipeline(steps=[
+        ('preprocessor', preprocessor),
+        ('classifier', GaussianNB())
+    ])
+    
+    logging.info("Pipeline training dan prediksi berhasil dibuat.")
+    return training_pipeline, prediction_pipeline
 
-# Gabungkan transformer menggunakan ColumnTransformer
-# 'passthrough' akan membiarkan kolom boolean tidak diubah
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('num', numeric_transformer, numerical_cols),
-        ('cat', categorical_transformer, categorical_cols)
-    ],
-    remainder='passthrough' # Biarkan kolom boolean (PRE7, dll) apa adanya
-)
+def train_and_save_model(
+    training_pipeline: ImbPipeline, 
+    prediction_pipeline: Pipeline, 
+    X: pd.DataFrame, 
+    y: pd.Series, 
+    model_path: str = MODEL_FILENAME
+) -> None:
+    """
+    Melatih model menggunakan training pipeline dan menyimpan prediction pipeline yang telah dilatih.
+    """
+    logging.info("Memulai pelatihan model dengan SMOTE...")
+    training_pipeline.fit(X, y)
+    logging.info("Model berhasil dilatih.")
+    
+    # Transfer state dari pipeline terlatih ke pipeline prediksi
+    prediction_pipeline.named_steps['preprocessor'].transformers_ = training_pipeline.named_steps['preprocessor'].transformers_
+    prediction_pipeline.named_steps['classifier'].theta_ = training_pipeline.named_steps['classifier'].theta_
+    prediction_pipeline.named_steps['classifier'].var_ = training_pipeline.named_steps['classifier'].var_
+    prediction_pipeline.named_steps['classifier'].class_prior_ = training_pipeline.named_steps['classifier'].class_prior_
+    prediction_pipeline.named_steps['classifier'].classes_ = training_pipeline.named_steps['classifier'].classes_
 
-# 5. Buat Pipeline Lengkap dengan SMOTE dan Model untuk Pelatihan
-# Kita menggunakan pipeline dari imblearn untuk mengintegrasikan SMOTE
-training_pipeline = ImbPipeline(steps=[
-    ('preprocessor', preprocessor),
-    ('smote', SMOTE(random_state=42)),
-    ('classifier', GaussianNB())
-])
+    try:
+        joblib.dump(prediction_pipeline, model_path)
+        logging.info(f"Model prediksi yang ringan telah disimpan ke '{model_path}'.")
+    except Exception as e:
+        logging.error(f"Gagal menyimpan model: {e}")
+        raise
 
-# 6. Latih model dengan seluruh data
-print("🔄 Melatih model Gaussian Naive Bayes dengan SMOTE...")
-training_pipeline.fit(X, y)
-print("✅ Model berhasil dilatih.")
+def main():
+    """Fungsi utama untuk menjalankan seluruh proses."""
+    X, y = load_and_prepare_data()
+    train_pipe, pred_pipe = build_pipelines(X)
+    train_and_save_model(train_pipe, pred_pipe, X, y)
 
-# 7. Buat pipeline prediksi (tanpa SMOTE) untuk deployment
-print("🔧 Membuat pipeline prediksi yang lebih ringan...")
-prediction_pipeline = Pipeline(steps=[
-    ('preprocessor', training_pipeline.named_steps['preprocessor']),
-    ('classifier', training_pipeline.named_steps['classifier'])
-])
-
-# 8. Simpan pipeline prediksi yang ringan ke file
-joblib.dump(prediction_pipeline, 'model.joblib')
-print("💾 Model ringan berhasil disimpan sebagai 'model.joblib'.") 
+if __name__ == "__main__":
+    main() 
