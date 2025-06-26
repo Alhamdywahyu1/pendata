@@ -52,9 +52,9 @@ preprocessor = ColumnTransformer(
     remainder='passthrough' # Biarkan kolom boolean (PRE7, dll) apa adanya
 )
 
-# 5. Buat Pipeline Lengkap dengan SMOTE dan Model
+# 5. Buat Pipeline Lengkap dengan SMOTE dan Model untuk Pelatihan
 # Kita menggunakan pipeline dari imblearn untuk mengintegrasikan SMOTE
-full_pipeline = ImbPipeline(steps=[
+training_pipeline = ImbPipeline(steps=[
     ('preprocessor', preprocessor),
     ('smote', SMOTE(random_state=42)),
     ('classifier', GaussianNB())
@@ -62,9 +62,16 @@ full_pipeline = ImbPipeline(steps=[
 
 # 6. Latih model dengan seluruh data
 print("🔄 Melatih model Gaussian Naive Bayes dengan SMOTE...")
-full_pipeline.fit(X, y)
+training_pipeline.fit(X, y)
 print("✅ Model berhasil dilatih.")
 
-# 7. Simpan pipeline lengkap ke file
-joblib.dump(full_pipeline, 'model.joblib')
-print("💾 Model berhasil disimpan sebagai 'model.joblib'.") 
+# 7. Buat pipeline prediksi (tanpa SMOTE) untuk deployment
+print("🔧 Membuat pipeline prediksi yang lebih ringan...")
+prediction_pipeline = Pipeline(steps=[
+    ('preprocessor', training_pipeline.named_steps['preprocessor']),
+    ('classifier', training_pipeline.named_steps['classifier'])
+])
+
+# 8. Simpan pipeline prediksi yang ringan ke file
+joblib.dump(prediction_pipeline, 'model.joblib')
+print("💾 Model ringan berhasil disimpan sebagai 'model.joblib'.") 
