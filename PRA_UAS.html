@@ -371,15 +371,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemilihan-dataset">1. Pemilihan Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">1. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemilihan-dataset">Pemilihan Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-penjelasan-fitur">a. Penjelasan Fitur</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">3. Preprocessing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">4. Clustering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">5. Evaluasi Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-model">6. Deploy Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">2. Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">3. Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">4. Evaluasi Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-model">5. Deploy Model</a></li>
 </ul>
             </nav>
         </div>
@@ -394,11 +394,32 @@
   <section class="tex2jax_ignore mathjax_ignore" id="pra-uas-penambangan-data">
 <h1>PRA UAS Penambangan Data<a class="headerlink" href="#pra-uas-penambangan-data" title="Link to this heading">#</a></h1>
 <p>Analisis Clustering pada Dataset Wine (UCI)</p>
+<section id="data-understanding">
+<h2>1. Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
 <section id="pemilihan-dataset">
-<h2>1. Pemilihan Dataset<a class="headerlink" href="#pemilihan-dataset" title="Link to this heading">#</a></h2>
+<h3>Pemilihan Dataset<a class="headerlink" href="#pemilihan-dataset" title="Link to this heading">#</a></h3>
 <p>Dataset yang digunakan adalah <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/wine">Wine Data Set - UCI Machine Learning Repository</a>.</p>
 <p>Dataset ini berisi hasil kimia dari 3 jenis wine yang berbeda yang diproduksi di wilayah yang sama di Italia.</p>
 <p>Kita akan melakukan clustering pada data ini.</p>
+</section>
+<section id="a-penjelasan-fitur">
+<h3>a. Penjelasan Fitur<a class="headerlink" href="#a-penjelasan-fitur" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Class</strong>: Kategori wine (1, 2, 3)</p></li>
+<li><p><strong>Alcohol</strong>: Kandungan alkohol</p></li>
+<li><p><strong>Malic acid</strong>: Kandungan asam malat</p></li>
+<li><p><strong>Ash</strong>: Kandungan abu</p></li>
+<li><p><strong>Alcalinity of ash</strong>: Kealkalian abu</p></li>
+<li><p><strong>Magnesium</strong>: Kandungan magnesium</p></li>
+<li><p><strong>Total phenols</strong>: Total fenol</p></li>
+<li><p><strong>Flavanoids</strong>: Kandungan flavonoid</p></li>
+<li><p><strong>Nonflavanoid phenols</strong>: Fenol non-flavonoid</p></li>
+<li><p><strong>Proanthocyanins</strong>: Proantosianin</p></li>
+<li><p><strong>Color intensity</strong>: Intensitas warna</p></li>
+<li><p><strong>Hue</strong>: Warna</p></li>
+<li><p><strong>OD280/OD315 of diluted wines</strong>: Rasio absorbansi</p></li>
+<li><p><strong>Proline</strong>: Kandungan prolin</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -545,27 +566,6 @@
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="data-understanding">
-<h2>2. Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
-<section id="a-penjelasan-fitur">
-<h3>a. Penjelasan Fitur<a class="headerlink" href="#a-penjelasan-fitur" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Class</strong>: Kategori wine (1, 2, 3)</p></li>
-<li><p><strong>Alcohol</strong>: Kandungan alkohol</p></li>
-<li><p><strong>Malic acid</strong>: Kandungan asam malat</p></li>
-<li><p><strong>Ash</strong>: Kandungan abu</p></li>
-<li><p><strong>Alcalinity of ash</strong>: Kealkalian abu</p></li>
-<li><p><strong>Magnesium</strong>: Kandungan magnesium</p></li>
-<li><p><strong>Total phenols</strong>: Total fenol</p></li>
-<li><p><strong>Flavanoids</strong>: Kandungan flavonoid</p></li>
-<li><p><strong>Nonflavanoid phenols</strong>: Fenol non-flavonoid</p></li>
-<li><p><strong>Proanthocyanins</strong>: Proantosianin</p></li>
-<li><p><strong>Color intensity</strong>: Intensitas warna</p></li>
-<li><p><strong>Hue</strong>: Warna</p></li>
-<li><p><strong>OD280/OD315 of diluted wines</strong>: Rasio absorbansi</p></li>
-<li><p><strong>Proline</strong>: Kandungan prolin</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># b. Eksplorasi Data</span>
@@ -644,7 +644,7 @@ dtype: int64
 </section>
 </section>
 <section id="preprocessing">
-<h2>3. Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h2>
+<h2>2. Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Normalisasi data</p></li>
 <li><p>Reduksi dimensi dengan PCA (2D untuk visualisasi)</p></li>
@@ -675,7 +675,7 @@ dtype: int64
 </div>
 </section>
 <section id="clustering">
-<h2>4. Clustering<a class="headerlink" href="#clustering" title="Link to this heading">#</a></h2>
+<h2>3. Clustering<a class="headerlink" href="#clustering" title="Link to this heading">#</a></h2>
 <p>Kita akan menggunakan KMeans untuk clustering.</p>
 <p>Menentukan jumlah cluster optimal dengan Silhouette Score.</p>
 <div class="cell docutils container">
@@ -722,7 +722,7 @@ dtype: int64
 </div>
 </section>
 <section id="evaluasi-model">
-<h2>5. Evaluasi Model<a class="headerlink" href="#evaluasi-model" title="Link to this heading">#</a></h2>
+<h2>4. Evaluasi Model<a class="headerlink" href="#evaluasi-model" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Silhouette Score</p></li>
 <li><p>Perbandingan cluster dengan label asli (jika ada)</p></li>
@@ -795,7 +795,7 @@ dtype: int64
 </div>
 </section>
 <section id="deploy-model">
-<h2>6. Deploy Model<a class="headerlink" href="#deploy-model" title="Link to this heading">#</a></h2>
+<h2>5. Deploy Model<a class="headerlink" href="#deploy-model" title="Link to this heading">#</a></h2>
 <p>Contoh sederhana: fungsi prediksi cluster untuk data baru.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -889,15 +889,15 @@ dtype: int64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemilihan-dataset">1. Pemilihan Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">1. Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemilihan-dataset">Pemilihan Dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-penjelasan-fitur">a. Penjelasan Fitur</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">3. Preprocessing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">4. Clustering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">5. Evaluasi Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-model">6. Deploy Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">2. Preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">3. Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">4. Evaluasi Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-model">5. Deploy Model</a></li>
 </ul>
   </nav></div>
 
