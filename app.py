@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
-import numpy as np
+import numpy as np  
 from typing import Callable, Optional
 
 # --- Konstanta ---
