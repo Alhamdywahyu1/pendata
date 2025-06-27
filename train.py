@@ -47,10 +47,8 @@ def load_and_prepare_data(uci_id: int = 277) -> Tuple[pd.DataFrame, pd.Series]:
         logging.error(f"Gagal memuat atau memproses data: {e}")
         raise
 
-def build_pipelines(X: pd.DataFrame) -> Tuple[ImbPipeline, Pipeline]:
-    """
-    Membangun pipeline untuk training (dengan SMOTE) dan prediksi (tanpa SMOTE).
-    """
+def build_training_pipeline(X: pd.DataFrame) -> ImbPipeline:
+    """Membangun pipeline untuk training (dengan SMOTE)."""
     numerical_cols = X.select_dtypes(include=np.number).columns.tolist()
     categorical_cols = X.select_dtypes(include=['object']).columns.tolist()
     
@@ -74,38 +72,33 @@ def build_pipelines(X: pd.DataFrame) -> Tuple[ImbPipeline, Pipeline]:
         ('classifier', GaussianNB())
     ])
     
-    prediction_pipeline = Pipeline(steps=[
-        ('preprocessor', preprocessor),
-        ('classifier', GaussianNB())
-    ])
-    
-    logging.info("Pipeline training dan prediksi berhasil dibuat.")
-    return training_pipeline, prediction_pipeline
+    logging.info("Pipeline training berhasil dibuat.")
+    return training_pipeline
 
 def train_and_save_model(
     training_pipeline: ImbPipeline, 
-    prediction_pipeline: Pipeline, 
     X: pd.DataFrame, 
     y: pd.Series, 
     model_path: str = MODEL_FILENAME
 ) -> None:
     """
-    Melatih model menggunakan training pipeline dan menyimpan prediction pipeline yang telah dilatih.
+    Melatih model dan menyimpan pipeline prediksi yang telah dilatih dan siap digunakan.
     """
     logging.info("Memulai pelatihan model dengan SMOTE...")
     training_pipeline.fit(X, y)
     logging.info("Model berhasil dilatih.")
     
-    # Transfer state dari pipeline terlatih ke pipeline prediksi
-    prediction_pipeline.named_steps['preprocessor'].transformers_ = training_pipeline.named_steps['preprocessor'].transformers_
-    prediction_pipeline.named_steps['classifier'].theta_ = training_pipeline.named_steps['classifier'].theta_
-    prediction_pipeline.named_steps['classifier'].var_ = training_pipeline.named_steps['classifier'].var_
-    prediction_pipeline.named_steps['classifier'].class_prior_ = training_pipeline.named_steps['classifier'].class_prior_
-    prediction_pipeline.named_steps['classifier'].classes_ = training_pipeline.named_steps['classifier'].classes_
+    # Membuat pipeline prediksi final dari komponen yang sudah dilatih.
+    # Ini adalah cara yang lebih kuat daripada memindahkan state secara manual.
+    logging.info("Membuat pipeline prediksi final untuk deployment...")
+    prediction_pipeline = Pipeline(steps=[
+        ('preprocessor', training_pipeline.named_steps['preprocessor']),
+        ('classifier', training_pipeline.named_steps['classifier'])
+    ])
 
     try:
         joblib.dump(prediction_pipeline, model_path)
-        logging.info(f"Model prediksi yang ringan telah disimpan ke '{model_path}'.")
+        logging.info(f"Model prediksi yang ringan dan kuat telah disimpan ke '{model_path}'.")
     except Exception as e:
         logging.error(f"Gagal menyimpan model: {e}")
         raise
@@ -113,8 +106,8 @@ def train_and_save_model(
 def main():
     """Fungsi utama untuk menjalankan seluruh proses."""
     X, y = load_and_prepare_data()
-    train_pipe, pred_pipe = build_pipelines(X)
-    train_and_save_model(train_pipe, pred_pipe, X, y)
+    train_pipe = build_training_pipeline(X)
+    train_and_save_model(train_pipe, X, y)
 
 if __name__ == "__main__":
     main() 
