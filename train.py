@@ -4,6 +4,7 @@ import numpy as np
 import joblib
 from pathlib import Path
 from typing import List, Tuple
+import json
 
 from ucimlrepo import fetch_ucirepo
 from sklearn.pipeline import Pipeline
@@ -75,6 +76,45 @@ def build_training_pipeline(X: pd.DataFrame) -> ImbPipeline:
     logging.info("Pipeline training berhasil dibuat.")
     return training_pipeline
 
+def save_manual_model_params(pipeline: Pipeline, X: pd.DataFrame, path: str = "manual_model_params.json"):
+    """Mengekstrak dan menyimpan parameter model untuk prediksi manual."""
+    params = {}
+    preprocessor = pipeline.named_steps['preprocessor']
+    classifier = pipeline.named_steps['classifier']
+    
+    # Ekstrak info dari preprocessor
+    num_transformer = preprocessor.named_steps['num']
+    cat_transformer = preprocessor.named_steps['cat']
+    
+    num_features = [X.columns[i] for i in preprocessor.transformers_[0][2]]
+    cat_features = [X.columns[i] for i in preprocessor.transformers_[1][2]]
+    
+    params['numerical'] = {
+        'features': num_features,
+        'mean': num_transformer.mean_.tolist(),
+        'scale': num_transformer.scale_.tolist()
+    }
+    params['categorical'] = {
+        'features': cat_features,
+        'categories': [c.tolist() for c in cat_transformer.categories_]
+    }
+    
+    # Dapatkan nama fitur boolean/passthrough
+    bool_features = sorted(list(set(X.columns) - set(num_features) - set(cat_features)))
+    params['boolean_features'] = bool_features
+
+    # Ekstrak info dari classifier
+    params['classifier'] = {
+        'class_prior': classifier.class_prior_.tolist(),
+        'classes': classifier.classes_.tolist(),
+        'theta': classifier.theta_.tolist(),
+        'var': classifier.var_.tolist()
+    }
+    
+    with open(path, 'w') as f:
+        json.dump(params, f, indent=4)
+    logging.info(f"Parameter model manual berhasil disimpan ke '{path}'.")
+
 def train_and_save_model(
     training_pipeline: ImbPipeline, 
     X: pd.DataFrame, 
@@ -97,8 +137,13 @@ def train_and_save_model(
     ])
 
     try:
+        # Simpan model joblib (opsional, untuk perbandingan)
         joblib.dump(prediction_pipeline, model_path)
-        logging.info(f"Model prediksi yang ringan dan kuat telah disimpan ke '{model_path}'.")
+        logging.info(f"Model prediksi joblib telah disimpan ke '{model_path}'.")
+        
+        # Simpan parameter untuk model manual
+        save_manual_model_params(prediction_pipeline, X)
+
     except Exception as e:
         logging.error(f"Gagal menyimpan model: {e}")
         raise

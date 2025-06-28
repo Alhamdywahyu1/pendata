@@ -1,11 +1,10 @@
 import streamlit as st
-import pandas as pd
-import joblib
 import numpy as np
-from typing import Callable, Optional
+import json
+from typing import Dict, Any, Optional, Tuple
 
 # --- Konstanta ---
-MODEL_PATH = 'model.joblib'
+PARAMS_PATH = 'manual_model_params.json'
 
 # --- Konfigurasi Halaman ---
 st.set_page_config(
@@ -14,20 +13,68 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- Fungsi Pemuatan Model (di-cache) ---
+# --- Fungsi Pemuatan & Prediksi Manual ---
 @st.cache_resource
-def load_model(path: str) -> Optional[Callable]:
-    """Memuat model dari path yang diberikan, mengembalikan None jika tidak ditemukan."""
+def load_manual_params(path: str) -> Optional[Dict[str, Any]]:
+    """Memuat parameter model manual dari file JSON."""
     try:
-        model = joblib.load(path)
-        return model
+        with open(path, 'r') as f:
+            return json.load(f)
     except FileNotFoundError:
-        st.error(f"File model tidak ditemukan di '{path}'. Pastikan file ada atau jalankan skrip training.")
+        st.error(f"File parameter '{path}' tidak ditemukan. Jalankan skrip training terlebih dahulu.")
         return None
 
+def predict_manual(params: Dict[str, Any], input_dict: Dict[str, Any]) -> Tuple[bool, np.ndarray]:
+    """Melakukan prediksi menggunakan perhitungan manual dari parameter yang diekstrak."""
+    num_params = params['numerical']
+    cat_params = params['categorical']
+    bool_features = params['boolean_features']
+    clf_params = params['classifier']
+
+    # 1. Scaling Fitur Numerik
+    input_num_list = [input_dict[f] for f in num_params['features']]
+    scaled_num = (np.array(input_num_list) - np.array(num_params['mean'])) / np.array(num_params['scale'])
+
+    # 2. One-Hot Encoding Fitur Kategorikal
+    encoded_cat_parts = []
+    for i, feature in enumerate(cat_params['features']):
+        categories = np.array(cat_params['categories'][i])
+        user_value = input_dict[feature]
+        encoded = (categories == user_value).astype(int)
+        encoded_cat_parts.append(encoded)
+    encoded_cat = np.concatenate(encoded_cat_parts)
+
+    # 3. Fitur Boolean
+    input_bool = np.array([float(input_dict[f]) for f in bool_features])
+
+    # 4. Gabungkan semua fitur menjadi satu vektor
+    final_features = np.concatenate([scaled_num, encoded_cat, input_bool])
+
+    # 5. Perhitungan Manual Gaussian Naive Bayes
+    classes = np.array(clf_params['classes'])
+    class_priors = np.array(clf_params['class_prior'])
+    theta = np.array(clf_params['theta'])
+    var = np.array(clf_params['var'])
+    
+    epsilon = 1e-9
+    var += epsilon
+
+    joint_log_likelihood = []
+    for i in range(len(classes)):
+        log_prior = np.log(class_priors[i])
+        likelihood = -0.5 * np.sum(np.log(2. * np.pi * var[i, :]) + ((final_features - theta[i, :]) ** 2) / var[i, :])
+        joint_log_likelihood.append(log_prior + likelihood)
+
+    log_prob = np.array(joint_log_likelihood)
+    exp_log_prob = np.exp(log_prob - np.max(log_prob))
+    probabilities = exp_log_prob / np.sum(exp_log_prob)
+    
+    prediction = classes[np.argmax(probabilities)]
+    return prediction, probabilities.reshape(1, -1)
+
 # --- Komponen UI ---
-def build_sidebar() -> pd.DataFrame:
-    """Membangun sidebar dan mengumpulkan input dari pengguna."""
+def build_sidebar() -> Dict[str, Any]:
+    """Membangun sidebar dan mengumpulkan input dari pengguna ke dalam dictionary."""
     st.sidebar.header("Data Pra-Operasi Pasien")
 
     # DGN
@@ -60,55 +107,44 @@ def build_sidebar() -> pd.DataFrame:
     pre30 = st.sidebar.checkbox('Merokok (PRE30)', value=True)
     pre32 = st.sidebar.checkbox('Asma (PRE32)', value=False)
 
-    data = {
-        'DGN': dgn, 'PRE4': pre4, 'PRE5': pre5, 'PRE6': pre6,
-        'PRE7': pre7, 'PRE8': pre8, 'PRE9': pre9, 'PRE10': pre10,
-        'PRE11': pre11, 'PRE14': pre14, 'PRE17': pre17, 'PRE19': pre19,
-        'PRE25': pre25, 'PRE30': pre30, 'PRE32': pre32, 'AGE': age
+    return {'DGN': dgn, 'PRE4': pre4, 'PRE5': pre5, 'PRE6': pre6,
+            'PRE7': pre7, 'PRE8': pre8, 'PRE9': pre9, 'PRE10': pre10,
+            'PRE11': pre11, 'PRE14': pre14, 'PRE17': pre17, 'PRE19': pre19,
+            'PRE25': pre25, 'PRE30': pre30, 'PRE32': pre32, 'AGE': age}
+
+def display_prediction_results(prediction: bool, probabilities: np.ndarray):
+    """Menampilkan hasil dari prediksi manual."""
+    st.subheader("Hasil Prediksi")
+    if prediction:
+        st.error("Prediksi: RISIKO TINGGI (Pasien diprediksi tidak akan bertahan 1 tahun)")
+    else:
+        st.success("Prediksi: RISIKO RENDAH (Pasien diprediksi akan bertahan 1 tahun)")
+
+    st.subheader("Tingkat Kepercayaan Prediksi")
+    proba_df_data = {
+        'Kepercayaan untuk RISIKO RENDAH': [f"{probabilities[0, 0]:.2%}"],
+        'Kepercayaan untuk RISIKO TINGGI': [f"{probabilities[0, 1]:.2%}"]
     }
-    return pd.DataFrame(data, index=[0])
-
-def display_prediction_results(model: Callable, input_df: pd.DataFrame):
-    """Menjalankan prediksi dan menampilkan hasilnya."""
-    try:
-        prediction = model.predict(input_df)[0]
-        prediction_proba = model.predict_proba(input_df)
-
-        st.subheader("Hasil Prediksi")
-        if prediction:
-            st.error("Prediksi: RISIKO TINGGI (Pasien diprediksi tidak akan bertahan 1 tahun)")
-        else:
-            st.success("Prediksi: RISIKO RENDAH (Pasien diprediksi akan bertahan 1 tahun)")
-
-        st.subheader("Tingkat Kepercayaan Prediksi")
-        proba_df = pd.DataFrame(
-            prediction_proba,
-            columns=['Kepercayaan untuk RISIKO RENDAH', 'Kepercayaan untuk RISIKO TINGGI'],
-            index=["Probabilitas"]
-        )
-        st.dataframe(proba_df.style.format('{:.2%}'))
-    except Exception as e:
-        st.error(f"Terjadi kesalahan saat prediksi: {e}")
+    st.table(proba_df_data)
 
 # --- Aplikasi Utama ---
 def main():
     """Fungsi utama untuk menjalankan aplikasi Streamlit."""
     st.title("🩺 Prediksi Risiko Pasca Operasi Bedah Toraks")
-    st.write("Aplikasi ini memprediksi risiko kelangsungan hidup 1 tahun pasien setelah operasi kanker paru-paru. Silakan masukkan data pra-operasi pasien menggunakan panel di sebelah kiri.")
+    st.write("Aplikasi ini memprediksi risiko kelangsungan hidup 1 tahun pasien setelah operasi kanker paru-paru.")
 
-    model = load_model(MODEL_PATH)
-    
-    if model:
-        input_df = build_sidebar()
-        
+    params = load_manual_params(PARAMS_PATH)
+    if params:
+        input_dict = build_sidebar()
         st.subheader("Ringkasan Data Pasien:")
-        st.dataframe(input_df)
+        st.json(input_dict)
         
         if st.button("Prediksi Risiko"):
-            display_prediction_results(model, input_df)
+            prediction, probabilities = predict_manual(params, input_dict)
+            display_prediction_results(prediction, probabilities)
             
     st.markdown("---")
-    st.write("Aplikasi ini menggunakan model Gaussian Naive Bayes yang dilatih pada dataset Bedah Toraks dari UCI Repository.")
+    st.write("Aplikasi ini menggunakan model Gaussian Naive Bayes yang dilatih pada dataset Bedah Toraks.")
 
 if __name__ == "__main__":
     main() 
