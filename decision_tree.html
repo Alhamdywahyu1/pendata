@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>🌳 Pemodelan Klasifikasi — Deep Dive Decision Tree (Pohon Keputusan) &#8212; alhamdy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'decision_tree';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="📈 Pemodelan Clustering — Deep Dive K-Means" href="kmean.html" />
+    <link rel="prev" title="🧠 Pemodelan Klasifikasi — Deep Dive K-Nearest Neighbors (KNN)" href="KNN.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="alhamdy - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="alhamdy - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    intro
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">📖 Data Understanding: Analisis Komprehensif Dataset Iris</a></li>
+<li class="toctree-l1"><a class="reference internal" href="praproses.html">⚙️ Tahap 2: Pra-Pemrosesan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="naive_bayes.html">🧠 Pemodelan Klasifikasi — Deep Dive Naive Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="KNN.html">🧠 Pemodelan Klasifikasi — Deep Dive K-Nearest Neighbors (KNN)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">🌳 Pemodelan Klasifikasi — Deep Dive Decision Tree (Pohon Keputusan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmean.html">📈 Pemodelan Clustering — Deep Dive K-Means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmean.html">🌫️ Pemodelan Clustering — Deep Dive Fuzzy C-Means (FCM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS.html">UTS Pendat</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="PRA_UAS.html">PRA UAS Penambangan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uas.html">Prediksi Risiko Pasien Pasca-Operasi Bedah Toraks</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdecision_tree.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/decision_tree.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>🌳 Pemodelan Klasifikasi — Deep Dive Decision Tree (Pohon Keputusan)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jembatan-konseptual">Jembatan Konseptual</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filosofi-decision-tree-serangkaian-pertanyaan-cerdas">Filosofi Decision Tree: “Serangkaian Pertanyaan Cerdas”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-setup-mandiri-persiapan-data-lengkap">Langkah 1: Setup Mandiri &amp; Persiapan Data Lengkap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-membangun-visualisasi-model-decision-tree-dasar">Langkah 2: Membangun &amp; Visualisasi Model Decision Tree Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-pruning-mencegah-overfitting-dengan-max-depth">Langkah 3: Pruning — Mencegah Overfitting dengan <code class="docutils literal notranslate"><span class="pre">max_depth</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-analisis-pentingnya-fitur-feature-importance">Langkah 4: Analisis Pentingnya Fitur (Feature Importance)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penutup-dan-jembatan-konseptual">Penutup dan Jembatan Konseptual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jembatan-ke-seri-selanjutnya">Jembatan ke Seri Selanjutnya</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pemodelan-klasifikasi-deep-dive-decision-tree-pohon-keputusan">
+<h1>🌳 Pemodelan Klasifikasi — Deep Dive Decision Tree (Pohon Keputusan)<a class="headerlink" href="#pemodelan-klasifikasi-deep-dive-decision-tree-pohon-keputusan" title="Link to this heading">#</a></h1>
+<section id="jembatan-konseptual">
+<h2>Jembatan Konseptual<a class="headerlink" href="#jembatan-konseptual" title="Link to this heading">#</a></h2>
+<p>Selamat datang di bagian <strong>1.c</strong> dari seri pemodelan kita. Setelah pada bagian sebelumnya kita menjelajahi model berbasis jarak seperti <strong>KNN</strong>, kini kita beralih ke paradigma yang sama sekali berbeda: <strong>model berbasis aturan (rule-based)</strong>. Kita akan melakukan analisis mendalam pada <strong>Decision Tree (Pohon Keputusan)</strong>.</p>
+</section>
+<section id="filosofi-decision-tree-serangkaian-pertanyaan-cerdas">
+<h2>Filosofi Decision Tree: “Serangkaian Pertanyaan Cerdas”<a class="headerlink" href="#filosofi-decision-tree-serangkaian-pertanyaan-cerdas" title="Link to this heading">#</a></h2>
+<p>Bayangkan Decision Tree seperti seorang detektif yang mengajukan serangkaian pertanyaan “ya/tidak” yang paling efisien untuk sampai pada sebuah kesimpulan. Model ini bekerja dengan cara memecah data secara rekursif menjadi subset-subset yang lebih kecil dan lebih murni.</p>
+<ul class="simple">
+<li><p><strong>Akar (Root Node):</strong> Titik awal yang berisi seluruh dataset.</p></li>
+<li><p><strong>Cabang (Branch):</strong> Mewakili sebuah aturan atau keputusan (misalnya, “apakah <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> &lt;= 2.45 cm?”).</p></li>
+<li><p><strong>Daun (Leaf Node):</strong> Titik akhir yang memberikan hasil klasifikasi (misalnya, “Spesies adalah setosa”).</p></li>
+</ul>
+<p>Keunggulan terbesarnya adalah <strong>interpretabilitas</strong>—kita bisa dengan mudah melihat alur “pemikiran” model. Namun, tantangan terbesarnya adalah kecenderungan untuk <strong>overfitting</strong>, di mana model menjadi terlalu kompleks dan menghafal data latihan.</p>
+<p>Di notebook ini, kita akan membangun, memvisualisasikan, mengevaluasi, dan melakukan <em>pruning</em> (pemangkasan) pada model Decision Tree untuk mendapatkan model yang tidak hanya akurat, tetapi juga robust.</p>
+</section>
+<section id="langkah-1-setup-mandiri-persiapan-data-lengkap">
+<h2>Langkah 1: Setup Mandiri &amp; Persiapan Data Lengkap<a class="headerlink" href="#langkah-1-setup-mandiri-persiapan-data-lengkap" title="Link to this heading">#</a></h2>
+<p>Seperti biasa, sel pertama ini akan menangani semua yang kita butuhkan: mengimpor pustaka, memuat data mentah, dan menerapkan seluruh alur pra-pemrosesan yang telah kita sepakati (standarisasi dan penghapusan outlier dengan LOF), hingga membagi data menjadi set pelatihan dan pengujian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =======================================================</span>
+<span class="c1"># SETUP MANDIRI UNTUK PEMODELAN DECISION TREE</span>
+<span class="c1"># =======================================================</span>
+
+<span class="c1"># 1. Import Pustaka</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">LocalOutlierFactor</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">plot_tree</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pustaka yang dibutuhkan telah diimpor.&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Memuat dan Membuat DataFrame Awal</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">df_full</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">])</span>
+<span class="n">df_full</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset Iris mentah berhasil dibuat.&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3. Pra-Pemrosesan: Standarisasi &amp; Penghapusan Outlier dengan LOF</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Memulai pra-pemrosesan...&quot;</span><span class="p">)</span>
+<span class="c1"># Penskalaan (diperlukan untuk LOF)</span>
+<span class="n">features_to_scale</span> <span class="o">=</span> <span class="n">df_full</span><span class="p">[[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">]]</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">features_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">features_to_scale</span><span class="p">)</span>
+
+<span class="c1"># Deteksi Outlier dengan LOF</span>
+<span class="n">lof</span> <span class="o">=</span> <span class="n">LocalOutlierFactor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">outlier_labels</span> <span class="o">=</span> <span class="n">lof</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">features_scaled</span><span class="p">)</span>
+<span class="n">df_full</span><span class="p">[</span><span class="s1">&#39;outlier_lof&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">outlier_labels</span>
+
+<span class="c1"># Menghapus Outlier</span>
+<span class="n">df_processed</span> <span class="o">=</span> <span class="n">df_full</span><span class="p">[</span><span class="n">df_full</span><span class="p">[</span><span class="s1">&#39;outlier_lof&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_processed</span> <span class="o">=</span> <span class="n">df_processed</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;outlier_lof&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Penghapusan outlier selesai. Sisa data: </span><span class="si">{</span><span class="n">df_processed</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> baris.&quot;</span><span class="p">)</span>
+
+<span class="c1"># 4. Pra-Pemrosesan: Label Encoding pada Target</span>
+<span class="n">encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">df_processed</span><span class="p">[</span><span class="s1">&#39;species_encoded&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_processed</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Label encoding untuk variabel target selesai.&quot;</span><span class="p">)</span>
+
+<span class="c1"># 5. Memisahkan Fitur (X) dan Target (y)</span>
+<span class="c1"># Catatan: Decision Tree tidak wajib menggunakan data yang diskalakan, jadi kita bisa gunakan data asli yang sudah bersih.</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_processed</span><span class="p">[[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_processed</span><span class="p">[</span><span class="s1">&#39;species_encoded&#39;</span><span class="p">]</span>
+
+<span class="c1"># 6. Pembagian Data (Train-Test Split)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Pembagian data menjadi set latih dan uji selesai.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ukuran X_train: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ukuran X_test: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pustaka yang dibutuhkan telah diimpor.
+Dataset Iris mentah berhasil dibuat.
+
+Memulai pra-pemrosesan...
+Penghapusan outlier selesai. Sisa data: 144 baris.
+Label encoding untuk variabel target selesai.
+
+Pembagian data menjadi set latih dan uji selesai.
+Ukuran X_train: (100, 4)
+Ukuran X_test: (44, 4)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="langkah-2-membangun-visualisasi-model-decision-tree-dasar">
+<h2>Langkah 2: Membangun &amp; Visualisasi Model Decision Tree Dasar<a class="headerlink" href="#langkah-2-membangun-visualisasi-model-decision-tree-dasar" title="Link to this heading">#</a></h2>
+<p>Pertama, kita akan membangun model tanpa batasan apapun pada pertumbuhannya. Ini akan menunjukkan kepada kita bagaimana pohon keputusan secara alami mencoba untuk menjadi “sempurna” pada data latihan, yang seringkali mengarah ke overfitting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inisialisasi dan latih model Decision Tree dasar</span>
+<span class="n">tree_base</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">tree_base</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Visualisasi pohon yang kompleks</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">tree_base</span><span class="p">,</span> 
+          <span class="n">feature_names</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+          <span class="n">class_names</span><span class="o">=</span><span class="n">encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+          <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+          <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+          <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Visualisasi Decision Tree Dasar (Full Depth)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f4211bbabb2d8dca59c504c942673e3e217865bf77a052e7099d3a2c98ca88ab.png" src="_images/f4211bbabb2d8dca59c504c942673e3e217865bf77a052e7099d3a2c98ca88ab.png" />
+</div>
+</div>
+<p><strong>Analisis Visual:</strong>
+Seperti yang terlihat, pohon keputusan ini tumbuh sangat dalam dan memiliki banyak cabang. Ia menciptakan aturan-aturan yang sangat spesifik hanya untuk memastikan setiap sampel di data latihan terklasifikasi dengan benar. Ini adalah tanda visual yang jelas dari <strong>overfitting</strong>. Model seperti ini mungkin akan bekerja buruk pada data baru yang belum pernah ia lihat.</p>
+</section>
+<section id="langkah-3-pruning-mencegah-overfitting-dengan-max-depth">
+<h2>Langkah 3: Pruning — Mencegah Overfitting dengan <code class="docutils literal notranslate"><span class="pre">max_depth</span></code><a class="headerlink" href="#langkah-3-pruning-mencegah-overfitting-dengan-max-depth" title="Link to this heading">#</a></h2>
+<p>Untuk mengatasi overfitting, kita perlu melakukan <strong>pruning</strong> (pemangkasan). Cara paling sederhana adalah <em>pre-pruning</em>, yaitu dengan menghentikan pertumbuhan pohon lebih awal. Kita akan menggunakan hyperparameter <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> untuk membatasi kedalaman pohon.</p>
+<p>Membatasi kedalaman akan memaksa model untuk hanya mempelajari pola-pola yang paling penting dan umum, sehingga meningkatkan kemampuannya untuk generalisasi ke data baru.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inisialisasi dan latih model Decision Tree yang sudah di-pruning</span>
+<span class="n">tree_pruned</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">tree_pruned</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Visualisasi pohon yang lebih sederhana</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">tree_pruned</span><span class="p">,</span> 
+          <span class="n">feature_names</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+          <span class="n">class_names</span><span class="o">=</span><span class="n">encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+          <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+          <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Visualisasi Decision Tree Setelah Pruning (max_depth=3)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/91004519954f5781f0c41dc6cc7bd2dfbc6bd6c725600b672c0634979564c2bd.png" src="_images/91004519954f5781f0c41dc6cc7bd2dfbc6bd6c725600b672c0634979564c2bd.png" />
+</div>
+</div>
+<p><strong>Analisis Visual (Pruned):</strong>
+Jauh lebih baik! Pohon ini sangat mudah dibaca dan diinterpretasikan. Kita bisa mengikuti alur keputusannya dari akar hingga daun dengan mudah. Contohnya, aturan pertama di akar adalah <code class="docutils literal notranslate"><span class="pre">petal_width</span> <span class="pre">&lt;=</span> <span class="pre">0.8</span></code>. Jika <code class="docutils literal notranslate"><span class="pre">True</span></code>, maka dipastikan itu adalah <code class="docutils literal notranslate"><span class="pre">setosa</span></code>.</p>
+<p>Sekarang, mari kita evaluasi performa model yang lebih sederhana ini pada data uji.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lakukan prediksi menggunakan model yang sudah di-pruning</span>
+<span class="n">y_pred_pruned</span> <span class="o">=</span> <span class="n">tree_pruned</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Evaluasi model</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Laporan Klasifikasi Model Decision Tree (Pruned, max_depth=3) ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_pruned</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">))</span>
+
+<span class="c1"># Visualisasi Confusion Matrix</span>
+<span class="n">cm_pruned</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_pruned</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm_pruned</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span>
+            <span class="n">xticklabels</span><span class="o">=</span><span class="n">encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix - Decision Tree (Pruned)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Prediksi&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Aktual&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Laporan Klasifikasi Model Decision Tree (Pruned, max_depth=3) ---
+              precision    recall  f1-score   support
+
+      setosa       1.00      1.00      1.00        15
+  versicolor       1.00      0.93      0.97        15
+   virginica       0.93      1.00      0.97        14
+
+    accuracy                           0.98        44
+   macro avg       0.98      0.98      0.98        44
+weighted avg       0.98      0.98      0.98        44
+</pre></div>
+</div>
+<img alt="_images/74bf630c6bacb06dcbd8ad5d06121a6792bc00fc49f17a64489f2ba64227b832.png" src="_images/74bf630c6bacb06dcbd8ad5d06121a6792bc00fc49f17a64489f2ba64227b832.png" />
+</div>
+</div>
+<p>Performa model yang sudah di-pruning tetap sangat tinggi, menunjukkan bahwa aturan-aturan kompleks dari pohon yang pertama tidak diperlukan dan kemungkinan besar hanya menangkap noise.</p>
+</section>
+<section id="langkah-4-analisis-pentingnya-fitur-feature-importance">
+<h2>Langkah 4: Analisis Pentingnya Fitur (Feature Importance)<a class="headerlink" href="#langkah-4-analisis-pentingnya-fitur-feature-importance" title="Link to this heading">#</a></h2>
+<p>Salah satu keunggulan besar dari Decision Tree adalah kemampuannya untuk memberi tahu kita fitur mana yang paling berpengaruh dalam membuat keputusan. Ini diukur berdasarkan seberapa besar sebuah fitur mampu mengurangi <em>impurity</em> (ketidakmurnian) pada setiap pemisahan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mendapatkan skor pentingnya fitur dari model yang sudah di-pruning</span>
+<span class="n">importances</span> <span class="o">=</span> <span class="n">tree_pruned</span><span class="o">.</span><span class="n">feature_importances_</span>
+
+<span class="c1"># Membuat DataFrame untuk visualisasi</span>
+<span class="n">feature_importance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+    <span class="s1">&#39;Importance&#39;</span><span class="p">:</span> <span class="n">importances</span>
+<span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Tingkat Kepentingan Fitur ---&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">feature_importance_df</span><span class="p">)</span>
+
+<span class="c1"># Visualisasi Feature Importance</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Importance&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Feature&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">feature_importance_df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Pentingnya Fitur dalam Model Decision Tree&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Tingkat Kepentingan Fitur ---
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature</th>
+      <th>Importance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>petal_length</td>
+      <td>0.584214</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>petal_width</td>
+      <td>0.415786</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sepal_width</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>sepal_length</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_17742/190554365.py:15: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=&#39;Importance&#39;, y=&#39;Feature&#39;, data=feature_importance_df, palette=&#39;viridis&#39;)
+</pre></div>
+</div>
+<img alt="_images/93a229460cc2d81a25aa6d8691013e6851f59873ccd6699f9bfdb3b808550d86.png" src="_images/93a229460cc2d81a25aa6d8691013e6851f59873ccd6699f9bfdb3b808550d86.png" />
+</div>
+</div>
+<p><strong>Analisis Kepentingan Fitur:</strong>
+Hasil ini sangat konsisten dengan analisis kita di tahap <em>Data Understanding</em>. <strong><code class="docutils literal notranslate"><span class="pre">petal_width</span></code></strong> dan <strong><code class="docutils literal notranslate"><span class="pre">petal_length</span></code></strong> adalah dua fitur yang paling dominan dalam menentukan spesies bunga Iris. Fitur-fitur <code class="docutils literal notranslate"><span class="pre">sepal</span></code> memiliki kontribusi yang jauh lebih kecil.</p>
+</section>
+<section id="penutup-dan-jembatan-konseptual">
+<h2>Penutup dan Jembatan Konseptual<a class="headerlink" href="#penutup-dan-jembatan-konseptual" title="Link to this heading">#</a></h2>
+<p>Dalam notebook ini, kita telah mengupas tuntas model <strong>Decision Tree</strong>. Kita belajar tentang risiko overfitting dan cara mengatasinya dengan <em>pruning</em>, cara memvisualisasikan aturan model, dan cara mengekstrak informasi tentang fitur mana yang paling penting.</p>
+<p>Kita telah menyelesaikan eksplorasi tiga model <strong>klasifikasi (supervised learning)</strong>: Naive Bayes, KNN, dan Decision Tree. Masing-masing memiliki cara kerja dan keunggulannya sendiri.</p>
+<section id="jembatan-ke-seri-selanjutnya">
+<h3>Jembatan ke Seri Selanjutnya<a class="headerlink" href="#jembatan-ke-seri-selanjutnya" title="Link to this heading">#</a></h3>
+<p>Pada <strong>seri selanjutnya (2. Clustering)</strong>, kita akan beralih dari <em>supervised learning</em> ke <em>unsupervised learning</em>. Kita tidak akan lagi memprediksi label yang sudah ada (‘species’), melainkan mencoba menemukan struktur atau kelompok alami dalam data tanpa menggunakan label tersebut. Kita akan memulainya dengan algoritma clustering paling populer: <strong>K-Means</strong>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="KNN.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">🧠 Pemodelan Klasifikasi — Deep Dive K-Nearest Neighbors (KNN)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="kmean.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">📈 Pemodelan Clustering — Deep Dive K-Means</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jembatan-konseptual">Jembatan Konseptual</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filosofi-decision-tree-serangkaian-pertanyaan-cerdas">Filosofi Decision Tree: “Serangkaian Pertanyaan Cerdas”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-setup-mandiri-persiapan-data-lengkap">Langkah 1: Setup Mandiri &amp; Persiapan Data Lengkap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-membangun-visualisasi-model-decision-tree-dasar">Langkah 2: Membangun &amp; Visualisasi Model Decision Tree Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-pruning-mencegah-overfitting-dengan-max-depth">Langkah 3: Pruning — Mencegah Overfitting dengan <code class="docutils literal notranslate"><span class="pre">max_depth</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-4-analisis-pentingnya-fitur-feature-importance">Langkah 4: Analisis Pentingnya Fitur (Feature Importance)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penutup-dan-jembatan-konseptual">Penutup dan Jembatan Konseptual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jembatan-ke-seri-selanjutnya">Jembatan ke Seri Selanjutnya</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By alhamdy wahyu alfiansyah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

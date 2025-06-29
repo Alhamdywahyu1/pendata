@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'uas';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="UTS Pendat" href="UTS.html" />
+    <link rel="prev" title="PRA UAS Penambangan Data" href="PRA_UAS.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -168,16 +168,17 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="tugas1.html">data understanding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tugas2.html"><strong>preprosessing data</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="native_bayes.html">Implementasi Naive Bayes pada Data iris</a></li>
-<li class="toctree-l1"><a class="reference internal" href="REVISI.html"><em><strong>K-Means</strong></em></a></li>
-<li class="toctree-l1"><a class="reference internal" href="fuzzy_cmeans.html"><strong>FUZZY C-MEANS CLUSTERING</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="DecisionTree.html">DecisionTree</a></li>
-<li class="toctree-l1"><a class="reference internal" href="PRA_UAS.html">PRA UAS Penambangan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_understanding.html">📖 Data Understanding: Analisis Komprehensif Dataset Iris</a></li>
+<li class="toctree-l1"><a class="reference internal" href="praproses.html">⚙️ Tahap 2: Pra-Pemrosesan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="naive_bayes.html">🧠 Pemodelan Klasifikasi — Deep Dive Naive Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="KNN.html">🧠 Pemodelan Klasifikasi — Deep Dive K-Nearest Neighbors (KNN)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decision_tree.html">🌳 Pemodelan Klasifikasi — Deep Dive Decision Tree (Pohon Keputusan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmean.html">📈 Pemodelan Clustering — Deep Dive K-Means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cmean.html">🌫️ Pemodelan Clustering — Deep Dive Fuzzy C-Means (FCM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="UTS.html">UTS Pendat</a></li>
 
 
+<li class="toctree-l1"><a class="reference internal" href="PRA_UAS.html">PRA UAS Penambangan Data</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Prediksi Risiko Pasien Pasca-Operasi Bedah Toraks</a></li>
 
 
@@ -796,63 +797,63 @@ memory usage: 27.2+ KB
 </div>
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_3e4ad">
+<table id="T_054e6">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_3e4ad_level0_col0" class="col_heading level0 col0" >PRE4</th>
-      <th id="T_3e4ad_level0_col1" class="col_heading level0 col1" >PRE5</th>
-      <th id="T_3e4ad_level0_col2" class="col_heading level0 col2" >AGE</th>
+      <th id="T_054e6_level0_col0" class="col_heading level0 col0" >PRE4</th>
+      <th id="T_054e6_level0_col1" class="col_heading level0 col1" >PRE5</th>
+      <th id="T_054e6_level0_col2" class="col_heading level0 col2" >AGE</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_3e4ad_level0_row0" class="row_heading level0 row0" >count</th>
-      <td id="T_3e4ad_row0_col0" class="data row0 col0" >470.00</td>
-      <td id="T_3e4ad_row0_col1" class="data row0 col1" >470.00</td>
-      <td id="T_3e4ad_row0_col2" class="data row0 col2" >470.00</td>
+      <th id="T_054e6_level0_row0" class="row_heading level0 row0" >count</th>
+      <td id="T_054e6_row0_col0" class="data row0 col0" >470.00</td>
+      <td id="T_054e6_row0_col1" class="data row0 col1" >470.00</td>
+      <td id="T_054e6_row0_col2" class="data row0 col2" >470.00</td>
     </tr>
     <tr>
-      <th id="T_3e4ad_level0_row1" class="row_heading level0 row1" >mean</th>
-      <td id="T_3e4ad_row1_col0" class="data row1 col0" >3.28</td>
-      <td id="T_3e4ad_row1_col1" class="data row1 col1" >4.57</td>
-      <td id="T_3e4ad_row1_col2" class="data row1 col2" >62.53</td>
+      <th id="T_054e6_level0_row1" class="row_heading level0 row1" >mean</th>
+      <td id="T_054e6_row1_col0" class="data row1 col0" >3.28</td>
+      <td id="T_054e6_row1_col1" class="data row1 col1" >4.57</td>
+      <td id="T_054e6_row1_col2" class="data row1 col2" >62.53</td>
     </tr>
     <tr>
-      <th id="T_3e4ad_level0_row2" class="row_heading level0 row2" >std</th>
-      <td id="T_3e4ad_row2_col0" class="data row2 col0" >0.87</td>
-      <td id="T_3e4ad_row2_col1" class="data row2 col1" >11.77</td>
-      <td id="T_3e4ad_row2_col2" class="data row2 col2" >8.71</td>
+      <th id="T_054e6_level0_row2" class="row_heading level0 row2" >std</th>
+      <td id="T_054e6_row2_col0" class="data row2 col0" >0.87</td>
+      <td id="T_054e6_row2_col1" class="data row2 col1" >11.77</td>
+      <td id="T_054e6_row2_col2" class="data row2 col2" >8.71</td>
     </tr>
     <tr>
-      <th id="T_3e4ad_level0_row3" class="row_heading level0 row3" >min</th>
-      <td id="T_3e4ad_row3_col0" class="data row3 col0" >1.44</td>
-      <td id="T_3e4ad_row3_col1" class="data row3 col1" >0.96</td>
-      <td id="T_3e4ad_row3_col2" class="data row3 col2" >21.00</td>
+      <th id="T_054e6_level0_row3" class="row_heading level0 row3" >min</th>
+      <td id="T_054e6_row3_col0" class="data row3 col0" >1.44</td>
+      <td id="T_054e6_row3_col1" class="data row3 col1" >0.96</td>
+      <td id="T_054e6_row3_col2" class="data row3 col2" >21.00</td>
     </tr>
     <tr>
-      <th id="T_3e4ad_level0_row4" class="row_heading level0 row4" >25%</th>
-      <td id="T_3e4ad_row4_col0" class="data row4 col0" >2.60</td>
-      <td id="T_3e4ad_row4_col1" class="data row4 col1" >1.96</td>
-      <td id="T_3e4ad_row4_col2" class="data row4 col2" >57.00</td>
+      <th id="T_054e6_level0_row4" class="row_heading level0 row4" >25%</th>
+      <td id="T_054e6_row4_col0" class="data row4 col0" >2.60</td>
+      <td id="T_054e6_row4_col1" class="data row4 col1" >1.96</td>
+      <td id="T_054e6_row4_col2" class="data row4 col2" >57.00</td>
     </tr>
     <tr>
-      <th id="T_3e4ad_level0_row5" class="row_heading level0 row5" >50%</th>
-      <td id="T_3e4ad_row5_col0" class="data row5 col0" >3.16</td>
-      <td id="T_3e4ad_row5_col1" class="data row5 col1" >2.40</td>
-      <td id="T_3e4ad_row5_col2" class="data row5 col2" >62.00</td>
+      <th id="T_054e6_level0_row5" class="row_heading level0 row5" >50%</th>
+      <td id="T_054e6_row5_col0" class="data row5 col0" >3.16</td>
+      <td id="T_054e6_row5_col1" class="data row5 col1" >2.40</td>
+      <td id="T_054e6_row5_col2" class="data row5 col2" >62.00</td>
     </tr>
     <tr>
-      <th id="T_3e4ad_level0_row6" class="row_heading level0 row6" >75%</th>
-      <td id="T_3e4ad_row6_col0" class="data row6 col0" >3.81</td>
-      <td id="T_3e4ad_row6_col1" class="data row6 col1" >3.08</td>
-      <td id="T_3e4ad_row6_col2" class="data row6 col2" >69.00</td>
+      <th id="T_054e6_level0_row6" class="row_heading level0 row6" >75%</th>
+      <td id="T_054e6_row6_col0" class="data row6 col0" >3.81</td>
+      <td id="T_054e6_row6_col1" class="data row6 col1" >3.08</td>
+      <td id="T_054e6_row6_col2" class="data row6 col2" >69.00</td>
     </tr>
     <tr>
-      <th id="T_3e4ad_level0_row7" class="row_heading level0 row7" >max</th>
-      <td id="T_3e4ad_row7_col0" class="data row7 col0" >6.30</td>
-      <td id="T_3e4ad_row7_col1" class="data row7 col1" >86.30</td>
-      <td id="T_3e4ad_row7_col2" class="data row7 col2" >87.00</td>
+      <th id="T_054e6_level0_row7" class="row_heading level0 row7" >max</th>
+      <td id="T_054e6_row7_col0" class="data row7 col0" >6.30</td>
+      <td id="T_054e6_row7_col1" class="data row7 col1" >86.30</td>
+      <td id="T_054e6_row7_col2" class="data row7 col2" >87.00</td>
     </tr>
   </tbody>
 </table>
@@ -1053,7 +1054,7 @@ True     14.893617
 Name: proportion, dtype: float64
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11888/1733105134.py:12: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_17916/1733105134.py:12: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
@@ -1083,16 +1084,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Jika belum terpasang, jalankan: !pip install imbalanced-learn</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">SMOTE</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">joblib</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pustaka untuk pra-pemrosesan berhasil diimpor!&quot;</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;imblearn&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pustaka untuk pra-pemrosesan berhasil diimpor!
 </pre></div>
 </div>
 </div>
@@ -1118,9 +1110,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur berhasil di-encode. Bentuk baru X: (470, 24)
 </pre></div>
 </div>
-<div class="output text_html">
-  <div id="df-4a2205fe-c7c9-48a2-a85e-66b4ba07bd98" class="colab-df-container">
-    <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1285,217 +1275,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
   </tbody>
 </table>
 <p>5 rows × 24 columns</p>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-4a2205fe-c7c9-48a2-a85e-66b4ba07bd98')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-4a2205fe-c7c9-48a2-a85e-66b4ba07bd98 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-4a2205fe-c7c9-48a2-a85e-66b4ba07bd98');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
-  </div>
-
-
-    <div id="df-aac46720-ab5b-47f2-b32a-e8da770cc7f4">
-      <button class="colab-df-quickchart" onclick="quickchart('df-aac46720-ab5b-47f2-b32a-e8da770cc7f4')"
-                title="Suggest charts"
-                style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
-
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-      <script>
-        async function quickchart(key) {
-          const quickchartButtonEl =
-            document.querySelector('#' + key + ' button');
-          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-          quickchartButtonEl.classList.add('colab-df-spinner');
-          try {
-            const charts = await google.colab.kernel.invokeFunction(
-                'suggestCharts', [key], {});
-          } catch (error) {
-            console.error('Error during call to suggestCharts:', error);
-          }
-          quickchartButtonEl.classList.remove('colab-df-spinner');
-          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-        }
-        (() => {
-          let quickchartButtonEl =
-            document.querySelector('#df-aac46720-ab5b-47f2-b32a-e8da770cc7f4 button');
-          quickchartButtonEl.style.display =
-            google.colab.kernel.accessAllowed ? 'block' : 'none';
-        })();
-      </script>
-    </div>
-
-    </div>
-  </div>
-</div></div>
+</div></div></div>
 </div>
 </section>
 <section id="pembagian-data-train-test-split">
@@ -1544,9 +1324,7 @@ Ukuran X_test: (94, 24)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur numerik berhasil diskalakan.
 </pre></div>
 </div>
-<div class="output text_html">
-  <div id="df-1846a477-bc53-419d-928a-f6534d6f288c" class="colab-df-container">
-    <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1711,217 +1489,7 @@ Ukuran X_test: (94, 24)
   </tbody>
 </table>
 <p>5 rows × 24 columns</p>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-1846a477-bc53-419d-928a-f6534d6f288c')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-1846a477-bc53-419d-928a-f6534d6f288c button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-1846a477-bc53-419d-928a-f6534d6f288c');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
-  </div>
-
-
-    <div id="df-0f952d6f-6a47-40b4-9c97-1c49be7e75d6">
-      <button class="colab-df-quickchart" onclick="quickchart('df-0f952d6f-6a47-40b4-9c97-1c49be7e75d6')"
-                title="Suggest charts"
-                style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
-
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-      <script>
-        async function quickchart(key) {
-          const quickchartButtonEl =
-            document.querySelector('#' + key + ' button');
-          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-          quickchartButtonEl.classList.add('colab-df-spinner');
-          try {
-            const charts = await google.colab.kernel.invokeFunction(
-                'suggestCharts', [key], {});
-          } catch (error) {
-            console.error('Error during call to suggestCharts:', error);
-          }
-          quickchartButtonEl.classList.remove('colab-df-spinner');
-          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-        }
-        (() => {
-          let quickchartButtonEl =
-            document.querySelector('#df-0f952d6f-6a47-40b4-9c97-1c49be7e75d6 button');
-          quickchartButtonEl.style.display =
-            google.colab.kernel.accessAllowed ? 'block' : 'none';
-        })();
-      </script>
-    </div>
-
-    </div>
-  </div>
-</div></div>
+</div></div></div>
 </div>
 </section>
 <section id="penanganan-ketidakseimbangan-kelas-smote">
@@ -2100,9 +1668,7 @@ Meninggal (True)       0.15      0.93      0.25        14
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Tabel Perbandingan Performa Model ---
 </pre></div>
 </div>
-<div class="output text_html">
-  <div id="df-a8babf2f-3ed5-4a8e-8062-0014d8c86a55" class="colab-df-container">
-    <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -2162,217 +1728,7 @@ Meninggal (True)       0.15      0.93      0.25        14
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-a8babf2f-3ed5-4a8e-8062-0014d8c86a55')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-a8babf2f-3ed5-4a8e-8062-0014d8c86a55 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-a8babf2f-3ed5-4a8e-8062-0014d8c86a55');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
-  </div>
-
-
-    <div id="df-b540f62f-aad4-473d-8dd3-648abfb135e5">
-      <button class="colab-df-quickchart" onclick="quickchart('df-b540f62f-aad4-473d-8dd3-648abfb135e5')"
-                title="Suggest charts"
-                style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
-
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-      <script>
-        async function quickchart(key) {
-          const quickchartButtonEl =
-            document.querySelector('#' + key + ' button');
-          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-          quickchartButtonEl.classList.add('colab-df-spinner');
-          try {
-            const charts = await google.colab.kernel.invokeFunction(
-                'suggestCharts', [key], {});
-          } catch (error) {
-            console.error('Error during call to suggestCharts:', error);
-          }
-          quickchartButtonEl.classList.remove('colab-df-spinner');
-          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-        }
-        (() => {
-          let quickchartButtonEl =
-            document.querySelector('#df-b540f62f-aad4-473d-8dd3-648abfb135e5 button');
-          quickchartButtonEl.style.display =
-            google.colab.kernel.accessAllowed ? 'block' : 'none';
-        })();
-      </script>
-    </div>
-
-    </div>
-  </div>
-</div></div>
+</div></div></div>
 </div>
 </section>
 <section id="visualisasi-perbandingan">
@@ -2401,8 +1757,8 @@ Meninggal (True)       0.15      0.93      0.25        14
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1753ab6206f5f646a83bb51a37d8c34da1b37f2689073b224ae6c11b8eafd6b7.png" src="_images/1753ab6206f5f646a83bb51a37d8c34da1b37f2689073b224ae6c11b8eafd6b7.png" />
-<img alt="_images/90b123db8ea626ec11ffdb66d4f51b35d516b172ea3ccf82571bc5278ae57134.png" src="_images/90b123db8ea626ec11ffdb66d4f51b35d516b172ea3ccf82571bc5278ae57134.png" />
+<img alt="_images/978e0611eb9bceb9447f5b34e0ab3b36d5b40cde32bdfef0a65919d34ef74e75.png" src="_images/978e0611eb9bceb9447f5b34e0ab3b36d5b40cde32bdfef0a65919d34ef74e75.png" />
+<img alt="_images/19ec7b0cce1c59e2d5f5662a92d7f88363b3c7b8fa6986be554dd489086b0323.png" src="_images/19ec7b0cce1c59e2d5f5662a92d7f88363b3c7b8fa6986be554dd489086b0323.png" />
 </div>
 </div>
 </section>
@@ -2573,12 +1929,12 @@ Meninggal (True)       0.15      0.93      0.25        14
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="UTS.html"
+       href="PRA_UAS.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">UTS Pendat</p>
+        <p class="prev-next-title">PRA UAS Penambangan Data</p>
       </div>
     </a>
 </div>

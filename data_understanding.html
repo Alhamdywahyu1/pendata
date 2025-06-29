@@ -1,0 +1,1011 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>📖 Data Understanding: Analisis Komprehensif Dataset Iris &#8212; alhamdy</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'data_understanding';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="⚙️ Tahap 2: Pra-Pemrosesan Data" href="praproses.html" />
+    <link rel="prev" title="intro" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="alhamdy - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="alhamdy - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    intro
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">📖 Data Understanding: Analisis Komprehensif Dataset Iris</a></li>
+<li class="toctree-l1"><a class="reference internal" href="praproses.html">⚙️ Tahap 2: Pra-Pemrosesan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS.html">UTS Pendat</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="PRA_UAS.html">PRA UAS Penambangan Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uas.html">Prediksi Risiko Pasien Pasca-Operasi Bedah Toraks</a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdata_understanding.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/data_understanding.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>📖 Data Understanding: Analisis Komprehensif Dataset Iris</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-proyek">Tujuan Proyek</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-bunga-iris">Dataset: Bunga Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-pengumpulan-integrasi-data">Langkah 1: Pengumpulan &amp; Integrasi Data 🤝</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-inspeksi-verifikasi-data">Langkah 2: Inspeksi &amp; Verifikasi Data 🧐</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-dasar-kualitas-data">Informasi Dasar &amp; Kualitas Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif">Statistik Deskriptif</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas-spesies">Distribusi Kelas (Spesies)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-analisis-data-eksploratif-eda">Langkah 3: Analisis Data Eksploratif (EDA) 📊</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hubungan-antar-fitur-pair-plot">Hubungan Antar Fitur (Pair Plot)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-fitur-per-spesies-box-plot">Distribusi Fitur per Spesies (Box Plot)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-antar-fitur-numerik-heatmap">Korelasi Antar Fitur Numerik (Heatmap)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-temuan-kunci">Ringkasan &amp; Temuan Kunci 🎯</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-understanding-analisis-komprehensif-dataset-iris">
+<h1>📖 Data Understanding: Analisis Komprehensif Dataset Iris<a class="headerlink" href="#data-understanding-analisis-komprehensif-dataset-iris" title="Link to this heading">#</a></h1>
+<section id="tujuan-proyek">
+<h2>Tujuan Proyek<a class="headerlink" href="#tujuan-proyek" title="Link to this heading">#</a></h2>
+<p>Tahap ini bertujuan untuk melakukan pemahaman data (Data Understanding) secara mendalam pada <strong>Dataset Iris</strong>. Skenario yang digunakan adalah data Iris yang terpisah di dua sistem database berbeda dan perlu diintegrasikan sebelum dianalisis.</p>
+<ul class="simple">
+<li><p><strong>Database 1 (MySQL):</strong> Menyimpan data <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">species</span></code>, dan pengukuran <strong>sepal</strong> (<code class="docutils literal notranslate"><span class="pre">sepal_length</span></code>, <code class="docutils literal notranslate"><span class="pre">sepal_width</span></code>).</p></li>
+<li><p><strong>Database 2 (PostgreSQL):</strong> Menyimpan data <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">species</span></code>, dan pengukuran <strong>petal</strong> (<code class="docutils literal notranslate"><span class="pre">petal_length</span></code>, <code class="docutils literal notranslate"><span class="pre">petal_width</span></code>).</p></li>
+</ul>
+<p>Tujuan kita adalah menggabungkan data ini, memverifikasi kualitasnya, dan melakukan analisis data eksploratif (EDA) untuk mendapatkan wawasan kunci.</p>
+</section>
+<section id="dataset-bunga-iris">
+<h2>Dataset: Bunga Iris<a class="headerlink" href="#dataset-bunga-iris" title="Link to this heading">#</a></h2>
+<p>Dataset ini adalah salah satu dataset paling terkenal dalam dunia machine learning. Berisi 150 sampel dari tiga spesies bunga Iris (<em>Setosa</em>, <em>Versicolor</em>, dan <em>Virginica</em>). Untuk setiap sampel, empat fitur diukur: panjang dan lebar kelopak (petal) dan daun mahkota (sepal).</p>
+<p><img alt="Tiga Spesies Iris" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Iris_germanica_%28Purple_bearded_Iris%29%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg/800px-Iris_germanica_%28Purple_bearded_Iris%29%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg" /></p>
+</section>
+<section id="langkah-1-pengumpulan-integrasi-data">
+<h2>Langkah 1: Pengumpulan &amp; Integrasi Data 🤝<a class="headerlink" href="#langkah-1-pengumpulan-integrasi-data" title="Link to this heading">#</a></h2>
+<p>Langkah pertama adalah mengambil data dari kedua sumber dan menggabungkannya menjadi satu DataFrame yang utuh. Untuk tujuan demonstrasi ini, kita akan <strong>mensimulasikan</strong> pengambilan data ini dengan membuat dua DataFrame terpisah.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+
+<span class="c1"># --- Simulasi Pengambilan Data ---</span>
+
+<span class="c1"># Memuat dataset Iris asli dari scikit-learn untuk data yang realistis</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">df_full</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">df_full</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">]</span>
+<span class="n">df_full</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_full</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 1. Mensimulasikan data dari Database MySQL (Sepal) 🗄️</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Simulasi data dari MySQL (Pengukuran Sepal)...&quot;</span><span class="p">)</span>
+<span class="n">df_mysql</span> <span class="o">=</span> <span class="n">df_full</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal length (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal width (cm)&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># Mengubah nama kolom agar lebih sederhana</span>
+<span class="n">df_mysql</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;sepal length (cm)&#39;</span><span class="p">:</span> <span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sepal width (cm)&#39;</span><span class="p">:</span> <span class="s1">&#39;sepal_width&#39;</span>
+<span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_mysql</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+
+
+<span class="c1"># 2. Mensimulasikan data dari Database PostgreSQL (Petal) 🐘</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Simulasi data dari PostgreSQL (Pengukuran Petal)...&quot;</span><span class="p">)</span>
+<span class="n">df_postgres</span> <span class="o">=</span> <span class="n">df_full</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="s1">&#39;petal length (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;petal width (cm)&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># Mengubah nama kolom</span>
+<span class="n">df_postgres</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;petal length (cm)&#39;</span><span class="p">:</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;petal width (cm)&#39;</span><span class="p">:</span> <span class="s1">&#39;petal_width&#39;</span>
+<span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_postgres</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+
+
+<span class="c1"># 3. Menggabungkan kedua DataFrame menjadi satu</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Menggabungkan kedua dataset...&quot;</span><span class="p">)</span>
+<span class="n">df_iris</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_mysql</span><span class="p">,</span> <span class="n">df_postgres</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data berhasil digabungkan!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lima baris pertama dari data gabungan:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_iris</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Simulasi data dari MySQL (Pengukuran Sepal)...
+   id species  sepal_length  sepal_width
+0   1  setosa           5.1          3.5
+1   2  setosa           4.9          3.0
+2   3  setosa           4.7          3.2
+3   4  setosa           4.6          3.1
+4   5  setosa           5.0          3.6
+--------------------------------------------------
+Simulasi data dari PostgreSQL (Pengukuran Petal)...
+   id species  petal_length  petal_width
+0   1  setosa           1.4          0.2
+1   2  setosa           1.4          0.2
+2   3  setosa           1.3          0.2
+3   4  setosa           1.5          0.2
+4   5  setosa           1.4          0.2
+--------------------------------------------------
+Menggabungkan kedua dataset...
+
+Data berhasil digabungkan!
+Lima baris pertama dari data gabungan:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>species</th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>setosa</td>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>setosa</td>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>setosa</td>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>setosa</td>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>setosa</td>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="langkah-2-inspeksi-verifikasi-data">
+<h2>Langkah 2: Inspeksi &amp; Verifikasi Data 🧐<a class="headerlink" href="#langkah-2-inspeksi-verifikasi-data" title="Link to this heading">#</a></h2>
+<p>Setelah data digabungkan, kita perlu memeriksa struktur, tipe data, dan kualitasnya secara keseluruhan.</p>
+<section id="informasi-dasar-kualitas-data">
+<h3>Informasi Dasar &amp; Kualitas Data<a class="headerlink" href="#informasi-dasar-kualitas-data" title="Link to this heading">#</a></h3>
+<p>Kita akan menggunakan <code class="docutils literal notranslate"><span class="pre">.info()</span></code> untuk mendapatkan ringkasan cepat tentang DataFrame, termasuk jumlah entri, kolom, nilai non-null, dan tipe data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Informasi Dasar DataFrame ---&quot;</span><span class="p">)</span>
+<span class="n">df_iris</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Informasi Dasar DataFrame ---
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 150 entries, 0 to 149
+Data columns (total 6 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   id            150 non-null    int64  
+ 1   species       150 non-null    object 
+ 2   sepal_length  150 non-null    float64
+ 3   sepal_width   150 non-null    float64
+ 4   petal_length  150 non-null    float64
+ 5   petal_width   150 non-null    float64
+dtypes: float64(4), int64(1), object(1)
+memory usage: 7.2+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi:</strong></p>
+<ul class="simple">
+<li><p><strong>Entri:</strong> Terdapat <strong>150 entri</strong>, sesuai dengan standar dataset Iris.</p></li>
+<li><p><strong>Kolom:</strong> Terdapat 6 kolom, sesuai dengan yang kita harapkan.</p></li>
+<li><p><strong>Nilai Non-Null:</strong> Semua kolom memiliki 150 nilai non-null. Ini adalah berita bagus, artinya <strong>tidak ada data yang hilang (missing values)</strong>.</p></li>
+<li><p><strong>Tipe Data:</strong> Tipe data sudah sesuai (<code class="docutils literal notranslate"><span class="pre">int64</span></code> untuk id, <code class="docutils literal notranslate"><span class="pre">object</span></code> untuk species, dan <code class="docutils literal notranslate"><span class="pre">float64</span></code> untuk pengukuran).</p></li>
+</ul>
+</section>
+<section id="statistik-deskriptif">
+<h3>Statistik Deskriptif<a class="headerlink" href="#statistik-deskriptif" title="Link to this heading">#</a></h3>
+<p>Fungsi <code class="docutils literal notranslate"><span class="pre">.describe()</span></code> memberikan ringkasan statistik untuk semua kolom numerik. Ini membantu kita memahami tendensi sentral, sebaran, dan rentang data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Statistik Deskriptif Fitur Numerik ---&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_iris</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Statistik Deskriptif Fitur Numerik ---
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>150.00</td>
+      <td>150.00</td>
+      <td>150.00</td>
+      <td>150.00</td>
+      <td>150.00</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>75.50</td>
+      <td>5.84</td>
+      <td>3.06</td>
+      <td>3.76</td>
+      <td>1.20</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>43.45</td>
+      <td>0.83</td>
+      <td>0.44</td>
+      <td>1.77</td>
+      <td>0.76</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.00</td>
+      <td>4.30</td>
+      <td>2.00</td>
+      <td>1.00</td>
+      <td>0.10</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>38.25</td>
+      <td>5.10</td>
+      <td>2.80</td>
+      <td>1.60</td>
+      <td>0.30</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>75.50</td>
+      <td>5.80</td>
+      <td>3.00</td>
+      <td>4.35</td>
+      <td>1.30</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>112.75</td>
+      <td>6.40</td>
+      <td>3.30</td>
+      <td>5.10</td>
+      <td>1.80</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>150.00</td>
+      <td>7.90</td>
+      <td>4.40</td>
+      <td>6.90</td>
+      <td>2.50</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Interpretasi:</strong></p>
+<ul class="simple">
+<li><p><strong>Rata-rata (mean):</strong> Kita bisa lihat rata-rata ukuran untuk setiap fitur. Contoh, <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code> rata-rata adalah 5.84 cm.</p></li>
+<li><p><strong>Standar Deviasi (std):</strong> Menunjukkan sebaran data. <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> (std=1.77) memiliki sebaran yang jauh lebih besar daripada <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> (std=0.76).</p></li>
+<li><p><strong>Min/Max:</strong> Menunjukkan rentang nilai. <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> bervariasi dari 1.0 cm hingga 6.9 cm, rentang yang sangat lebar.</p></li>
+</ul>
+</section>
+<section id="distribusi-kelas-spesies">
+<h3>Distribusi Kelas (Spesies)<a class="headerlink" href="#distribusi-kelas-spesies" title="Link to this heading">#</a></h3>
+<p>Penting untuk mengetahui apakah dataset kita seimbang atau tidak.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Distribusi Setiap Spesies ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_iris</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Distribusi Setiap Spesies ---
+species
+setosa        50
+versicolor    50
+virginica     50
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretasi:</strong>
+Dataset ini <strong>sangat seimbang</strong>, dengan masing-masing dari tiga spesies memiliki tepat 50 sampel. Ini ideal untuk melatih model machine learning karena model tidak akan bias terhadap kelas tertentu.</p>
+</section>
+</section>
+<section id="langkah-3-analisis-data-eksploratif-eda">
+<h2>Langkah 3: Analisis Data Eksploratif (EDA) 📊<a class="headerlink" href="#langkah-3-analisis-data-eksploratif-eda" title="Link to this heading">#</a></h2>
+<p>Pada tahap ini, kita menggunakan visualisasi untuk menemukan pola, hubungan, dan anomali dalam data.</p>
+<section id="hubungan-antar-fitur-pair-plot">
+<h3>Hubungan Antar Fitur (Pair Plot)<a class="headerlink" href="#hubungan-antar-fitur-pair-plot" title="Link to this heading">#</a></h3>
+<p><em>Pair plot</em> adalah cara yang fantastis untuk memvisualisasikan hubungan antara setiap pasang fitur dan melihat distribusi masing-masing fitur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mengatur gaya plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Membuat Pair Plot untuk Melihat Hubungan Antar Fitur ---&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df_iris</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Hubungan Antar Fitur Berdasarkan Spesies&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Membuat Pair Plot untuk Melihat Hubungan Antar Fitur ---
+</pre></div>
+</div>
+<img alt="_images/de00d4f7e30f5cd91dee67b98d80100dfa30ca298e8fefffacb0daeb386fab3d.png" src="_images/de00d4f7e30f5cd91dee67b98d80100dfa30ca298e8fefffacb0daeb386fab3d.png" />
+</div>
+</div>
+<p><strong>Wawasan dari Pair Plot:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Pemisahan yang Jelas:</strong> Spesies <strong><code class="docutils literal notranslate"><span class="pre">Iris-setosa</span></code></strong> (lingkaran biru) sangat mudah dipisahkan dari dua spesies lainnya berdasarkan pengukuran <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> dan <code class="docutils literal notranslate"><span class="pre">petal_width</span></code>.</p></li>
+<li><p><strong>Tumpang Tindih:</strong> Spesies <strong><code class="docutils literal notranslate"><span class="pre">Iris-versicolor</span></code></strong> (kotak hijau) dan <strong><code class="docutils literal notranslate"><span class="pre">Iris-virginica</span></code></strong> (diamond kuning) menunjukkan adanya tumpang tindih (overlap), terutama pada fitur sepal. Namun, mereka masih dapat dibedakan dengan cukup baik menggunakan fitur petal.</p></li>
+<li><p><strong>Korelasi Kuat:</strong> Terdapat hubungan linear yang kuat antara <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> dan <code class="docutils literal notranslate"><span class="pre">petal_width</span></code>. Saat panjang kelopak meningkat, lebarnya juga cenderung meningkat.</p></li>
+</ol>
+</section>
+<section id="distribusi-fitur-per-spesies-box-plot">
+<h3>Distribusi Fitur per Spesies (Box Plot)<a class="headerlink" href="#distribusi-fitur-per-spesies-box-plot" title="Link to this heading">#</a></h3>
+<p><em>Box plot</em> sangat baik untuk membandingkan distribusi fitur di berbagai kategori (spesies).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Loop melalui setiap fitur numerik untuk membuat box plot</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">]):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_iris</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span>], palette=&#39;viridis&#39;)
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="o">%</span><span class="k">2</span>].set_title(f&#39;Distribusi {col.replace(&quot;_&quot;, &quot; &quot;).title()}&#39;, fontsize=12)
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Distribusi Fitur untuk Setiap Spesies&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_10748/918687343.py:5: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(x=&#39;species&#39;, y=col, data=df_iris, ax=axes[i//2, i%2], palette=&#39;viridis&#39;)
+/tmp/ipykernel_10748/918687343.py:5: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(x=&#39;species&#39;, y=col, data=df_iris, ax=axes[i//2, i%2], palette=&#39;viridis&#39;)
+/tmp/ipykernel_10748/918687343.py:5: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(x=&#39;species&#39;, y=col, data=df_iris, ax=axes[i//2, i%2], palette=&#39;viridis&#39;)
+/tmp/ipykernel_10748/918687343.py:5: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(x=&#39;species&#39;, y=col, data=df_iris, ax=axes[i//2, i%2], palette=&#39;viridis&#39;)
+</pre></div>
+</div>
+<img alt="_images/c57f48e8072ae2b6be668f5d2db8da7c1c718b2c65ec2de1787cb80b37a0fe5e.png" src="_images/c57f48e8072ae2b6be668f5d2db8da7c1c718b2c65ec2de1787cb80b37a0fe5e.png" />
+</div>
+</div>
+<p><strong>Wawasan dari Box Plot:</strong></p>
+<ul class="simple">
+<li><p><strong>Petal sebagai Pembeda Utama:</strong> Box plot mengkonfirmasi bahwa <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> dan <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> adalah pembeda terbaik. Rentang nilai untuk <em>Setosa</em> sama sekali tidak tumpang tindih dengan dua spesies lainnya pada fitur petal.</p></li>
+<li><p><strong>Outlier:</strong> Terdapat beberapa <em>outlier</em> (titik di luar “kumis” plot), misalnya pada <code class="docutils literal notranslate"><span class="pre">sepal_width</span></code> untuk <em>Virginica</em>. Ini adalah titik data yang mungkin perlu diselidiki lebih lanjut.</p></li>
+<li><p><strong>Sebaran:</strong> <em>Setosa</em> memiliki sebaran (varians) yang paling kecil pada hampir semua fitur, menunjukkan bahwa bunga dalam spesies ini sangat seragam.</p></li>
+</ul>
+</section>
+<section id="korelasi-antar-fitur-numerik-heatmap">
+<h3>Korelasi Antar Fitur Numerik (Heatmap)<a class="headerlink" href="#korelasi-antar-fitur-numerik-heatmap" title="Link to this heading">#</a></h3>
+<p>Heatmap memberikan cara cepat untuk melihat kekuatan dan arah korelasi antar fitur.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+<span class="c1"># Menghitung korelasi hanya pada kolom numerik</span>
+<span class="n">numeric_df</span> <span class="o">=</span> <span class="n">df_iris</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">numeric_df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.2f&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Matriks Korelasi Antar Fitur Numerik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ffb4893999ffbfd9bf4b3c287b84b19b34f85a3435b6168b4783326b7438435d.png" src="_images/ffb4893999ffbfd9bf4b3c287b84b19b34f85a3435b6168b4783326b7438435d.png" />
+</div>
+</div>
+<p><strong>Wawasan dari Heatmap:</strong></p>
+<ul class="simple">
+<li><p><strong>Korelasi Sangat Kuat (Positif):</strong> <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> dan <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> memiliki korelasi sangat tinggi <strong>(+0.96)</strong>. <code class="docutils literal notranslate"><span class="pre">sepal_length</span></code> juga memiliki korelasi kuat dengan <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> <strong>(+0.87)</strong> dan <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> <strong>(+0.82)</strong>.</p></li>
+<li><p><strong>Korelasi Negatif:</strong> <code class="docutils literal notranslate"><span class="pre">sepal_width</span></code> memiliki korelasi negatif yang sangat lemah dengan fitur lainnya, menunjukkan hampir tidak ada hubungan linear yang jelas.</p></li>
+</ul>
+</section>
+</section>
+<section id="ringkasan-temuan-kunci">
+<h2>Ringkasan &amp; Temuan Kunci 🎯<a class="headerlink" href="#ringkasan-temuan-kunci" title="Link to this heading">#</a></h2>
+<p>Setelah melakukan serangkaian analisis, berikut adalah temuan-temuan utama dari tahap Data Understanding:</p>
+<ol class="arabic simple">
+<li><p><strong>Data Bersih &amp; Lengkap:</strong> Data berhasil diintegrasikan dari dua sumber simulasi, bersih dari nilai yang hilang, dan memiliki tipe data yang benar.</p></li>
+<li><p><strong>Dataset Seimbang:</strong> Ketiga spesies Iris memiliki jumlah sampel yang sama (50 sampel), yang sangat baik untuk pemodelan.</p></li>
+<li><p><strong>Fitur Petal adalah Kunci:</strong> <code class="docutils literal notranslate"><span class="pre">petal_length</span></code> dan <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> adalah fitur yang paling informatif dan memiliki daya diskriminatif tertinggi untuk membedakan ketiga spesies.</p></li>
+<li><p><strong>Setosa Mudah Dipisahkan:</strong> Spesies <em>Iris-setosa</em> dapat dipisahkan secara sempurna dari yang lain menggunakan aturan sederhana pada fitur petal.</p></li>
+<li><p><strong>Tantangan:</strong> Tantangan utama dalam pemodelan nanti adalah membedakan secara akurat antara <em>Iris-versicolor</em> dan <em>Iris-virginica</em> yang menunjukkan beberapa kemiripan.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">intro</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="praproses.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">⚙️ Tahap 2: Pra-Pemrosesan Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-proyek">Tujuan Proyek</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-bunga-iris">Dataset: Bunga Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-pengumpulan-integrasi-data">Langkah 1: Pengumpulan &amp; Integrasi Data 🤝</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-inspeksi-verifikasi-data">Langkah 2: Inspeksi &amp; Verifikasi Data 🧐</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-dasar-kualitas-data">Informasi Dasar &amp; Kualitas Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif">Statistik Deskriptif</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-kelas-spesies">Distribusi Kelas (Spesies)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-analisis-data-eksploratif-eda">Langkah 3: Analisis Data Eksploratif (EDA) 📊</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hubungan-antar-fitur-pair-plot">Hubungan Antar Fitur (Pair Plot)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-fitur-per-spesies-box-plot">Distribusi Fitur per Spesies (Box Plot)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korelasi-antar-fitur-numerik-heatmap">Korelasi Antar Fitur Numerik (Heatmap)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-temuan-kunci">Ringkasan &amp; Temuan Kunci 🎯</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By alhamdy wahyu alfiansyah
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
