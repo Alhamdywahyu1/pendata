@@ -83,11 +83,13 @@ def save_manual_model_params(pipeline: Pipeline, X: pd.DataFrame, path: str = "m
     classifier = pipeline.named_steps['classifier']
     
     # Ekstrak info dari preprocessor
-    num_transformer = preprocessor.named_steps['num']
-    cat_transformer = preprocessor.named_steps['cat']
+    num_transformer = preprocessor.named_transformers_['num']
+    cat_transformer = preprocessor.named_transformers_['cat']
     
-    num_features = [X.columns[i] for i in preprocessor.transformers_[0][2]]
-    cat_features = [X.columns[i] for i in preprocessor.transformers_[1][2]]
+    # Memperbaiki cara mendapatkan nama fitur.
+    # Kolom sudah tersedia langsung di atribut transformers_.
+    num_features = preprocessor.transformers_[0][2]
+    cat_features = preprocessor.transformers_[1][2]
     
     params['numerical'] = {
         'features': num_features,
