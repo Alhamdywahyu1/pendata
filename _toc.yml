@@ -1,0 +1,40 @@
+format: jb-book
+version: 2  # Tambahkan versi
+root: intro
+
+toc:
+  - caption: Home
+    file: intro
+
+  - caption: Data Understanding
+    file: data_understanding
+
+  - caption: Praproses
+    file: praproses
+
+  - caption: Modeling
+    sections:
+      - caption: Klasifikasi
+        sections:
+          - caption: Naive Bayes
+            file: naive_bayes
+          - caption: KNN
+            file: KNN
+          - caption: Decision Tree
+            file: decision_tree
+      
+      - caption: Clustering
+        sections:
+          - caption: K-Means
+            file: kmean
+          - caption: C-Means
+            file: cmean
+
+  - caption: UTS
+    file: UTS
+
+  - caption: PRA UAS
+    file: PRA_UAS
+
+  - caption: UAS
+    file: uas
